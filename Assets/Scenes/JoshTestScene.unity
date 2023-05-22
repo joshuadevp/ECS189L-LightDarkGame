@@ -280,10 +280,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapHeightAndWidth: {x: 300, y: 300}
   distanceBetweenPoints: 1
-  activeHeightAndWidth: {x: 30, y: 30}
+  activeHeightAndWidth: {x: 50, y: 50}
   activeCenter: {fileID: 1098526707}
-  darknessPrefab: {fileID: 4095655595018942418, guid: 9f69c28998cf865429de506d83d006f2, type: 3}
+  darknessPrefab: {fileID: 6091990419432597784, guid: 9f69c28998cf865429de506d83d006f2, type: 3}
   pointHeight: 0.1
+  updateInterval: 0.1
 --- !u!1 &1098526703
 GameObject:
   m_ObjectHideFlags: 0

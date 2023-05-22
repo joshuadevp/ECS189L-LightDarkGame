@@ -9,15 +9,19 @@ public class FogOfDarknessManager : MonoBehaviour
     [SerializeField]
     float distanceBetweenPoints; // Distance between points of darkness, assumes all space between two points contains darkness.
     [SerializeField]
-    Vector2 activeHeightAndWidth; // Height and width of set of active points of darkness in world space.
+    Vector2Int activeHeightAndWidth; // Height and width of set of active points of darkness in world space.
     [SerializeField]
     Transform activeCenter; // Center point where we want darkness to be active around
     [SerializeField]
     GameObject darknessPrefab;
     [SerializeField]
     float pointHeight;
+    [SerializeField]
+    float updateInterval; // Time in seconds for manager to update fog system
+    private float intervalWatch = 0;
     private DarknessPoint[,] darknessArray;
     private HashSet<DarknessPoint> activePoints; // set of active points
+    private GameObject[,] objectPool; // Pool of objects to be placed in active area
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +32,13 @@ public class FogOfDarknessManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DeactivatePoints();
-        ActivatePoints();
+        intervalWatch += Time.deltaTime;
+        if (intervalWatch > updateInterval)
+        {
+            intervalWatch = 0;
+            DeactivatePoints();
+            ActivatePoints();
+        }
     }
 
     // Returns true if the given world point is within darkness
@@ -59,21 +68,30 @@ public class FogOfDarknessManager : MonoBehaviour
         return true;
     }
 
-    // (Re)Creates all darkness points and game objects
+    // Creates all darkness points and game objects
     // EXPENSIVE!!! Only use when initializing game
     public void InitAllDarkness()
     {
-        // Reset data
+        // Init data
         activePoints = new HashSet<DarknessPoint>();
 
         // Spawn darkness points
         darknessArray = new DarknessPoint[mapHeightAndWidth.x, mapHeightAndWidth.y];
-
         for (int x = 0; x < mapHeightAndWidth.x; x++)
         {
             for (int y = 0; y < mapHeightAndWidth.y; y++)
             {
                 CreateDarknessPointIndex(new Vector2Int(x, y), new DarknessSpec());
+            }
+        }
+
+        // Spawn pooled game objects
+        objectPool = new GameObject[activeHeightAndWidth.x, activeHeightAndWidth.y];
+        for (int x = 0; x < activeHeightAndWidth.x; x++)
+        {
+            for (int y = 0; y < activeHeightAndWidth.y; y++)
+            {
+                objectPool[x, y] = Instantiate(darknessPrefab, Vector3.zero, Quaternion.identity);
             }
         }
     }
@@ -82,9 +100,9 @@ public class FogOfDarknessManager : MonoBehaviour
     // Returns created DarknessPoint
     private DarknessPoint CreateDarknessPointIndex(Vector2Int index, DarknessSpec spec)
     {
-        GameObject obj = Instantiate(darknessPrefab, Get3DVector(indexToWorld(index)), Quaternion.identity);
         DarknessPoint point = new DarknessPoint();
-        point.darknessObject = obj;
+        point.worldPosition = new Vector3(indexToWorld(index).x, pointHeight, indexToWorld(index).y);
+        point.indexPosition = index;
         point.Init(spec);
         point.SetActive(false);
         darknessArray[index.x, index.y] = point;
@@ -142,10 +160,10 @@ public class FogOfDarknessManager : MonoBehaviour
         activePoints.CopyTo(points);
         foreach (DarknessPoint p in points)
         {
-            if (IsSurrounded(worldToIndex(p.position)))
+            if (IsSurrounded(p.indexPosition))
             {
                 p.SetActive(false);
-                activePoints.Remove(p);
+                //activePoints.Remove(p);
             }
         }
     }
@@ -158,6 +176,36 @@ public class FogOfDarknessManager : MonoBehaviour
         {
             return;
         }
+
+        var corners = GetCorners(center);
+        Vector2Int bottomLeftIndex = corners.Item1;
+        Vector2Int topRightIndex = corners.Item2;
+
+        for (int x = bottomLeftIndex.x; x < topRightIndex.x; x++)
+        {
+            for (int y = bottomLeftIndex.y; y < topRightIndex.y; y++)
+            {
+                DarknessPoint p = darknessArray[x, y];
+                p.SetActive(true);
+                //activePoints.Add(darknessArray[x, y]);
+                // Use object pool to setup colliders
+                GameObject obj = objectPool[x - bottomLeftIndex.x, y - bottomLeftIndex.y];
+                if (p.IsAlive())
+                {
+                    obj.transform.position = p.worldPosition;
+                }
+                else
+                {
+                    obj.transform.position = new Vector3(-1, -1, -1);
+                }
+            }
+        }
+    }
+
+    // Returns pair of Vector2Int representing bottom left and top right corner
+    // of active rectangle around center
+    private (Vector2Int, Vector2Int) GetCorners(Vector2Int center)
+    {
         int centerX = center.x;
         int centerY = center.y;
 
@@ -167,13 +215,6 @@ public class FogOfDarknessManager : MonoBehaviour
         Vector2Int topRightIndex = new Vector2Int(clampIndexX(centerX + indexX), clampIndexY(centerY + indexY));
         Vector2Int bottomLeftIndex = new Vector2Int(clampIndexX(centerX - indexX), clampIndexY(centerY - indexY));
 
-        for (int x = bottomLeftIndex.x; x <= topRightIndex.x; x++)
-        {
-            for (int y = bottomLeftIndex.y; y <= topRightIndex.y; y++)
-            {
-                darknessArray[x, y].SetActive(true);
-                activePoints.Add(darknessArray[x, y]);
-            }
-        }
+        return (bottomLeftIndex, topRightIndex);
     }
 }

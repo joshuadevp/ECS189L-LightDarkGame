@@ -4,26 +4,29 @@ using UnityEngine;
 
 public class DarknessPoint
 {
-    public GameObject darknessObject;
-    public Vector2 position;
+    public Vector3 worldPosition;
+    public Vector2Int indexPosition;
     private bool active;
-    private int health = 1;
+    private int health;
 
     public void Init(DarknessSpec spec)
     {
-        position.x = darknessObject.transform.position.x;
-        position.y = darknessObject.transform.position.z;
+        health = 1;
         // TODO SET SETTINGS WITH SPEC
     }
 
-    public bool IsActive()
+    public bool IsAlive()
     {
         return health > 0;
     }
 
+    public bool IsActive()
+    {
+        return active;
+    }
+
     public void SetActive(bool a)
     {
-        darknessObject.SetActive(a);
         active = a;
     }
 }
