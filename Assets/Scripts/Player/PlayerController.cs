@@ -5,14 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Player))]
 public class PlayerController : MonoBehaviour
 {
-    Player player;
+    public Player main { get; private set; }
 
     [SerializeField] private IPlayerCommand fire1;
     [SerializeField] private IPlayerCommand fire2;
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<Player>();
+        main = GetComponent<Player>();
         fire1 = gameObject.AddComponent<TestCommand>();
     }
 
@@ -32,6 +32,6 @@ public class PlayerController : MonoBehaviour
             this.fire2?.Execute(this.gameObject);
         }
 
-        transform.Translate(new Vector2(x, y).normalized * Time.deltaTime * player.Speed);
+        transform.Translate(new Vector2(x, y).normalized * Time.deltaTime * main.Speed);
     }
 }

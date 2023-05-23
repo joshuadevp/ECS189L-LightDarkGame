@@ -5,22 +5,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] CharacterBase baseStats;
-    private float maxHP;
-    private float hp;
-    private float speed;
+    private ModStat maxHP;
+    private ModStat speed;
 
-    public float Speed { get => speed; private set => speed = value; }
+    [field: SerializeField] public float Hp { get; private set; }
+    public float Speed { get => speed.Value; }
 
     // Start is called before the first frame update
     void Start()
     {
-        maxHP = baseStats.hp;
-        hp = maxHP;
-        speed = baseStats.speed;
+        maxHP = new ModStat(baseStats.hp);
+        speed = new ModStat(baseStats.speed);
+        Hp = maxHP.Value;
     }
 
     public void TakeDamage(float dmg) 
     {
-        hp -= dmg;
+        Hp -= dmg;
     }
 }
