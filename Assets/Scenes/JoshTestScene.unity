@@ -278,9 +278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e4d8dfb0baf4c809ddc393bb074bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapHeightAndWidth: {x: 300, y: 300}
+  mapHeightAndWidth: {x: 100, y: 100}
   distanceBetweenPoints: 1
-  activeHeightAndWidth: {x: 50, y: 50}
+  activeHeightAndWidth: {x: 30, y: 30}
   activeCenter: {fileID: 1098526707}
   darknessPrefab: {fileID: 6091990419432597784, guid: 9f69c28998cf865429de506d83d006f2, type: 3}
   pointHeight: 0.1
