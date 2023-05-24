@@ -6,19 +6,20 @@ public class DarknessPoint
 {
     public Vector3 worldPosition { get; set; }
     public Vector2Int indexPosition { get; set; }
-    public int health { get; set; }
+    public int currentHealth { get; set; }
     public int maxHealth { get; set; }
     private bool active;
 
     public void Init(DarknessSpec spec)
     {
-        health = 1;
         // TODO SET SETTINGS WITH SPEC
+        currentHealth = spec.currentHealth;
+        maxHealth = spec.maxHealth;
     }
 
     public bool IsAlive()
     {
-        return health > 0;
+        return currentHealth > 0;
     }
 
     public bool IsActive()

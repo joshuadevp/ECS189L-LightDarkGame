@@ -7,6 +7,10 @@ public class MoveCube : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     float speed;
+    [SerializeField]
+    FogOfDarknessManager fogManager;
+    [SerializeField]
+    float radius;
     void Start()
     {
         
@@ -30,6 +34,11 @@ public class MoveCube : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             this.transform.position += new Vector3(0, 0, speed) * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            fogManager.CreateDarknessPointsCircle(this.transform.position, radius,new DarknessSpec(){currentHealth= 0,maxHealth=0});
+            fogManager.GetActivePoints();
         }
     }
 }

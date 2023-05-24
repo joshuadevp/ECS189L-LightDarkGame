@@ -4,5 +4,8 @@ using UnityEngine;
 
 public struct DarknessSpec
 {
-
+    public int maxHealth;
+    public int currentHealth;
+    public SpawnSpec spawnSpec;
+    public float density;
 }
