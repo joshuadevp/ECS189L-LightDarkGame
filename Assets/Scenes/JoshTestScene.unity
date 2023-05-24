@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -227,6 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 764675902}
   - component: {fileID: 764675901}
+  - component: {fileID: 764675903}
   m_Layer: 0
   m_Name: TestLogic
   m_TagString: Untagged
@@ -241,13 +242,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764675900}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ae7742d1e8227f439bce2b2626171e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4527605166799355182, guid: 9f69c28998cf865429de506d83d006f2, type: 3}
-  sideLength: 100
+  sideLength: 300
+  activeLength: 20
+  activeCenter: {fileID: 1098526707}
 --- !u!4 &764675902
 Transform:
   m_ObjectHideFlags: 0
@@ -263,6 +266,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &764675903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764675900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e4d8dfb0baf4c809ddc393bb074bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapHeightAndWidth: {x: 300, y: 300}
+  distanceBetweenPoints: 1
+  activeHeightAndWidth: {x: 30, y: 30}
+  activeCenter: {fileID: 1098526707}
+  darknessPrefab: {fileID: 4095655595018942418, guid: 9f69c28998cf865429de506d83d006f2, type: 3}
+  pointHeight: 0.1
 --- !u!1 &1098526703
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +297,8 @@ GameObject:
   - component: {fileID: 1098526705}
   - component: {fileID: 1098526704}
   - component: {fileID: 1098526708}
+  - component: {fileID: 1098526709}
+  - component: {fileID: 1098526710}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -381,6 +404,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3264d3a9d8f35f45b464c263ebc2073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1098526709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098526703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8e97007e8a1a44ca8d175cfa49f2f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+--- !u!54 &1098526710
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098526703}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1838918563
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,11 +528,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838918563}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.10244243, y: -0, z: -0, w: 0.99473894}
+  m_LocalPosition: {x: 14.93, y: 12.45, z: -24.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 11.76, y: 0, z: 0}

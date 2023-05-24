@@ -5,21 +5,25 @@ using UnityEngine;
 public class ActiveDeactive : MonoBehaviour
 {
     [SerializeField]
-    GameObject []objs;
+    GameObject[] objs;
+    public GameObject prefabRoot;
     void Start()
     {
-        
+        prefabRoot = this.gameObject.transform.parent.gameObject;
     }
 
     // Update is called once per frame
+    public void ManualUpdate()
+    {
+        ;
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        foreach(GameObject o in objs)
+        foreach (GameObject o in objs)
         {
             o.SetActive(true);
         }
-
     }
 
     void OnTriggerExit(Collider other)
@@ -28,6 +32,5 @@ public class ActiveDeactive : MonoBehaviour
         {
             o.SetActive(false);
         }
-
     }
 }
