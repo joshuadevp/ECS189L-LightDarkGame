@@ -18,6 +18,8 @@ public class FogOfDarknessManager : MonoBehaviour
     float pointHeight;
     [SerializeField]
     float updateInterval; // Time in seconds for manager to update fog system
+    [SerializeField]
+    IDarknessGenerator darknessGenerator;
     private float intervalWatch = 0;
     private DarknessPoint[,] darknessArray;
     private HashSet<DarknessPoint> activePoints; // set of active points
@@ -67,7 +69,7 @@ public class FogOfDarknessManager : MonoBehaviour
         {
             for (int y = 0; y < mapWidthAndHeight.y; y++)
             {
-                CreateDarknessPointIndex(new Vector2Int(x, y), new DarknessSpec() { maxHealth=1,currentHealth=1});
+                CreateDarknessPointIndex(new Vector2Int(x, y), darknessGenerator.Generate(new Vector2(x, y)));
             }
         }
 
@@ -112,13 +114,13 @@ public class FogOfDarknessManager : MonoBehaviour
 
     public DarknessPoint[,] GetActivePoints()
     {
-        DarknessPoint[,] points = new DarknessPoint[activeWidthAndHeight.x,activeWidthAndHeight.y];
+        DarknessPoint[,] points = new DarknessPoint[activeWidthAndHeight.x, activeWidthAndHeight.y];
 
         var corners = GetCorners(worldToIndex(activeCenter.position));
         var bottomLeft = corners.Item1;
         var topRight = corners.Item2;
 
-        for(int x = bottomLeft.x; x < topRight.x; x++)
+        for (int x = bottomLeft.x; x < topRight.x; x++)
         {
             for (int y = bottomLeft.y; y < topRight.y; y++)
             {
@@ -131,13 +133,13 @@ public class FogOfDarknessManager : MonoBehaviour
 
     private void CreateDarknessPointsCircleIndex(Vector2Int center, int radius, DarknessSpec spec)
     {
-        for(int x = -radius; x <= radius; x++)
+        for (int x = -radius; x <= radius; x++)
         {
-            for(int y = -radius; y <= radius; y++)
+            for (int y = -radius; y <= radius; y++)
             {
-                if(y*y + x*x <= radius * radius+radius && ValidIndex(new Vector2Int(x+center.x,y+center.y)))
+                if (y * y + x * x <= radius * radius + radius && ValidIndex(new Vector2Int(x + center.x, y + center.y)))
                 {
-                    CreateDarknessPointIndex(new Vector2Int(x+center.x, y+center.y), spec);
+                    CreateDarknessPointIndex(new Vector2Int(x + center.x, y + center.y), spec);
                 }
             }
         }
