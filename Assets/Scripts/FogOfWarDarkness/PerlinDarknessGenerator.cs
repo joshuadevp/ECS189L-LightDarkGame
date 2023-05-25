@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class PerlinDarknessGenerator : IDarknessGenerator
 {
+    public float refinement;
     private float seed;
-    public PerlinDarknessGenerator()
+    void OnEnable()
     {
-        seed = Random.Range(0, float.MaxValue / 2);
+        seed = Random.Range(0, 65534);
     }
-    public DarknessSpec Generate(Vector2 loc)
+
+    override public DarknessSpec Generate(Vector2 loc) 
     {
-        float noise = Mathf.PerlinNoise(loc.x + seed, loc.y + seed);
-        return new DarknessSpec();
+        float noise = Mathf.PerlinNoise(loc.x * refinement + seed, loc.y * refinement + seed);
+        return new DarknessSpec() { density = noise, currentHealth = 1, maxHealth = 1};
     }
 }

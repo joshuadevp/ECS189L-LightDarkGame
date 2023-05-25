@@ -29,15 +29,16 @@ public class MoveCube : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S))
         {
-            this.transform.position -= new Vector3(0, 0, speed) * Time.deltaTime;
+            this.transform.position -= new Vector3(0, speed, 0) * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.W))
         {
-            this.transform.position += new Vector3(0, 0, speed) * Time.deltaTime;
+            this.transform.position += new Vector3(0, speed, 0) * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.E))
         {
-            fogManager.CreateDarknessPointsCircle(this.transform.position, radius,new DarknessSpec(){currentHealth= 0,maxHealth=0});
+            fogManager.CreateDarknessPointsCircle(this.transform.position, radius,new DarknessSpec(){density=1,currentHealth= 0,maxHealth=0});
+            //fogManager.RemoveDarknessPointsCircle(this.transform.position, radius);
             fogManager.GetActivePoints();
         }
     }

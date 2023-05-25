@@ -15,8 +15,6 @@ public class FogOfDarknessManager : MonoBehaviour
     [SerializeField]
     GameObject darknessPrefab;
     [SerializeField]
-    float pointHeight;
-    [SerializeField]
     float updateInterval; // Time in seconds for manager to update fog system
     [SerializeField]
     IDarknessGenerator darknessGenerator;
@@ -24,7 +22,7 @@ public class FogOfDarknessManager : MonoBehaviour
     private DarknessPoint[,] darknessArray;
     private HashSet<DarknessPoint> activePoints; // set of active points
     private GameObject[,] objectPool; // Pool of objects to be placed in active area
-    private Vector3 oldPosition;
+    private Vector2 oldPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +44,7 @@ public class FogOfDarknessManager : MonoBehaviour
     }
 
     // Returns true if the given world point is within darkness
-    public bool IsDarkness(Vector3 loc)
+    public bool IsDarkness(Vector2 loc)
     {
         Vector2Int index = worldToIndex(loc);
         if (index.x == -1)
@@ -74,19 +72,19 @@ public class FogOfDarknessManager : MonoBehaviour
         }
 
         // Spawn pooled game objects
-        objectPool = new GameObject[activeWidthAndHeight.x, activeWidthAndHeight.y];
-        for (int x = 0; x < activeWidthAndHeight.x; x++)
+        objectPool = new GameObject[activeWidthAndHeight.x+1, activeWidthAndHeight.y+1];
+        for (int x = 0; x < activeWidthAndHeight.x+1; x++)
         {
-            for (int y = 0; y < activeWidthAndHeight.y; y++)
+            for (int y = 0; y < activeWidthAndHeight.y+1; y++)
             {
-                objectPool[x, y] = Instantiate(darknessPrefab, Vector3.zero, Quaternion.identity);
+                objectPool[x, y] = Instantiate(darknessPrefab, Vector2.zero, Quaternion.identity);
             }
         }
     }
 
     // Creates a point of darkness at the given world coord if possible
     // Returns true on success
-    public bool CreateDarknessPoint(Vector3 coordinates, DarknessSpec spec)
+    public bool CreateDarknessPoint(Vector2 coordinates, DarknessSpec spec)
     {
         Vector2Int index = worldToIndex(coordinates);
         if (index.x == -1) return false; // fail on invalid coord
@@ -95,7 +93,7 @@ public class FogOfDarknessManager : MonoBehaviour
     }
 
     // Remove darkness point at given location
-    public void RemoveDarkness(Vector3 loc)
+    public void RemoveDarkness(Vector2 loc)
     {
         Vector2Int index = worldToIndex(loc);
 
@@ -104,7 +102,7 @@ public class FogOfDarknessManager : MonoBehaviour
 
     // Create a circle of darkness points at the given world position and world
     // based radius
-    public void CreateDarknessPointsCircle(Vector3 center, float radius, DarknessSpec spec)
+    public void CreateDarknessPointsCircle(Vector2 center, float radius, DarknessSpec spec)
     {
         Vector2Int index = worldToIndex(center);
         int indexRadius = Mathf.RoundToInt(radius / distanceBetweenPoints);
@@ -112,17 +110,22 @@ public class FogOfDarknessManager : MonoBehaviour
         CreateDarknessPointsCircleIndex(index, indexRadius, spec);
     }
 
+    public void RemoveDarknessPointsCircle(Vector2 center, float radius)
+    {
+        CreateDarknessPointsCircle(center, radius, DarknessSpec.GetNullSpec());
+    }
+
     public DarknessPoint[,] GetActivePoints()
     {
-        DarknessPoint[,] points = new DarknessPoint[activeWidthAndHeight.x, activeWidthAndHeight.y];
+        DarknessPoint[,] points = new DarknessPoint[activeWidthAndHeight.x+1, activeWidthAndHeight.y+1];
 
         var corners = GetCorners(worldToIndex(activeCenter.position));
         var bottomLeft = corners.Item1;
         var topRight = corners.Item2;
 
-        for (int x = bottomLeft.x; x < topRight.x; x++)
+        for (int x = bottomLeft.x; x <= topRight.x; x++)
         {
-            for (int y = bottomLeft.y; y < topRight.y; y++)
+            for (int y = bottomLeft.y; y <= topRight.y; y++)
             {
                 points[x - bottomLeft.x, y - bottomLeft.y] = darknessArray[x, y];
             }
@@ -179,27 +182,20 @@ public class FogOfDarknessManager : MonoBehaviour
 
     // Converts world coordinates to index in internal array
     // Invalid conversion results in (-1,-1) return
-    private Vector2Int worldToIndex(Vector3 loc)
+    private Vector2Int worldToIndex(Vector2 loc)
     {
-        if (loc.x < 0 || loc.x > mapWidthAndHeight.x * distanceBetweenPoints || loc.z < 0 || loc.z > mapWidthAndHeight.y * distanceBetweenPoints)
+        if (loc.x < 0 || loc.x > mapWidthAndHeight.x * distanceBetweenPoints || loc.y < 0 || loc.y > mapWidthAndHeight.y * distanceBetweenPoints)
         {
             return new Vector2Int(-1, -1);
         }
-        return new Vector2Int(Mathf.RoundToInt(loc.x / distanceBetweenPoints), Mathf.RoundToInt(loc.z / distanceBetweenPoints));
+        return new Vector2Int(Mathf.RoundToInt(loc.x / distanceBetweenPoints), Mathf.RoundToInt(loc.y / distanceBetweenPoints));
     }
 
     // Converts index to coordinates in world
     // Assumes any point within the bounds o
-    private Vector3 indexToWorld(Vector2Int index)
+    private Vector2 indexToWorld(Vector2Int index)
     {
-        return new Vector3(index.x * distanceBetweenPoints, pointHeight, index.y * distanceBetweenPoints);
-    }
-
-    // Darkness exists on a 2D plane but in a 3D game we need 3D coords
-    // 
-    private Vector3 Get3DVector(Vector2 loc)
-    {
-        return new Vector3(loc.x, pointHeight, loc.y);
+        return new Vector2(index.x * distanceBetweenPoints, index.y * distanceBetweenPoints);
     }
 
     // Returns true if index position is surrounded by darkness and thus cannot spread
@@ -214,11 +210,11 @@ public class FogOfDarknessManager : MonoBehaviour
     // Clamp index within array ranges
     private int clampIndexX(int x)
     {
-        return Mathf.Clamp(x, 0, mapWidthAndHeight.x - 1);
+        return Mathf.Clamp(x, 0, mapWidthAndHeight.x-1);
     }
     private int clampIndexY(int y)
     {
-        return Mathf.Clamp(y, 0, mapWidthAndHeight.y - 1);
+        return Mathf.Clamp(y, 0, mapWidthAndHeight.y-1);
     }
 
     private void DeactivatePoints()
@@ -242,9 +238,9 @@ public class FogOfDarknessManager : MonoBehaviour
         Vector2Int bottomLeftIndex = corners.Item1;
         Vector2Int topRightIndex = corners.Item2;
 
-        for (int x = bottomLeftIndex.x; x < topRightIndex.x; x++)
+        for (int x = bottomLeftIndex.x; x <= topRightIndex.x; x++)
         {
-            for (int y = bottomLeftIndex.y; y < topRightIndex.y; y++)
+            for (int y = bottomLeftIndex.y; y <= topRightIndex.y; y++)
             {
                 DarknessPoint p = darknessArray[x, y];
                 p.SetActive(false);
@@ -265,9 +261,9 @@ public class FogOfDarknessManager : MonoBehaviour
         Vector2Int bottomLeftIndex = corners.Item1;
         Vector2Int topRightIndex = corners.Item2;
 
-        for (int x = bottomLeftIndex.x; x < topRightIndex.x; x++)
+        for (int x = bottomLeftIndex.x; x <= topRightIndex.x; x++)
         {
-            for (int y = bottomLeftIndex.y; y < topRightIndex.y; y++)
+            for (int y = bottomLeftIndex.y; y <= topRightIndex.y; y++)
             {
                 DarknessPoint p = darknessArray[x, y];
                 p.SetActive(true);
@@ -280,7 +276,7 @@ public class FogOfDarknessManager : MonoBehaviour
                 }
                 else
                 {
-                    obj.transform.position = new Vector3(-1, -1, -1);
+                    obj.transform.position = new Vector2(-1, -1);
                 }
             }
         }
@@ -316,10 +312,11 @@ public class FogOfDarknessManager : MonoBehaviour
                 if (darknessArray != null)
                 {
                     var point = darknessArray[x, y];
-                    Gizmos.color = point.IsAlive() ? Color.green : Color.red;
+                    Gizmos.color = point.IsAlive() ? Color.green: Color.red;
                     if (point.IsActive()) Gizmos.color = Gizmos.color + Color.yellow; // Tint active cells yellow
+                    Gizmos.color *= point.density; // shade with point density
                 }
-                Gizmos.DrawWireCube(indexToWorld(new Vector2Int(x, y)), new Vector3(distanceBetweenPoints, 0f, distanceBetweenPoints));
+                Gizmos.DrawWireCube(indexToWorld(new Vector2Int(x, y)), new Vector2(distanceBetweenPoints, distanceBetweenPoints));
             }
         }
     }
