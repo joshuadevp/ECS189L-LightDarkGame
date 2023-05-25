@@ -72,10 +72,10 @@ public class FogOfDarknessManager : MonoBehaviour
         }
 
         // Spawn pooled game objects
-        objectPool = new GameObject[activeWidthAndHeight.x+1, activeWidthAndHeight.y+1];
-        for (int x = 0; x < activeWidthAndHeight.x+1; x++)
+        objectPool = new GameObject[activeWidthAndHeight.x + 1, activeWidthAndHeight.y + 1];
+        for (int x = 0; x < activeWidthAndHeight.x + 1; x++)
         {
-            for (int y = 0; y < activeWidthAndHeight.y+1; y++)
+            for (int y = 0; y < activeWidthAndHeight.y + 1; y++)
             {
                 objectPool[x, y] = Instantiate(darknessPrefab, Vector2.zero, Quaternion.identity);
             }
@@ -117,7 +117,7 @@ public class FogOfDarknessManager : MonoBehaviour
 
     public DarknessPoint[,] GetActivePoints()
     {
-        DarknessPoint[,] points = new DarknessPoint[activeWidthAndHeight.x+1, activeWidthAndHeight.y+1];
+        DarknessPoint[,] points = new DarknessPoint[activeWidthAndHeight.x + 1, activeWidthAndHeight.y + 1];
 
         var corners = GetCorners(worldToIndex(activeCenter.position));
         var bottomLeft = corners.Item1;
@@ -201,20 +201,38 @@ public class FogOfDarknessManager : MonoBehaviour
     // Returns true if index position is surrounded by darkness and thus cannot spread
     private bool IsSurrounded(Vector2Int index)
     {
-        return darknessArray[clampIndexX(index.x + 1), index.y].IsActive() &&
-        darknessArray[clampIndexX(index.x - 1), index.y].IsActive() &&
-        darknessArray[index.x, clampIndexY(index.y + 1)].IsActive() &&
-        darknessArray[index.x, clampIndexY(index.y - 1)].IsActive();
+        return darknessArray[clampIndexX(index.x + 1), index.y].IsAlive() &&
+        darknessArray[clampIndexX(index.x - 1), index.y].IsAlive() &&
+        darknessArray[index.x, clampIndexY(index.y + 1)].IsAlive() &&
+        darknessArray[index.x, clampIndexY(index.y - 1)].IsAlive();
+    }
+
+    // Returns list of available points to spread to around index location
+    private List<Vector2Int> OpenSurrounding(Vector2Int index)
+    {
+        List<Vector2Int> open = new List<Vector2Int>();
+
+        DarknessPoint p;
+        p = darknessArray[clampIndexX(index.x + 1), index.y];
+        if (!p.IsAlive()) open.Add(p.indexPosition);
+        p = darknessArray[clampIndexX(index.x - 1), index.y];
+        if (!p.IsAlive()) open.Add(p.indexPosition);
+        p = darknessArray[index.x, clampIndexY(index.y + 1)];
+        if (!p.IsAlive()) open.Add(p.indexPosition);
+        p = darknessArray[index.x, clampIndexY(index.y - 1)];
+        if (!p.IsAlive()) open.Add(p.indexPosition);
+
+        return open;
     }
 
     // Clamp index within array ranges
     private int clampIndexX(int x)
     {
-        return Mathf.Clamp(x, 0, mapWidthAndHeight.x-1);
+        return Mathf.Clamp(x, 0, mapWidthAndHeight.x - 1);
     }
     private int clampIndexY(int y)
     {
-        return Mathf.Clamp(y, 0, mapWidthAndHeight.y-1);
+        return Mathf.Clamp(y, 0, mapWidthAndHeight.y - 1);
     }
 
     private void DeactivatePoints()
@@ -312,7 +330,7 @@ public class FogOfDarknessManager : MonoBehaviour
                 if (darknessArray != null)
                 {
                     var point = darknessArray[x, y];
-                    Gizmos.color = point.IsAlive() ? Color.green: Color.red;
+                    Gizmos.color = point.IsAlive() ? Color.green : Color.red;
                     if (point.IsActive()) Gizmos.color = Gizmos.color + Color.yellow; // Tint active cells yellow
                     Gizmos.color *= point.density; // shade with point density
                 }
