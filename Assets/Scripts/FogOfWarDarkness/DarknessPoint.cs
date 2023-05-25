@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class DarknessPoint
 {
-    public Vector2 worldPosition { get; set; }
-    public Vector2Int indexPosition { get; set; }
-    public int currentHealth { get; set; }
-    public int maxHealth { get; set; }
+    public Vector2 worldPosition;
+    public Vector2Int indexPosition;
+    public int currentHealth;
+    public int maxHealth;
     private bool active;
-    public float density { get; set; }
+    public float density;
+    public DarknessSpec spec;
 
     public void Init(DarknessSpec spec)
     {
@@ -17,6 +18,7 @@ public class DarknessPoint
         currentHealth = spec.currentHealth;
         maxHealth = spec.maxHealth;
         density = spec.density;
+        this.spec = spec;
     }
 
     public bool IsAlive()
@@ -32,5 +34,13 @@ public class DarknessPoint
     public void SetActive(bool a)
     {
         active = a;
+    }
+
+    public void Spread(List<Vector3> openSpots, FogOfDarknessManager manager)
+    {
+        if (Random.Range(0f, 1f) > 0.95)
+        {
+            manager.CreateDarknessPoint(openSpots[Random.Range(0, openSpots.Count)], spec);
+        }
     }
 }

@@ -20,7 +20,7 @@ public class FogOfDarknessManager : MonoBehaviour
     IDarknessGenerator darknessGenerator;
     private float intervalWatch = 0;
     private DarknessPoint[,] darknessArray;
-    private HashSet<DarknessPoint> activePoints; // set of active points
+    private HashSet<DarknessPoint> spreadablePoints; // set of points that can spread
     private GameObject[,] objectPool; // Pool of objects to be placed in active area
     private Vector2 oldPosition;
 
@@ -39,6 +39,7 @@ public class FogOfDarknessManager : MonoBehaviour
             intervalWatch = 0;
             DeactivatePoints();
             ActivatePoints();
+            SpreadPoints();
             oldPosition = activeCenter.position;
         }
     }
@@ -59,7 +60,7 @@ public class FogOfDarknessManager : MonoBehaviour
     public void InitAllDarkness()
     {
         // Init data
-        activePoints = new HashSet<DarknessPoint>();
+        spreadablePoints = new HashSet<DarknessPoint>();
 
         // Spawn darkness points
         darknessArray = new DarknessPoint[mapWidthAndHeight.x, mapWidthAndHeight.y];
@@ -168,9 +169,14 @@ public class FogOfDarknessManager : MonoBehaviour
     }
 
     // Creates a point of darkness given index in array and associated data
-    // Returns created DarknessPoint
+    // Returns created DarknessPoint or null if index invalid
     private DarknessPoint CreateDarknessPointIndex(Vector2Int index, DarknessSpec spec)
     {
+        if (!ValidIndex(index))
+        {
+            Debug.LogError("Invalid index for creating darkness point! x: " + index.x + " y: " + index.y);
+            return null;
+        }
         DarknessPoint point = new DarknessPoint();
         point.worldPosition = indexToWorld(index);
         point.indexPosition = index;
@@ -208,19 +214,19 @@ public class FogOfDarknessManager : MonoBehaviour
     }
 
     // Returns list of available points to spread to around index location
-    private List<Vector2Int> OpenSurrounding(Vector2Int index)
+    private List<Vector3> OpenSurrounding(Vector2Int index)
     {
-        List<Vector2Int> open = new List<Vector2Int>();
+        List<Vector3> open = new List<Vector3>();
 
         DarknessPoint p;
         p = darknessArray[clampIndexX(index.x + 1), index.y];
-        if (!p.IsAlive()) open.Add(p.indexPosition);
+        if (!p.IsAlive()) open.Add(p.worldPosition);
         p = darknessArray[clampIndexX(index.x - 1), index.y];
-        if (!p.IsAlive()) open.Add(p.indexPosition);
+        if (!p.IsAlive()) open.Add(p.worldPosition);
         p = darknessArray[index.x, clampIndexY(index.y + 1)];
-        if (!p.IsAlive()) open.Add(p.indexPosition);
+        if (!p.IsAlive()) open.Add(p.worldPosition);
         p = darknessArray[index.x, clampIndexY(index.y - 1)];
-        if (!p.IsAlive()) open.Add(p.indexPosition);
+        if (!p.IsAlive()) open.Add(p.worldPosition);
 
         return open;
     }
@@ -238,14 +244,14 @@ public class FogOfDarknessManager : MonoBehaviour
     private void DeactivatePoints()
     {
         // Copy points so we can remove items from active set
-        DarknessPoint[] points = new DarknessPoint[activePoints.Count];
-        activePoints.CopyTo(points);
+        DarknessPoint[] points = new DarknessPoint[spreadablePoints.Count];
+        spreadablePoints.CopyTo(points);
         foreach (DarknessPoint p in points)
         {
             if (IsSurrounded(p.indexPosition))
             {
                 p.SetActive(false);
-                //activePoints.Remove(p);
+                spreadablePoints.Remove(p);
             }
         }
 
@@ -291,12 +297,26 @@ public class FogOfDarknessManager : MonoBehaviour
                 if (p.IsAlive())
                 {
                     obj.transform.position = p.worldPosition;
+                    if (!IsSurrounded(p.indexPosition))
+                    {
+                        spreadablePoints.Add(p);
+                    }
                 }
                 else
                 {
                     obj.transform.position = new Vector2(-1, -1);
                 }
             }
+        }
+    }
+
+    // Call spread function of all darkness points
+    private void SpreadPoints()
+    {
+        foreach (DarknessPoint p in spreadablePoints)
+        {
+            List<Vector3> open = OpenSurrounding(p.indexPosition);
+            if (open.Count > 0) p.Spread(open, this);
         }
     }
 
