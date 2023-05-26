@@ -11,9 +11,11 @@ public class MoveCube : MonoBehaviour
     FogOfDarknessManager fogManager;
     [SerializeField]
     float radius;
+    [SerializeField]
+    ParticleSystem particles;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -39,7 +41,12 @@ public class MoveCube : MonoBehaviour
         {
             fogManager.CreateDarknessPointsCircle(this.transform.position, radius,new DarknessSpec(){density=1,currentHealth= 0,maxHealth=0});
             //fogManager.RemoveDarknessPointsCircle(this.transform.position, radius);
-            fogManager.GetActivePoints();
+            var activePoints = fogManager.GetActivePoints();
+            foreach(DarknessPoint p in activePoints)
+            {
+                ParticleSystem.EmitParams param = new ParticleSystem.EmitParams() { position=p.worldPosition};
+                particles.Emit(param, 1);
+            }
         }
     }
 }

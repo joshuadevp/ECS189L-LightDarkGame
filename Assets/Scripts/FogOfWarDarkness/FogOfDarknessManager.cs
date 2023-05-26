@@ -182,7 +182,9 @@ public class FogOfDarknessManager : MonoBehaviour
         point.indexPosition = index;
         point.Init(spec);
         point.SetActive(false);
+        if (darknessArray[index.x, index.y] != null) spreadablePoints.Remove(darknessArray[index.x, index.y]);
         darknessArray[index.x, index.y] = point;
+        spreadablePoints.Add(point);
         return point;
     }
 
@@ -313,7 +315,10 @@ public class FogOfDarknessManager : MonoBehaviour
     // Call spread function of all darkness points
     private void SpreadPoints()
     {
-        foreach (DarknessPoint p in spreadablePoints)
+        // Copy points so we can remove items from active set
+        DarknessPoint[] points = new DarknessPoint[spreadablePoints.Count];
+        spreadablePoints.CopyTo(points);
+        foreach (DarknessPoint p in points)
         {
             List<Vector3> open = OpenSurrounding(p.indexPosition);
             if (open.Count > 0) p.Spread(open, this);
