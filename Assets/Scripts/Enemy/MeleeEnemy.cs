@@ -26,6 +26,7 @@ public class MeleeEnemy : EnemyController
         if (collision.gameObject.tag == "Player") 
         {
             player.main.TakeDamage(main.damage);
+            print($"Player took {main.damage} damage");
         }
     }
 }

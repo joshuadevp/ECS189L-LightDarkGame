@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
             this.fire2?.Execute(this.gameObject);
         }
 
-        transform.Translate(new Vector2(x, y).normalized * Time.deltaTime * main.Speed);
+        Vector3 movement = new Vector2(x, y).normalized * Time.deltaTime * main.Speed;
+        transform.position += movement;
     }
 }
