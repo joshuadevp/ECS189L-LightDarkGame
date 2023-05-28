@@ -13,6 +13,8 @@ public class MoveCube : MonoBehaviour
     float radius;
     [SerializeField]
     ParticleSystem particles;
+    [SerializeField]
+    MeshFilter planeFilter;
     void Start()
     {
 
@@ -39,14 +41,18 @@ public class MoveCube : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.E))
         {
-            fogManager.CreateDarknessPointsCircle(this.transform.position, radius,new DarknessSpec(){density=1,currentHealth= 0,maxHealth=0});
+            fogManager.CreateDarknessPointsCircle(this.transform.position, radius, new DarknessSpec() { density = 1, currentHealth = 0, maxHealth = 0 });
             //fogManager.RemoveDarknessPointsCircle(this.transform.position, radius);
             var activePoints = fogManager.GetActivePoints();
-            foreach(DarknessPoint p in activePoints)
-            {
-                ParticleSystem.EmitParams param = new ParticleSystem.EmitParams() { position=p.worldPosition};
-                particles.Emit(param, 1);
-            }
+            // foreach (DarknessPoint p in activePoints)
+            // {
+            //     ParticleSystem.EmitParams param = new ParticleSystem.EmitParams() { position = p.worldPosition };
+            //     particles.Emit(param, 1);
+            // }
+            Mesh mesh = fogManager.BuildMesh();
+            var shape = particles.shape;
+            shape.mesh = mesh;
+            planeFilter.mesh = mesh;
         }
     }
 }

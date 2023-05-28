@@ -79,6 +79,7 @@ public class FogOfDarknessManager : MonoBehaviour
             for (int y = 0; y < activeWidthAndHeight.y + 1; y++)
             {
                 objectPool[x, y] = Instantiate(darknessPrefab, Vector2.zero, Quaternion.identity);
+                objectPool[x, y].transform.parent = this.gameObject.transform;
             }
         }
     }
@@ -116,9 +117,10 @@ public class FogOfDarknessManager : MonoBehaviour
         CreateDarknessPointsCircle(center, radius, DarknessSpec.GetNullSpec());
     }
 
-    public DarknessPoint[,] GetActivePoints()
+    // Returns list of active darkness points
+    public List<DarknessPoint> GetActivePoints()
     {
-        DarknessPoint[,] points = new DarknessPoint[activeWidthAndHeight.x + 1, activeWidthAndHeight.y + 1];
+        List<DarknessPoint> points = new List<DarknessPoint>();
 
         var corners = GetCorners(worldToIndex(activeCenter.position));
         var bottomLeft = corners.Item1;
@@ -128,11 +130,77 @@ public class FogOfDarknessManager : MonoBehaviour
         {
             for (int y = bottomLeft.y; y <= topRight.y; y++)
             {
-                points[x - bottomLeft.x, y - bottomLeft.y] = darknessArray[x, y];
+                DarknessPoint p = darknessArray[x, y];
+                if (p.IsActive())
+                {
+                    points.Add(p);
+                }
             }
         }
 
         return points;
+    }
+
+    // public DarknessPoint[,] GetActivePoints()
+    // {
+    //     DarknessPoint[,] points = new DarknessPoint[activeWidthAndHeight.x + 1, activeWidthAndHeight.y + 1];
+
+    //     var corners = GetCorners(worldToIndex(activeCenter.position));
+    //     var bottomLeft = corners.Item1;
+    //     var topRight = corners.Item2;
+
+    //     for (int x = bottomLeft.x; x <= topRight.x; x++)
+    //     {
+    //         for (int y = bottomLeft.y; y <= topRight.y; y++)
+    //         {
+    //             points[x - bottomLeft.x, y - bottomLeft.y] = darknessArray[x, y];
+    //         }
+    //     }
+
+    //     return points;
+    // }
+
+    // Builds and returns a mesh created from the current list of active points.
+    public Mesh BuildMesh()
+    {
+        Mesh mesh = new Mesh { name = "DarknessMesh" };
+
+        List<Vector3> vertices = new List<Vector3>();
+        List<int> triangles = new List<int>();
+        List<Vector3> normals = new List<Vector3>();
+
+        int index = 0;
+        foreach (DarknessPoint p in this.GetActivePoints())
+        {
+            // Points of square
+            vertices.Add(new Vector3(p.worldPosition.x - distanceBetweenPoints / 2, p.worldPosition.y - distanceBetweenPoints / 2, 0));
+            vertices.Add(new Vector3(p.worldPosition.x - distanceBetweenPoints / 2, p.worldPosition.y + distanceBetweenPoints / 2, 0));
+            vertices.Add(new Vector3(p.worldPosition.x + distanceBetweenPoints / 2, p.worldPosition.y - distanceBetweenPoints / 2, 0));
+            vertices.Add(new Vector3(p.worldPosition.x + distanceBetweenPoints / 2, p.worldPosition.y + distanceBetweenPoints / 2, 0));
+            // Two triangles per square
+            triangles.AddRange(new int[] { 0 + index, 1 + index, 2 + index });
+            triangles.AddRange(new int[] { 2 + index, 1 + index, 3 + index });
+            // Vertice normals
+            normals.AddRange(new Vector3[] { Vector3.back, Vector3.back, Vector3.back, Vector3.back });
+
+            index += 4;
+        }
+
+        mesh.vertices = vertices.ToArray();
+        mesh.normals = normals.ToArray();
+        mesh.triangles = triangles.ToArray();
+
+        // mesh.vertices = new Vector3[] {
+        //     Vector3.zero, Vector3.right, Vector3.up, new Vector3(1.1f,0f),new Vector3(0f,1.1f),new Vector3(1.1f,1.1f)
+        // };
+        // mesh.triangles = new int[] {
+        //     0, 2, 1, 3,4,5
+        // };
+        // mesh.normals = new Vector3[] {
+        //     Vector3.back, Vector3.back, Vector3.back,Vector3.back, Vector3.back, Vector3.back
+        // };
+
+        return mesh;
     }
 
     private void CreateDarknessPointsCircleIndex(Vector2Int center, int radius, DarknessSpec spec)
