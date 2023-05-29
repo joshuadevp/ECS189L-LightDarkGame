@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
             this.fire2?.Execute(this.gameObject);
         }
 
-        Vector3 movement = new Vector2(x, y).normalized * Time.deltaTime * main.Speed;
+        Vector3 movement = new Vector2(x, y).normalized * Time.deltaTime * main.Speed.Value;
         transform.position += movement;
     }
 }

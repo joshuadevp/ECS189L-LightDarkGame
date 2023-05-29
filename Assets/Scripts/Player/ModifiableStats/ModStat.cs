@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ModStat
 {
     [SerializeField] float baseValue;
@@ -17,9 +18,15 @@ public class ModStat
         modifiers = new List<StatModifier>();
     }
 
-    public ModStat(float baseVal) {
+    public ModStat(float baseVal)
+    {
         baseValue = baseVal;
         modifiers = new List<StatModifier>();
+    }
+
+    public void SetBaseValue(float baseVal)
+    {
+        baseValue = baseVal;
     }
 
     public void AddModifier(StatModifier modifier)
@@ -55,15 +62,16 @@ public class ModStat
         {
             return finalValue;
         }
-        else 
+        else
         {
             finalValue = baseValue;
-            foreach (StatModifier modifier in modifiers) {
+            foreach (StatModifier modifier in modifiers)
+            {
                 if (modifier.type == ModifierType.flat)
                 {
                     finalValue += modifier.value;
                 }
-                else if (modifier.type == ModifierType.multiplicative) 
+                else if (modifier.type == ModifierType.multiplicative)
                 {
                     finalValue *= modifier.value;
                 }
