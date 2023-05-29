@@ -6,7 +6,7 @@ public class TemporaryModifierPickup : MonoBehaviour
 {
     [SerializeField] StatModifier modifier;
     [SerializeField] float duration;
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {

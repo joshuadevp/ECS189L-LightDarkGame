@@ -18,10 +18,10 @@ public class MeleeEnemy : EnemyController
     void Update()
     {
         Vector3 direction = (player.transform.position - transform.position).normalized;
-        transform.Translate(direction * main.speed * Time.deltaTime);
+        transform.position += (direction * main.speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player") 
         {

@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlexGameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static AlexGameManager instance;
-    private float startTime;
-    private float level = 1;
+    public static GameManager instance;
+    [Header("Game Difficulty Settings")]
+    [Tooltip("How much stronger each enemy gets per second")]
+    [SerializeField] private float enemyStrengthOverTimeMultiplier = 0.01f;
+    [Tooltip("How much stronger each enemy gets per level")]
+    [SerializeField] private float enemyStrengthOverLevelMultiplier = 1f;
 
     [SerializeField] GameObject enemyPrefab;
+
+    private float startTime;
+    private float level = 1;
 
     private void Awake()
     {
@@ -37,7 +43,7 @@ public class AlexGameManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Instantiate(enemyPrefab);
+        Instantiate(enemyPrefab, transform.position, transform.rotation);
     }
 
     /// <summary>
@@ -46,6 +52,6 @@ public class AlexGameManager : MonoBehaviour
     /// <returns> The modifier to be applied on enemy's stats</returns>
     public float CalculateEnemyModifier()
     {
-        return startTime / 10f * level;
+        return startTime * (1 + enemyStrengthOverTimeMultiplier) + level * enemyStrengthOverLevelMultiplier;
     }
 }
