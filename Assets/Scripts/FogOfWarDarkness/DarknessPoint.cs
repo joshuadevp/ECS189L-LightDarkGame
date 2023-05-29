@@ -36,11 +36,14 @@ public class DarknessPoint
         active = a;
     }
 
-    public void Spread(List<Vector3> openSpots, FogOfDarknessManager manager)
+    // Attempts to spread, returning true if it did
+    public bool Spread(List<Vector3> openSpots, FogOfDarknessManager manager)
     {
         if (Random.Range(0f, 1f) > 0.95)
         {
             manager.CreateDarknessPoint(openSpots[Random.Range(0, openSpots.Count)], spec);
+            return true;
         }
+        return false;
     }
 }
