@@ -49,7 +49,7 @@ public class MoveCube : MonoBehaviour
             //     ParticleSystem.EmitParams param = new ParticleSystem.EmitParams() { position = p.worldPosition };
             //     particles.Emit(param, 1);
             // }
-            Mesh mesh = fogManager.BuildMesh();
+            Mesh mesh = fogManager.GetMesh();
             var shape = particles.shape;
             shape.mesh = mesh;
             planeFilter.mesh = mesh;

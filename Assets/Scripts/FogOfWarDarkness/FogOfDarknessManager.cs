@@ -22,9 +22,9 @@ public class FogOfDarknessManager : MonoBehaviour
 
     private float intervalWatch = 0;
 
-    private DarknessPoint[,] darknessArray;
+    private DarknessPoint[][] darknessArray;
     private HashSet<DarknessPoint> spreadablePoints; // set of points that can spread
-    private GameObject[,] objectPool; // Pool of objects to be placed in active area
+    private GameObject[][] objectPool; // Pool of objects to be placed in active area
 
     private Vector2 oldPosition;
     private int activeWidth;
@@ -83,7 +83,11 @@ public class FogOfDarknessManager : MonoBehaviour
         customMesh = new Mesh() { name = "DarknessMesh" };
 
         // Spawn darkness points
-        darknessArray = new DarknessPoint[activeWidth, activeHeight];
+        darknessArray = new DarknessPoint[activeWidth][];
+        for (int i = 0; i < activeWidth; i++)
+        {
+            darknessArray[i] = new DarknessPoint[activeHeight];
+        }
         for (int x = 0; x < activeWidth; x++)
         {
             for (int y = 0; y < activeHeight; y++)
@@ -93,13 +97,17 @@ public class FogOfDarknessManager : MonoBehaviour
         }
 
         // Spawn pooled game objects
-        objectPool = new GameObject[activeWidthAndHeight.x + 1, activeWidthAndHeight.y + 1];
+        objectPool = new GameObject[activeWidthAndHeight.x + 1][];
+        for (int i = 0; i < activeWidthAndHeight.x + 1; i++)
+        {
+            objectPool[i] = new GameObject[activeWidthAndHeight.y + 1];
+        }
         for (int x = 0; x < activeWidthAndHeight.x + 1; x++)
         {
             for (int y = 0; y < activeWidthAndHeight.y + 1; y++)
             {
-                objectPool[x, y] = Instantiate(darknessPrefab, Vector2.zero, Quaternion.identity);
-                objectPool[x, y].transform.parent = this.gameObject.transform;
+                objectPool[x][y] = Instantiate(darknessPrefab, Vector2.zero, Quaternion.identity);
+                objectPool[x][y].transform.parent = this.gameObject.transform;
             }
         }
     }
@@ -138,79 +146,15 @@ public class FogOfDarknessManager : MonoBehaviour
     }
 
     // Returns list of active darkness points
-    public List<DarknessPoint> GetActivePoints()
+    public DarknessPoint[] GetActivePoints()
     {
-        List<DarknessPoint> points = new List<DarknessPoint>();
-        var (ix, iy) = worldToIndex(activeCenter.position);
-        var corners = GetCorners(ix, iy);
-        var bottomLeft = corners.Item1;
-        var topRight = corners.Item2;
-
-        for (int x = bottomLeft.x; x <= topRight.x; x++)
-        {
-            for (int y = bottomLeft.y; y <= topRight.y; y++)
-            {
-                DarknessPoint p = darknessArray[x, y];
-                if (p.IsActive())
-                {
-                    points.Add(p);
-                }
-            }
-        }
-
-        return points;
+        return activePoints;
     }
 
-    // public DarknessPoint[,] GetActivePoints()
-    // {
-    //     DarknessPoint[,] points = new DarknessPoint[activeWidthAndHeight.x + 1, activeWidthAndHeight.y + 1];
-
-    //     var corners = GetCorners(worldToIndex(activeCenter.position));
-    //     var bottomLeft = corners.Item1;
-    //     var topRight = corners.Item2;
-
-    //     for (int x = bottomLeft.x; x <= topRight.x; x++)
-    //     {
-    //         for (int y = bottomLeft.y; y <= topRight.y; y++)
-    //         {
-    //             points[x - bottomLeft.x, y - bottomLeft.y] = darknessArray[x, y];
-    //         }
-    //     }
-
-    //     return points;
-    // }
-
-    // Builds and returns a mesh created from the current list of active points.
-    public Mesh BuildMesh()
+    // Returns the custom mesh representing darkness points
+    public Mesh GetMesh()
     {
-        Mesh mesh = new Mesh { name = "DarknessMesh" };
-
-        List<Vector3> vertices = new List<Vector3>();
-        List<int> triangles = new List<int>();
-        List<Vector3> normals = new List<Vector3>();
-
-        int index = 0;
-        foreach (DarknessPoint p in this.GetActivePoints())
-        {
-            // Points of square
-            vertices.Add(new Vector3(p.worldPosition.x - distanceBetweenPoints / 2, p.worldPosition.y - distanceBetweenPoints / 2, 0));
-            vertices.Add(new Vector3(p.worldPosition.x - distanceBetweenPoints / 2, p.worldPosition.y + distanceBetweenPoints / 2, 0));
-            vertices.Add(new Vector3(p.worldPosition.x + distanceBetweenPoints / 2, p.worldPosition.y - distanceBetweenPoints / 2, 0));
-            vertices.Add(new Vector3(p.worldPosition.x + distanceBetweenPoints / 2, p.worldPosition.y + distanceBetweenPoints / 2, 0));
-            // Two triangles per square
-            triangles.AddRange(new int[] { 0 + index, 1 + index, 2 + index });
-            triangles.AddRange(new int[] { 2 + index, 1 + index, 3 + index });
-            // Vertice normals
-            normals.AddRange(new Vector3[] { Vector3.back, Vector3.back, Vector3.back, Vector3.back });
-
-            index += 4;
-        }
-
-        mesh.vertices = vertices.ToArray();
-        mesh.normals = normals.ToArray();
-        mesh.triangles = triangles.ToArray();
-
-        return mesh;
+        return customMesh;
     }
 
     private void CreateDarknessPointsCircleIndex(int x, int y, int radius, DarknessSpec spec)
@@ -235,7 +179,7 @@ public class FogOfDarknessManager : MonoBehaviour
     // Remove darkness at given index by setting max health to 0
     private void RemoveDarkness(int x, int y)
     {
-        var point = darknessArray[x, y];
+        var point = darknessArray[x][y];
         point.maxHealth = point.currentHealth = 0;
         point.SetActive(false);
     }
@@ -243,7 +187,7 @@ public class FogOfDarknessManager : MonoBehaviour
     // Returns if index has darkness
     private bool IsDarknessIndex(int x, int y)
     {
-        return darknessArray[x, y].IsAlive();
+        return darknessArray[x][y].IsAlive();
     }
 
     // Creates a point of darkness given index in array and associated data
@@ -260,8 +204,8 @@ public class FogOfDarknessManager : MonoBehaviour
         point.indexPosition = new Vector2Int(x, y);
         point.Init(spec);
         point.SetActive(false);
-        if (darknessArray[x, y] != null) spreadablePoints.Remove(darknessArray[x, y]);
-        darknessArray[x, y] = point;
+        if (darknessArray[x][y] != null) spreadablePoints.Remove(darknessArray[x][y]);
+        darknessArray[x][y] = point;
         spreadablePoints.Add(point);
         return point;
     }
@@ -287,38 +231,58 @@ public class FogOfDarknessManager : MonoBehaviour
     // Returns true if index position is surrounded by darkness and thus cannot spread
     private bool IsSurrounded(int x, int y)
     {
-        return darknessArray[clampIndexX(x + 1), y].IsAlive() &&
-        darknessArray[clampIndexX(x - 1), y].IsAlive() &&
-        darknessArray[x, clampIndexY(y + 1)].IsAlive() &&
-        darknessArray[x, clampIndexY(y - 1)].IsAlive();
+        return darknessArray[x + 1][y].IsAlive() &&
+        darknessArray[x - 1][y].IsAlive() &&
+        darknessArray[x][y + 1].IsAlive() &&
+        darknessArray[x][y - 1].IsAlive();
     }
 
     // Returns list of available points to spread to around index location
-    private List<Vector3> OpenSurrounding(int x, int y)
+    private Vector3[] OpenSurrounding(int x, int y)
     {
-        List<Vector3> open = new List<Vector3>();
+        Vector3[] open = new Vector3[4];
 
         DarknessPoint p;
-        p = darknessArray[clampIndexX(x + 1), y];
-        if (!p.IsAlive()) open.Add(p.worldPosition);
-        p = darknessArray[clampIndexX(x - 1), y];
-        if (!p.IsAlive()) open.Add(p.worldPosition);
-        p = darknessArray[x, clampIndexY(y + 1)];
-        if (!p.IsAlive()) open.Add(p.worldPosition);
-        p = darknessArray[x, clampIndexY(y - 1)];
-        if (!p.IsAlive()) open.Add(p.worldPosition);
-
-        return open;
+        int index = 0;
+        p = darknessArray[x + 1][y];
+        if (!p.IsAlive())
+        {
+            open[index] = p.worldPosition;
+            index++;
+        }
+        p = darknessArray[x - 1][y];
+        if (!p.IsAlive())
+        {
+            open[index] = p.worldPosition;
+            index++;
+        }
+        p = darknessArray[x][y + 1];
+        if (!p.IsAlive())
+        {
+            open[index] = p.worldPosition;
+            index++;
+        }
+        p = darknessArray[x][y - 1];
+        if (!p.IsAlive())
+        {
+            open[index] = p.worldPosition;
+            index++;
+        }
+        Vector3[] buffer = new Vector3[index];
+        Array.Copy(open, buffer, index);
+        return buffer;
     }
 
     // Clamp index within array ranges
+    // Clamped such that the outer edge is clamped so we can ignore clamping
+    // while looping through points
     private int clampIndexX(int x)
     {
-        return Mathf.Clamp(x, 0, activeWidth - 1);
+        return Mathf.Clamp(x, 1, activeWidth - 2);
     }
     private int clampIndexY(int y)
     {
-        return Mathf.Clamp(y, 0, activeHeight - 1);
+        return Mathf.Clamp(y, 1, activeHeight - 2);
     }
 
     // Deactivate all points in old position
@@ -330,12 +294,16 @@ public class FogOfDarknessManager : MonoBehaviour
         var corners = GetCorners(oldCenterX, oldCenterY);
         Vector2Int bottomLeftIndex = corners.Item1;
         Vector2Int topRightIndex = corners.Item2;
+        int bLX = bottomLeftIndex.x;
+        int bLY = bottomLeftIndex.y;
+        int tRX = topRightIndex.x;
+        int tRY = topRightIndex.y;
 
-        for (int x = bottomLeftIndex.x; x <= topRightIndex.x; x++)
+        for (int x = bLX; x <= tRX; x++)
         {
-            for (int y = bottomLeftIndex.y; y <= topRightIndex.y; y++)
+            for (int y = bLY; y <= tRY; y++)
             {
-                DarknessPoint p = darknessArray[x, y];
+                DarknessPoint p = darknessArray[x][y];
                 p.SetActive(false);
             }
         }
@@ -355,18 +323,21 @@ public class FogOfDarknessManager : MonoBehaviour
 
         int bottomLeftX = bottomLeftIndex.x;
         int bottomLeftY = bottomLeftIndex.y;
+        int topRightX = topRightIndex.x;
+        int topRightY = topRightIndex.y;
 
         DarknessPoint[] activePointsBuffer = new DarknessPoint[activeHeight * activeWidth];
         int meshIndex = 0;
+        customMesh.Clear();
 
-        for (int ix = bottomLeftX; ix <= topRightIndex.x; ix++)
+        for (int ix = bottomLeftX; ix <= topRightX; ix++)
         {
-            for (int iy = bottomLeftY; iy <= topRightIndex.y; iy++)
+            for (int iy = bottomLeftY; iy <= topRightY; iy++)
             {
-                DarknessPoint p = darknessArray[ix, iy];
+                DarknessPoint p = darknessArray[ix][iy];
                 p.SetActive(true);
                 // Use object pool to setup colliders
-                GameObject obj = objectPool[ix - bottomLeftX, iy - bottomLeftY];
+                GameObject obj = objectPool[ix - bottomLeftX][iy - bottomLeftY];
                 if (p.IsAlive())
                 {
                     //activePoints.Add(p);
@@ -377,31 +348,30 @@ public class FogOfDarknessManager : MonoBehaviour
                         spreadablePoints.Add(p);
                     }
 
+                    /*
+                    *   Add to custom mesh
+                    */
+                    float worldX = p.worldPosition.x;
+                    float worldY = p.worldPosition.y;
 
-                    // /*
-                    // *   Add to custom mesh
-                    // */
-                    // float worldX = p.worldPosition.x;
-                    // float worldY = p.worldPosition.y;
+                    int verticesIndex = meshIndex * 4;
+                    vertices[verticesIndex] = new Vector3(worldX - distanceBetweenPoints / 2, worldY - distanceBetweenPoints / 2, meshHeight); // bottom left
+                    vertices[verticesIndex + 1] = new Vector3(worldX - distanceBetweenPoints / 2, worldY + distanceBetweenPoints / 2, meshHeight); // top left
+                    vertices[verticesIndex + 2] = new Vector3(worldX + distanceBetweenPoints / 2, worldY - distanceBetweenPoints / 2, meshHeight); // bottom right
+                    vertices[verticesIndex + 3] = new Vector3(worldX + distanceBetweenPoints / 2, worldY + distanceBetweenPoints / 2, meshHeight); // top right
 
-                    // int verticesIndex = meshIndex * 4;
-                    // vertices[verticesIndex] = new Vector3(worldX - distanceBetweenPoints / 2, worldY - distanceBetweenPoints / 2, meshHeight); // bottom left
-                    // vertices[verticesIndex + 1] = new Vector3(worldX - distanceBetweenPoints / 2, worldY + distanceBetweenPoints / 2, meshHeight); // top left
-                    // vertices[verticesIndex + 2] = new Vector3(worldX + distanceBetweenPoints / 2, worldY - distanceBetweenPoints / 2, meshHeight); // bottom right
-                    // vertices[verticesIndex + 3] = new Vector3(worldX + distanceBetweenPoints / 2, worldY + distanceBetweenPoints / 2, meshHeight); // top right
+                    int trianglesIndex = meshIndex * 6;
+                    triangles[trianglesIndex] = 0 + verticesIndex;
+                    triangles[trianglesIndex + 1] = 1 + verticesIndex;
+                    triangles[trianglesIndex + 2] = 2 + verticesIndex;
+                    triangles[trianglesIndex + 3] = 2 + verticesIndex;
+                    triangles[trianglesIndex + 4] = 1 + verticesIndex;
+                    triangles[trianglesIndex + 5] = 3 + verticesIndex;
 
-                    // int trianglesIndex = meshIndex * 6;
-                    // triangles[trianglesIndex] = 0 + verticesIndex;
-                    // triangles[trianglesIndex + 1] = 1 + verticesIndex;
-                    // triangles[trianglesIndex + 2] = 2 + verticesIndex;
-                    // triangles[trianglesIndex + 3] = 2 + verticesIndex;
-                    // triangles[trianglesIndex + 4] = 1 + verticesIndex;
-                    // triangles[trianglesIndex + 5] = 3 + verticesIndex;
-
-                    // normals[verticesIndex] = Vector3.back;
-                    // normals[verticesIndex + 1] = Vector3.back;
-                    // normals[verticesIndex + 2] = Vector3.back;
-                    // normals[verticesIndex + 3] = Vector3.back;
+                    normals[verticesIndex] = Vector3.back;
+                    normals[verticesIndex + 1] = Vector3.back;
+                    normals[verticesIndex + 2] = Vector3.back;
+                    normals[verticesIndex + 3] = Vector3.back;
 
                     meshIndex++;
                 }
@@ -415,20 +385,20 @@ public class FogOfDarknessManager : MonoBehaviour
         // Store active points data
         activePoints = activePointsBuffer;
 
-        // // Set mesh data
-        // // Create new arrays to hold only the data we need to send
-        // var exactVertices = new Vector3[meshIndex * 4];
-        // var exactTriangles = new int[meshIndex * 6];
-        // var exactNormals = new Vector3[meshIndex * 4];
-        // // Copy minimum data needed
-        // Array.Copy(vertices, exactVertices, meshIndex * 4);
-        // Array.Copy(triangles, exactTriangles, meshIndex * 6);
-        // Array.Copy(normals, exactNormals, meshIndex * 4);
+        // Set mesh data
+        // Create new arrays to hold only the data we need to send
+        var exactVertices = new Vector3[meshIndex * 4];
+        var exactTriangles = new int[meshIndex * 6];
+        var exactNormals = new Vector3[meshIndex * 4];
+        // Copy minimum data needed
+        Array.Copy(vertices, exactVertices, meshIndex * 4);
+        Array.Copy(triangles, exactTriangles, meshIndex * 6);
+        Array.Copy(normals, exactNormals, meshIndex * 4);
 
-        // // Set data
-        // customMesh.vertices = exactVertices;
-        // customMesh.triangles = exactTriangles;
-        // customMesh.normals = exactNormals;
+        // Set data
+        customMesh.vertices = exactVertices;
+        customMesh.triangles = exactTriangles;
+        customMesh.normals = exactNormals;
     }
 
     // Call spread function of all darkness points
@@ -440,12 +410,12 @@ public class FogOfDarknessManager : MonoBehaviour
         spreadablePoints.CopyTo(points);
         foreach (DarknessPoint p in points)
         {
-            List<Vector3> open = OpenSurrounding(p.indexPosition.x, p.indexPosition.y);
-            if (open.Count > 0)
+            Vector3[] open = OpenSurrounding(clampIndexX(p.indexPosition.x), clampIndexY(p.indexPosition.y));
+            if (open.Length > 0)
             {
                 // If it spreads and there was only 1 open spot we can
                 // immediately remove it
-                if (p.Spread(open, this) && open.Count == 1)
+                if (p.Spread(open, this) && open.Length == 1)
                 {
                     spreadablePoints.Remove(p);
                 }
@@ -487,7 +457,7 @@ public class FogOfDarknessManager : MonoBehaviour
             {
                 if (darknessArray != null)
                 {
-                    var point = darknessArray[x, y];
+                    var point = darknessArray[x][y];
                     Gizmos.color = point.IsAlive() ? Color.green : Color.red;
                     if (point.IsActive()) Gizmos.color = Gizmos.color + Color.yellow; // Tint active cells yellow
                     Gizmos.color *= point.density; // shade with point density
