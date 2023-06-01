@@ -4,12 +4,8 @@ using UnityEngine;
 
 public interface IObjective
 {
-    // Set up objective
-    abstract void SetUp();
-    // Remove elements related to objective
-    abstract void BreakDown();
+    // Set up objective at given location
+    abstract void Setup(Vector2 pos);
     // Returns true if the objective is completed
     abstract bool Completed();
-    // Update loop called per frame by another script
-    abstract void ManualUpdate();
 }

@@ -18,13 +18,18 @@ public class FogOfDarknessManager : MonoBehaviour
     float updateInterval; // Time in seconds for manager to update fog system
     [SerializeField]
     IDarknessGenerator darknessGenerator;
+
     private float intervalWatch = 0;
+
     private DarknessPoint[,] darknessArray;
     private HashSet<DarknessPoint> spreadablePoints; // set of points that can spread
     private GameObject[,] objectPool; // Pool of objects to be placed in active area
+
     private Vector2 oldPosition;
     private int activeWidth;
     private int activeHeight;
+
+    private
 
     // Start is called before the first frame update
     void Start()
