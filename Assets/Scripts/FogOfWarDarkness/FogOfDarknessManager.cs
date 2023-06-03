@@ -29,6 +29,8 @@ public class FogOfDarknessManager : MonoBehaviour
     private Vector2 oldPosition;
     private int activeWidth;
     private int activeHeight;
+    private int mapWidth;
+    private int mapHeight;
 
     private Mesh customMesh;
     private Vector3[] vertices;
@@ -37,6 +39,8 @@ public class FogOfDarknessManager : MonoBehaviour
     private float meshHeight = 0f;
 
     private DarknessPoint[] activePoints;
+    private Vector3[] openPointsBuffer = new Vector3[4];
+    private DarknessPoint[] spreadablePointsBuffer;
 
     // Start is called before the first frame update
     void Start()
@@ -75,36 +79,40 @@ public class FogOfDarknessManager : MonoBehaviour
     {
         // Init data
         spreadablePoints = new HashSet<DarknessPoint>();
-        activeWidth = mapWidthAndHeight.x;
-        activeHeight = mapWidthAndHeight.y;
+        activeWidth = activeWidthAndHeight.x + 1;
+        activeHeight = activeWidthAndHeight.y + 1;
+        mapWidth = mapWidthAndHeight.x;
+        mapHeight = mapWidthAndHeight.y;
         vertices = new Vector3[activeHeight * activeWidth * 4];
         triangles = new int[activeHeight * activeWidth * 6];
         normals = new Vector3[activeHeight * activeWidth * 4];
         customMesh = new Mesh() { name = "DarknessMesh" };
+        activePoints = new DarknessPoint[activeWidth * activeHeight];
+        spreadablePointsBuffer = new DarknessPoint[mapWidth * mapHeight];
 
         // Spawn darkness points
-        darknessArray = new DarknessPoint[activeWidth][];
-        for (int i = 0; i < activeWidth; i++)
+        darknessArray = new DarknessPoint[mapWidth][];
+        for (int i = 0; i < mapWidth; i++)
         {
-            darknessArray[i] = new DarknessPoint[activeHeight];
+            darknessArray[i] = new DarknessPoint[mapHeight];
         }
-        for (int x = 0; x < activeWidth; x++)
+        for (int x = 0; x < mapWidth; x++)
         {
-            for (int y = 0; y < activeHeight; y++)
+            for (int y = 0; y < mapHeight; y++)
             {
                 CreateDarknessPointIndex(x, y, darknessGenerator.Generate(new Vector2(x, y)));
             }
         }
 
         // Spawn pooled game objects
-        objectPool = new GameObject[activeWidthAndHeight.x + 1][];
-        for (int i = 0; i < activeWidthAndHeight.x + 1; i++)
+        objectPool = new GameObject[activeWidth][];
+        for (int i = 0; i < activeWidth; i++)
         {
-            objectPool[i] = new GameObject[activeWidthAndHeight.y + 1];
+            objectPool[i] = new GameObject[activeHeight];
         }
-        for (int x = 0; x < activeWidthAndHeight.x + 1; x++)
+        for (int x = 0; x < activeWidth; x++)
         {
-            for (int y = 0; y < activeWidthAndHeight.y + 1; y++)
+            for (int y = 0; y < activeHeight; y++)
             {
                 objectPool[x][y] = Instantiate(darknessPrefab, Vector2.zero, Quaternion.identity);
                 objectPool[x][y].transform.parent = this.gameObject.transform;
@@ -173,7 +181,7 @@ public class FogOfDarknessManager : MonoBehaviour
 
     private bool ValidIndex(int x, int y)
     {
-        return x >= 0 && x < activeWidth && y >= 0 && y < activeHeight;
+        return x >= 0 && x < mapWidth && y >= 0 && y < mapHeight;
     }
 
     // Remove darkness at given index by setting max health to 0
@@ -214,7 +222,7 @@ public class FogOfDarknessManager : MonoBehaviour
     // Invalid conversion results in (-1,-1) return
     private (int, int) worldToIndex(Vector2 loc)
     {
-        if (loc.x < 0 || loc.x > activeWidth * distanceBetweenPoints || loc.y < 0 || loc.y > activeHeight * distanceBetweenPoints)
+        if (loc.x < 0 || loc.x > mapWidth * distanceBetweenPoints || loc.y < 0 || loc.y > mapHeight * distanceBetweenPoints)
         {
             return (-1, -1);
         }
@@ -237,40 +245,37 @@ public class FogOfDarknessManager : MonoBehaviour
         darknessArray[x][y - 1].IsAlive();
     }
 
-    // Returns list of available points to spread to around index location
-    private Vector3[] OpenSurrounding(int x, int y)
+    // Returns array of available points to spread to around index location
+    // And the size of the array
+    private (Vector3[], int) OpenSurrounding(int x, int y)
     {
-        Vector3[] open = new Vector3[4];
-
         DarknessPoint p;
         int index = 0;
         p = darknessArray[x + 1][y];
         if (!p.IsAlive())
         {
-            open[index] = p.worldPosition;
+            openPointsBuffer[index] = p.worldPosition;
             index++;
         }
         p = darknessArray[x - 1][y];
         if (!p.IsAlive())
         {
-            open[index] = p.worldPosition;
+            openPointsBuffer[index] = p.worldPosition;
             index++;
         }
         p = darknessArray[x][y + 1];
         if (!p.IsAlive())
         {
-            open[index] = p.worldPosition;
+            openPointsBuffer[index] = p.worldPosition;
             index++;
         }
         p = darknessArray[x][y - 1];
         if (!p.IsAlive())
         {
-            open[index] = p.worldPosition;
+            openPointsBuffer[index] = p.worldPosition;
             index++;
         }
-        Vector3[] buffer = new Vector3[index];
-        Array.Copy(open, buffer, index);
-        return buffer;
+        return (openPointsBuffer, index);
     }
 
     // Clamp index within array ranges
@@ -278,11 +283,11 @@ public class FogOfDarknessManager : MonoBehaviour
     // while looping through points
     private int clampIndexX(int x)
     {
-        return Mathf.Clamp(x, 1, activeWidth - 2);
+        return Mathf.Clamp(x, 1, mapWidth - 2);
     }
     private int clampIndexY(int y)
     {
-        return Mathf.Clamp(y, 1, activeHeight - 2);
+        return Mathf.Clamp(y, 1, mapHeight - 2);
     }
 
     // Deactivate all points in old position
@@ -326,7 +331,6 @@ public class FogOfDarknessManager : MonoBehaviour
         int topRightX = topRightIndex.x;
         int topRightY = topRightIndex.y;
 
-        DarknessPoint[] activePointsBuffer = new DarknessPoint[activeHeight * activeWidth];
         int meshIndex = 0;
         customMesh.Clear();
 
@@ -341,7 +345,7 @@ public class FogOfDarknessManager : MonoBehaviour
                 if (p.IsAlive())
                 {
                     //activePoints.Add(p);
-                    activePointsBuffer[meshIndex] = p;
+                    activePoints[meshIndex] = p;
                     obj.transform.position = p.worldPosition;
                     if (!IsSurrounded(p.indexPosition.x, p.indexPosition.y))
                     {
@@ -349,7 +353,7 @@ public class FogOfDarknessManager : MonoBehaviour
                     }
 
                     /*
-                    *   Add to custom mesh
+                    *   Add square to custom mesh
                     */
                     float worldX = p.worldPosition.x;
                     float worldY = p.worldPosition.y;
@@ -382,23 +386,16 @@ public class FogOfDarknessManager : MonoBehaviour
             }
         }
 
-        // Store active points data
-        activePoints = activePointsBuffer;
+        // Fill rest of active points with null
+        for (int i = meshIndex; i < activePoints.Length; i++)
+        {
+            activePoints[i] = null;
+        }
 
         // Set mesh data
-        // Create new arrays to hold only the data we need to send
-        var exactVertices = new Vector3[meshIndex * 4];
-        var exactTriangles = new int[meshIndex * 6];
-        var exactNormals = new Vector3[meshIndex * 4];
-        // Copy minimum data needed
-        Array.Copy(vertices, exactVertices, meshIndex * 4);
-        Array.Copy(triangles, exactTriangles, meshIndex * 6);
-        Array.Copy(normals, exactNormals, meshIndex * 4);
-
-        // Set data
-        customMesh.vertices = exactVertices;
-        customMesh.triangles = exactTriangles;
-        customMesh.normals = exactNormals;
+        customMesh.SetVertices(vertices, 0, meshIndex * 4);
+        customMesh.SetTriangles(triangles, 0, meshIndex * 6, 0);
+        customMesh.SetNormals(normals, 0, meshIndex * 4);
     }
 
     // Call spread function of all darkness points
@@ -406,16 +403,16 @@ public class FogOfDarknessManager : MonoBehaviour
     private void SpreadPoints()
     {
         // Copy points so we can remove items from active set
-        DarknessPoint[] points = new DarknessPoint[spreadablePoints.Count];
-        spreadablePoints.CopyTo(points);
-        foreach (DarknessPoint p in points)
+        spreadablePoints.CopyTo(spreadablePointsBuffer);
+        for (int i = 0; i < spreadablePoints.Count; i++)
         {
-            Vector3[] open = OpenSurrounding(clampIndexX(p.indexPosition.x), clampIndexY(p.indexPosition.y));
-            if (open.Length > 0)
+            DarknessPoint p = spreadablePointsBuffer[i];
+            (Vector3[] availablePoints, int size) = OpenSurrounding(clampIndexX(p.indexPosition.x), clampIndexY(p.indexPosition.y));
+            if (size > 0)
             {
                 // If it spreads and there was only 1 open spot we can
                 // immediately remove it
-                if (p.Spread(open, this) && open.Length == 1)
+                if (p.Spread(availablePoints, size, this) && size == 1)
                 {
                     spreadablePoints.Remove(p);
                 }
@@ -435,8 +432,8 @@ public class FogOfDarknessManager : MonoBehaviour
         int centerX = x;
         int centerY = y;
 
-        int indexX = Mathf.RoundToInt(activeWidthAndHeight.x / 2 * distanceBetweenPoints);
-        int indexY = Mathf.RoundToInt(activeWidthAndHeight.y / 2 * distanceBetweenPoints);
+        int indexX = Mathf.RoundToInt(activeWidth / 2 * distanceBetweenPoints);
+        int indexY = Mathf.RoundToInt(activeHeight / 2 * distanceBetweenPoints);
 
         Vector2Int topRightIndex = new Vector2Int(clampIndexX(centerX + indexX), clampIndexY(centerY + indexY));
         Vector2Int bottomLeftIndex = new Vector2Int(clampIndexX(centerX - indexX), clampIndexY(centerY - indexY));
@@ -451,9 +448,9 @@ public class FogOfDarknessManager : MonoBehaviour
     {
         Gizmos.color = Color.white;
 
-        for (int x = 0; x < activeWidth; x++)
+        for (int x = 0; x < mapWidth; x++)
         {
-            for (int y = 0; y < activeHeight; y++)
+            for (int y = 0; y < mapHeight; y++)
             {
                 if (darknessArray != null)
                 {

@@ -12,7 +12,7 @@ public class BossObjective : ScriptableObject, IObjective
 
     }
 
-    void Update()
+    public void ManualUpdate()
     {
         if (boss == null)
         {

@@ -37,11 +37,11 @@ public class DarknessPoint
     }
 
     // Attempts to spread, returning true if it did
-    public bool Spread(Vector3[] openSpots, FogOfDarknessManager manager)
+    public bool Spread(Vector3[] openSpots, int size, FogOfDarknessManager manager)
     {
         if (Random.Range(0f, 1f) > 0.95)
         {
-            manager.CreateDarknessPoint(openSpots[Random.Range(0, openSpots.Length)], spec);
+            manager.CreateDarknessPoint(openSpots[Random.Range(0, size)], spec);
             return true;
         }
         return false;

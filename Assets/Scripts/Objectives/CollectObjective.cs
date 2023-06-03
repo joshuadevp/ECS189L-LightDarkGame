@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class CollectObjective : ScriptableObject, IObjective
 {
-    GameObject collectable;
-    GameObject player;
+    [SerializeField]
+    private GameObject collectable;
+    private GameObject player;
     bool completed = false;
+    bool started = false;
 
-    void OnEnable()
+    public void ManualUpdate()
     {
-
-    }
-
-    void Update()
-    {
-        if (Vector3.Magnitude(player.transform.position - collectable.transform.position) < 1)
+        if (!completed && started && Vector3.Magnitude(player.transform.position - collectable.transform.position) < 1)
         {
             completed = true;
             Destroy(collectable);
@@ -24,7 +22,10 @@ public class CollectObjective : ScriptableObject, IObjective
 
     public void Setup(Vector2 loc)
     {
-        // Find player and collectable we want to spawn
+        // Generate new collectable instance and place where we want it
+        collectable = Instantiate(collectable, loc, Quaternion.identity);
+        player = GameObject.FindFirstObjectByType<MoveCube>().gameObject;
+        started = true;
     }
 
     public bool Completed()
