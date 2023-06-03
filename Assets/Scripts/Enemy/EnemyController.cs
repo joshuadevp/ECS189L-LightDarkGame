@@ -6,10 +6,4 @@ public abstract class EnemyController : MonoBehaviour
 {
     protected Enemy main;
     protected PlayerController player;
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

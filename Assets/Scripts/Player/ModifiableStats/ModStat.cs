@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.ObjectModel;
+
+// Followed and modified from the tutorial by Kryzarel on the Unity forum at
+// https://forum.unity.com/threads/tutorial-character-stats-aka-attributes-system.504095/
 
 [System.Serializable]
 public class ModStat
@@ -12,10 +16,8 @@ public class ModStat
     private float finalValue;
     public float Value { get => GetValue(); }
 
-    public ModStat()
+    public ModStat() : this(0)
     {
-        baseValue = 0;
-        modifiers = new List<StatModifier>();
     }
 
     public ModStat(float baseVal)
@@ -47,10 +49,10 @@ public class ModStat
     /// </summary>
     /// <param name="type"></param>
     /// <param name="value"></param>
-    public StatModifier AddModifier(ModifierType type, float value)
+    public StatModifier AddModifier(ModifierType type, float value, string name = "")
     {
         dirty = true;
-        var modifier = new StatModifier(type, value);
+        var modifier = new StatModifier(type, value, name);
         modifiers.Add(modifier);
         return modifier;
     }
@@ -65,19 +67,50 @@ public class ModStat
         else
         {
             finalValue = baseValue;
+            float finalMultAddValue = 1;
             foreach (StatModifier modifier in modifiers)
             {
                 if (modifier.type == ModifierType.flat)
                 {
                     finalValue += modifier.value;
                 }
+                else if (modifier.type == ModifierType.multAdd)
+                {
+                    finalMultAddValue += modifier.value;
+                }
                 else if (modifier.type == ModifierType.multiplicative)
                 {
                     finalValue *= modifier.value;
                 }
             }
+            finalValue *= finalMultAddValue;
+
             dirty = false;
             return finalValue;
         }
+    }
+
+    public override string ToString()
+    {
+        string str = $"Base: {baseValue}\n";
+        foreach (StatModifier modifier in modifiers)
+        {
+            str += $"{modifier.modifierName}: ";
+            switch (modifier.type)
+            {
+                case ModifierType.flat:
+                    str += $"+{modifier.value}\n";
+                    break;
+                case ModifierType.multAdd:
+                    str += $"+{modifier.value * 100}%\n";
+                    break;
+                case ModifierType.multiplicative:
+                    // \u00D7 = multiplication sign
+                    str += $"{modifier.value * 100}%\n";
+                    break;
+            }
+        }
+        str += $"= {Value}\n";
+        return str;
     }
 }
