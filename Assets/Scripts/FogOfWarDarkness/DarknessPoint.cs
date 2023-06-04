@@ -2,28 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Represents a single point of darkness in world
 public class DarknessPoint
 {
-    public GameObject darknessObject;
-    public Vector2 position;
     private bool active;
-    private int health = 1;
+
+    public Vector2 WorldPosition;
+    public Vector2Int IndexPosition;
+    public int CurrentHealth;
+    public int MaxHealth;
+    public float Density;
+    public DarknessSpec DarknessSpec;
+    public SpawnSpec SpawnSpec;
 
     public void Init(DarknessSpec spec)
     {
-        position.x = darknessObject.transform.position.x;
-        position.y = darknessObject.transform.position.z;
         // TODO SET SETTINGS WITH SPEC
+        CurrentHealth = spec.CurrentHealth;
+        MaxHealth = spec.MaxHealth;
+        Density = spec.Density;
+        this.DarknessSpec = spec;
+    }
+
+    public bool IsAlive()
+    {
+        return CurrentHealth > 0;
     }
 
     public bool IsActive()
     {
-        return health > 0;
+        return active && IsAlive();
     }
 
     public void SetActive(bool a)
     {
-        darknessObject.SetActive(a);
         active = a;
+    }
+
+    // Attempts to spread, returning true if it did
+    public bool Spread(Vector2[] openSpots, int size, FogOfDarknessManager manager)
+    {
+        if (Random.Range(0f, 1f) < DarknessSpec.SpreadChance)
+        {
+            manager.CreateDarknessPoint(openSpots[Random.Range(0, size)], DarknessSpec);
+            return true;
+        }
+        return false;
+    }
+
+    // Attempts to spawn an enemy, returning true if it did
+    public bool Spawn()
+    {
+        if (Random.Range(0f, 1f) < DarknessSpec.SpawnSpec.SpawnChance)
+        {
+            GameObject.Instantiate(DarknessSpec.SpawnSpec.Enemy, WorldPosition, Quaternion.identity);
+            return true;
+        }
+        return false;
     }
 }
