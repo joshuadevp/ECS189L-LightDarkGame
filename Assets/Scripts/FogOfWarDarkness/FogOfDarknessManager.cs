@@ -169,6 +169,21 @@ public class FogOfDarknessManager : MonoBehaviour
         return customMesh;
     }
 
+    // Call to cause damage to individual darkness point
+    // Returns true if point is destroyed
+    public bool DamageDarkness(Vector2 location, int damage)
+    {
+        (var x, var y) = worldToIndex(location);
+        DarknessPoint p = darknessArray[x][y];
+        p.CurrentHealth -= damage;
+        if (p.CurrentHealth <= 0)
+        {
+            RemoveDarkness(x, y);
+            return true;
+        }
+        return false;
+    }
+
     private void CreateDarknessPointsCircleIndex(int x, int y, int radius, DarknessSpec spec)
     {
         for (int ix = -radius; ix <= radius; ix++)
@@ -188,12 +203,10 @@ public class FogOfDarknessManager : MonoBehaviour
         return x >= 0 && x < mapWidth && y >= 0 && y < mapHeight;
     }
 
-    // Remove darkness at given index by setting max health to 0
+    // Remove darkness at given index by setting to null settings
     private void RemoveDarkness(int x, int y)
     {
-        var point = darknessArray[x][y];
-        point.MaxHealth = point.CurrentHealth = 0;
-        point.SetActive(false);
+        CreateDarknessPointIndex(x, y, DarknessSpec.GetNullSpec());
     }
 
     // Returns if index has darkness
