@@ -2,28 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Represents a single point of darkness in world
 public class DarknessPoint
 {
-    public Vector2 worldPosition;
-    public Vector2Int indexPosition;
-    public int currentHealth;
-    public int maxHealth;
     private bool active;
-    public float density;
-    public DarknessSpec spec;
+
+    public Vector2 WorldPosition;
+    public Vector2Int IndexPosition;
+    public int CurrentHealth;
+    public int MaxHealth;
+    public float Density;
+    public DarknessSpec DarknessSpec;
+    public SpawnSpec SpawnSpec;
 
     public void Init(DarknessSpec spec)
     {
         // TODO SET SETTINGS WITH SPEC
-        currentHealth = spec.currentHealth;
-        maxHealth = spec.maxHealth;
-        density = spec.density;
-        this.spec = spec;
+        CurrentHealth = spec.CurrentHealth;
+        MaxHealth = spec.MaxHealth;
+        Density = spec.Density;
+        this.DarknessSpec = spec;
     }
 
     public bool IsAlive()
     {
-        return currentHealth > 0;
+        return CurrentHealth > 0;
     }
 
     public bool IsActive()
@@ -37,11 +41,22 @@ public class DarknessPoint
     }
 
     // Attempts to spread, returning true if it did
-    public bool Spread(Vector3[] openSpots, int size, FogOfDarknessManager manager)
+    public bool Spread(Vector2[] openSpots, int size, FogOfDarknessManager manager)
     {
-        if (Random.Range(0f, 1f) > 0.95)
+        if (Random.Range(0f, 1f) < DarknessSpec.SpreadChance)
         {
-            manager.CreateDarknessPoint(openSpots[Random.Range(0, size)], spec);
+            manager.CreateDarknessPoint(openSpots[Random.Range(0, size)], DarknessSpec);
+            return true;
+        }
+        return false;
+    }
+
+    // Attempts to spawn an enemy, returning true if it did
+    public bool Spawn()
+    {
+        if (Random.Range(0f, 1f) < DarknessSpec.SpawnSpec.SpawnChance)
+        {
+            GameObject.Instantiate(DarknessSpec.SpawnSpec.Enemy, WorldPosition, Quaternion.identity);
             return true;
         }
         return false;

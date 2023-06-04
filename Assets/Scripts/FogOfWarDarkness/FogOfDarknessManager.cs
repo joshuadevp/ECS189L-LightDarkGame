@@ -39,7 +39,8 @@ public class FogOfDarknessManager : MonoBehaviour
     private float meshHeight = 0f;
 
     private DarknessPoint[] activePoints;
-    private Vector3[] openPointsBuffer = new Vector3[4];
+    private int activeSize;
+    private Vector2[] openPointsBuffer = new Vector2[4];
     private DarknessPoint[] spreadablePointsBuffer;
 
     // Start is called before the first frame update
@@ -88,6 +89,7 @@ public class FogOfDarknessManager : MonoBehaviour
         normals = new Vector3[activeHeight * activeWidth * 4];
         customMesh = new Mesh() { name = "DarknessMesh" };
         activePoints = new DarknessPoint[activeWidth * activeHeight];
+        activeSize = 0;
         spreadablePointsBuffer = new DarknessPoint[mapWidth * mapHeight];
 
         // Spawn darkness points
@@ -153,10 +155,12 @@ public class FogOfDarknessManager : MonoBehaviour
         CreateDarknessPointsCircle(center, radius, DarknessSpec.GetNullSpec());
     }
 
-    // Returns list of active darkness points
-    public DarknessPoint[] GetActivePoints()
+    // Returns array of active darkness points
+    // Array may be larger than active points so also
+    // returns number of active points
+    public (DarknessPoint[], int) GetActivePoints()
     {
-        return activePoints;
+        return (activePoints, activeSize);
     }
 
     // Returns the custom mesh representing darkness points
@@ -188,7 +192,7 @@ public class FogOfDarknessManager : MonoBehaviour
     private void RemoveDarkness(int x, int y)
     {
         var point = darknessArray[x][y];
-        point.maxHealth = point.currentHealth = 0;
+        point.MaxHealth = point.CurrentHealth = 0;
         point.SetActive(false);
     }
 
@@ -208,8 +212,8 @@ public class FogOfDarknessManager : MonoBehaviour
             return null;
         }
         DarknessPoint point = new DarknessPoint();
-        point.worldPosition = indexToWorld(x, y);
-        point.indexPosition = new Vector2Int(x, y);
+        point.WorldPosition = indexToWorld(x, y);
+        point.IndexPosition = new Vector2Int(x, y);
         point.Init(spec);
         point.SetActive(false);
         if (darknessArray[x][y] != null) spreadablePoints.Remove(darknessArray[x][y]);
@@ -247,32 +251,32 @@ public class FogOfDarknessManager : MonoBehaviour
 
     // Returns array of available points to spread to around index location
     // And the size of the array
-    private (Vector3[], int) OpenSurrounding(int x, int y)
+    private (Vector2[], int) OpenSurrounding(int x, int y)
     {
         DarknessPoint p;
         int index = 0;
         p = darknessArray[x + 1][y];
-        if (!p.IsAlive())
+        if (p.CurrentHealth <= 0)
         {
-            openPointsBuffer[index] = p.worldPosition;
+            openPointsBuffer[index] = p.WorldPosition;
             index++;
         }
         p = darknessArray[x - 1][y];
-        if (!p.IsAlive())
+        if (p.CurrentHealth <= 0)
         {
-            openPointsBuffer[index] = p.worldPosition;
+            openPointsBuffer[index] = p.WorldPosition;
             index++;
         }
         p = darknessArray[x][y + 1];
-        if (!p.IsAlive())
+        if (p.CurrentHealth <= 0)
         {
-            openPointsBuffer[index] = p.worldPosition;
+            openPointsBuffer[index] = p.WorldPosition;
             index++;
         }
         p = darknessArray[x][y - 1];
-        if (!p.IsAlive())
+        if (p.CurrentHealth <= 0)
         {
-            openPointsBuffer[index] = p.worldPosition;
+            openPointsBuffer[index] = p.WorldPosition;
             index++;
         }
         return (openPointsBuffer, index);
@@ -344,19 +348,21 @@ public class FogOfDarknessManager : MonoBehaviour
                 GameObject obj = objectPool[ix - bottomLeftX][iy - bottomLeftY];
                 if (p.IsAlive())
                 {
-                    //activePoints.Add(p);
                     activePoints[meshIndex] = p;
-                    obj.transform.position = p.worldPosition;
-                    if (!IsSurrounded(p.indexPosition.x, p.indexPosition.y))
+                    obj.transform.position = p.WorldPosition;
+                    if (!IsSurrounded(p.IndexPosition.x, p.IndexPosition.y))
                     {
                         spreadablePoints.Add(p);
                     }
 
+                    // Try spawning enemy
+                    p.Spawn();
+
                     /*
                     *   Add square to custom mesh
                     */
-                    float worldX = p.worldPosition.x;
-                    float worldY = p.worldPosition.y;
+                    float worldX = p.WorldPosition.x;
+                    float worldY = p.WorldPosition.y;
 
                     int verticesIndex = meshIndex * 4;
                     vertices[verticesIndex] = new Vector3(worldX - distanceBetweenPoints / 2, worldY - distanceBetweenPoints / 2, meshHeight); // bottom left
@@ -386,6 +392,8 @@ public class FogOfDarknessManager : MonoBehaviour
             }
         }
 
+        // Record how many active points we have
+        activeSize = meshIndex;
         // Fill rest of active points with null
         for (int i = meshIndex; i < activePoints.Length; i++)
         {
@@ -407,7 +415,7 @@ public class FogOfDarknessManager : MonoBehaviour
         for (int i = 0; i < spreadablePoints.Count; i++)
         {
             DarknessPoint p = spreadablePointsBuffer[i];
-            (Vector3[] availablePoints, int size) = OpenSurrounding(clampIndexX(p.indexPosition.x), clampIndexY(p.indexPosition.y));
+            (Vector2[] availablePoints, int size) = OpenSurrounding(clampIndexX(p.IndexPosition.x), clampIndexY(p.IndexPosition.y));
             if (size > 0)
             {
                 // If it spreads and there was only 1 open spot we can
@@ -457,7 +465,7 @@ public class FogOfDarknessManager : MonoBehaviour
                     var point = darknessArray[x][y];
                     Gizmos.color = point.IsAlive() ? Color.green : Color.red;
                     if (point.IsActive()) Gizmos.color = Gizmos.color + Color.yellow; // Tint active cells yellow
-                    Gizmos.color *= point.density; // shade with point density
+                    Gizmos.color *= point.Density; // shade with point density
                 }
                 Gizmos.DrawWireCube(indexToWorld(x, y), new Vector2(distanceBetweenPoints, distanceBetweenPoints));
             }

@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba77995cda3c4963af526d2773b8fa5, type: 3}
   m_Name: PerlinGenerator
   m_EditorClassIdentifier: 
+  defaultSettings: {fileID: 11400000, guid: c8bd21e204bc44e468376cc641815287, type: 2}
+  enemy: {fileID: 8048363940515965056, guid: 7ad211747fbe543c8bbdc8cd0fb8a4cb, type: 3}
   refinement: 0.15

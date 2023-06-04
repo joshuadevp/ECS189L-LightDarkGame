@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+// Contains data for a point of darkness
 public struct DarknessSpec
 {
-    public int maxHealth;
-    public int currentHealth;
-    public SpawnSpec spawnSpec;
-    public float density;
+    public int MaxHealth;
+    public int CurrentHealth;
+    public SpawnSpec SpawnSpec;
+    public float Density;
+    public float SpreadChance;
 
-    static public DarknessSpec GetNullSpec() { return new DarknessSpec() { density = 0, maxHealth = 0, currentHealth = 0 }; }
+    static public DarknessSpec GetNullSpec() { return new DarknessSpec() { Density = 0, MaxHealth = 0, CurrentHealth = 0 }; }
 }

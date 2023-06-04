@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnSpec
+// Contains data for spawning an enemy
+public struct SpawnSpec
 {
-    
+    public float SpawnChance;
+    public GameObject Enemy;
+
 }
