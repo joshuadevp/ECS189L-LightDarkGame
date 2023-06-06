@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         player = GetComponent<Player>();
-        fire1 = gameObject.AddComponent<PrimaryFlickerCommand>();
+        //fire1 = gameObject.AddComponent<PrimaryFlickerCommand>();
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         // Using Raw values to give more precise movement
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-
+        /*
         if (Input.GetButton("Fire1"))
         {
             this.fire1?.Execute(this.gameObject);
@@ -30,7 +30,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Fire2"))
         {
             this.fire2?.Execute(this.gameObject);
+        
         }
+        */
 
         transform.Translate(new Vector2(x, y).normalized * Time.deltaTime * player.Speed);
     }
