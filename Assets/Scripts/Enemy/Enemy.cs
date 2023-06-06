@@ -15,22 +15,24 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         // Possibly modify the hp/speed/damage here by some global modifier such as time/stage
-        float modifier = GameManager.instance.CalculateEnemyModifier();
-        hp *= modifier;
-        damage *= modifier;
+        // float modifier = GameManager.instance.CalculateEnemyModifier();
+        // hp *= modifier;
+        // damage *= modifier;
+        hp = 100;
+        damage = 1;
     }
 
-    public void TakeDamage(float damage) 
+    public void TakeDamage(float damage)
     {
         hp -= damage;
-        if (hp <= 0) 
+        if (hp <= 0)
         {
             OnDeath();
         }
     }
 
     // Do something when dying
-    void OnDeath() 
+    void OnDeath()
     {
         Destroy(gameObject);
     }

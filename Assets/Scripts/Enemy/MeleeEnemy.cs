@@ -23,7 +23,16 @@ public class MeleeEnemy : EnemyController
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player") 
+        if (collision.gameObject.tag == "Player")
+        {
+            player.main.TakeDamage(main.damage);
+            print($"Player took {main.damage} damage");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
         {
             player.main.TakeDamage(main.damage);
             print($"Player took {main.damage} damage");
