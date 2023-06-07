@@ -8,6 +8,8 @@ public class PerlinDarknessGenerator : IDarknessGenerator
     [SerializeField]
     DarknessSettings defaultSettings;
     [SerializeField]
+    DarknessSettings globalSettings;
+    [SerializeField]
     GameObject enemy;
     [SerializeField]
     float refinement;
@@ -28,11 +30,13 @@ public class PerlinDarknessGenerator : IDarknessGenerator
             Density = modifier,
             CurrentHealth = health,
             MaxHealth = health,
-            SpreadChance = defaultSettings.DarknessSpreadChance / modifier,
+            SpreadChanceModifier = 1f / modifier,
+            GlobalSettings = globalSettings,
             SpawnSpec = new SpawnSpec()
             {
-                SpawnChance = defaultSettings.EnemySpawnChance / modifier,
-                Enemy = enemy
+                SpawnChanceModifier = 1f / modifier,
+                Enemy = enemy,
+                GlobalSettings = globalSettings
             }
         };
     }

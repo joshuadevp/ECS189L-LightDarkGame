@@ -391,11 +391,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e4d8dfb0baf4c809ddc393bb074bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidthAndHeight: {x: 300, y: 300}
+  mapWidthAndHeight: {x: 100, y: 100}
   distanceBetweenPoints: 1
-  activeWidthAndHeight: {x: 64, y: 36}
+  activeWidthAndHeight: {x: 65, y: 35}
   activeCenter: {fileID: 1098526707}
-  darknessPrefab: {fileID: 6091990419432597784, guid: 9f69c28998cf865429de506d83d006f2, type: 3}
+  darknessPrefab: {fileID: 3367759043008731199, guid: 4253142fd347c4f86a1f51a96bab1236, type: 3}
   updateInterval: 0.1
   darknessGenerator: {fileID: 11400000, guid: 216838fbdffc49840a3dfed502d9315d, type: 2}
 --- !u!1 &1098526703
@@ -1023,7 +1023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &2142151965
 ParticleSystemRenderer:
   serializedVersion: 6

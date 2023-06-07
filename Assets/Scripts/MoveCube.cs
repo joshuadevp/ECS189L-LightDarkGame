@@ -41,7 +41,7 @@ public class MoveCube : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.E))
         {
-            fogManager.CreateDarknessPointsCircle(this.transform.position, radius, new DarknessSpec() { Density = 1, CurrentHealth = 0, MaxHealth = 0 });
+            fogManager.RemoveDarknessPointsCircle(this.transform.position, radius);
             //fogManager.RemoveDarknessPointsCircle(this.transform.position, radius);
             var activePoints = fogManager.GetActivePoints();
             // foreach (DarknessPoint p in activePoints)

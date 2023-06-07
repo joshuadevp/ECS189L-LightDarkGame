@@ -80,8 +80,8 @@ public class FogOfDarknessManager : MonoBehaviour
     {
         // Init data
         spreadablePoints = new HashSet<DarknessPoint>();
-        activeWidth = activeWidthAndHeight.x + 1;
-        activeHeight = activeWidthAndHeight.y + 1;
+        activeWidth = activeWidthAndHeight.x;
+        activeHeight = activeWidthAndHeight.y;
         mapWidth = mapWidthAndHeight.x;
         mapHeight = mapWidthAndHeight.y;
         vertices = new Vector3[activeHeight * activeWidth * 4];
@@ -150,9 +150,21 @@ public class FogOfDarknessManager : MonoBehaviour
         CreateDarknessPointsCircleIndex(x, y, indexRadius, spec);
     }
 
-    public void RemoveDarknessPointsCircle(Vector2 center, float radius)
+    public void RemoveDarknessPointsCircle(Vector2 center, float radiusf)
     {
-        CreateDarknessPointsCircle(center, radius, DarknessSpec.GetNullSpec());
+        (int x, int y) = worldToIndex(center);
+        int radius = Mathf.RoundToInt(radiusf / distanceBetweenPoints);
+
+        for (int ix = -radius; ix <= radius; ix++)
+        {
+            for (int iy = -radius; iy <= radius; iy++)
+            {
+                if (iy * iy + ix * ix <= radius * radius + radius && ValidIndex(x + ix, y + iy))
+                {
+                    RemoveDarkness(x + ix, y + iy);
+                }
+            }
+        }
     }
 
     // Returns array of active darkness points
@@ -206,13 +218,16 @@ public class FogOfDarknessManager : MonoBehaviour
     // Remove darkness at given index by setting to null settings
     private void RemoveDarkness(int x, int y)
     {
-        CreateDarknessPointIndex(x, y, DarknessSpec.GetNullSpec());
+        spreadablePoints.Remove(darknessArray[x][y]);
+        darknessArray[x][y].Init(DarknessSpec.GetNullSpec());
     }
 
     // Returns if index has darkness
     private bool IsDarknessIndex(int x, int y)
     {
-        return darknessArray[x][y].IsAlive();
+        if (ValidIndex(x, y))
+            return darknessArray[x][y].IsAlive();
+        return false;
     }
 
     // Creates a point of darkness given index in array and associated data
@@ -229,7 +244,10 @@ public class FogOfDarknessManager : MonoBehaviour
         point.IndexPosition = new Vector2Int(x, y);
         point.Init(spec);
         point.SetActive(false);
-        if (darknessArray[x][y] != null) spreadablePoints.Remove(darknessArray[x][y]);
+        if (darknessArray[x][y] != null)
+        {
+            spreadablePoints.Remove(darknessArray[x][y]);
+        }
         darknessArray[x][y] = point;
         spreadablePoints.Add(point);
         return point;
@@ -453,8 +471,8 @@ public class FogOfDarknessManager : MonoBehaviour
         int centerX = x;
         int centerY = y;
 
-        int indexX = Mathf.RoundToInt(activeWidth / 2 * distanceBetweenPoints);
-        int indexY = Mathf.RoundToInt(activeHeight / 2 * distanceBetweenPoints);
+        int indexX = Mathf.FloorToInt(activeWidth / 2 * distanceBetweenPoints);
+        int indexY = Mathf.FloorToInt(activeHeight / 2 * distanceBetweenPoints);
 
         Vector2Int topRightIndex = new Vector2Int(clampIndexX(centerX + indexX), clampIndexY(centerY + indexY));
         Vector2Int bottomLeftIndex = new Vector2Int(clampIndexX(centerX - indexX), clampIndexY(centerY - indexY));

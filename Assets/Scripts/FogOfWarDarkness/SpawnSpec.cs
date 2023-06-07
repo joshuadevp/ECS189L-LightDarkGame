@@ -5,7 +5,7 @@ using UnityEngine;
 // Contains data for spawning an enemy
 public struct SpawnSpec
 {
-    public float SpawnChance;
     public GameObject Enemy;
-
+    public DarknessSettings GlobalSettings;
+    public float SpawnChanceModifier;
 }
