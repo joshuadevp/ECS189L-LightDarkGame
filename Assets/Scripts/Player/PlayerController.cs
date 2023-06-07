@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         main = GetComponent<Player>();
-        fire1 = gameObject.AddComponent<TestCommand>();
+        fire1 = gameObject.GetComponent<TestCommand>();
     }
 
     // Update is called once per frame
