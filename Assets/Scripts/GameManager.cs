@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public bool Pausing { get; private set; }
+
     [Header("Game Difficulty Settings")]
     [Tooltip("How much stronger each enemy gets per second")]
     [SerializeField] private float enemyStrengthOverTimeMultiplier = 0.01f;
@@ -14,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
 
     private float startTime;
-    private float level = 1;
+    private float level = 0;
 
     private void Awake()
     {
@@ -28,17 +30,22 @@ public class GameManager : MonoBehaviour
             this.enabled = false;
         }
         startTime = Time.time;
+        Pausing = false;
     }
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("SpawnEnemy", 0f, 1f);
+        StartCoroutine(TogglePause());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Pausing = !Pausing;
+        }
     }
 
     private void SpawnEnemy()
@@ -52,6 +59,18 @@ public class GameManager : MonoBehaviour
     /// <returns> The modifier to be applied on enemy's stats</returns>
     public float CalculateEnemyModifier()
     {
-        return startTime * (1 + enemyStrengthOverTimeMultiplier) + level * enemyStrengthOverLevelMultiplier;
+        return 1 + (Time.time - startTime) * enemyStrengthOverTimeMultiplier + level * enemyStrengthOverLevelMultiplier;
+    }
+
+    public IEnumerator TogglePause()
+    {
+        float savedTimeScale;
+        while (true) {
+            yield return new WaitUntil(() => Pausing == true);
+            savedTimeScale = Time.timeScale;
+            Time.timeScale = 0;
+            yield return new WaitUntil(() => Pausing == false);
+            Time.timeScale = savedTimeScale;
+        }
     }
 }
