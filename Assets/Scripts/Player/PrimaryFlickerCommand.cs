@@ -28,7 +28,9 @@ public class PrimaryFlickerCommand : MonoBehaviour, IAbilityCommand
             Debug.Log("Shoot Flicker");
             var projectile = (GameObject)Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity);
             var rb = projectile.GetComponent<Rigidbody>();
-            rb.AddForce(gameObject.transform.up * shotSpeed, ForceMode.Impulse);
+
+            // Just setting the velocity allows us to customize the projectile's mass
+            rb.velocity = gameObject.transform.up * shotSpeed;
             Destroy(projectile, lifetime);
             return 0;
         }

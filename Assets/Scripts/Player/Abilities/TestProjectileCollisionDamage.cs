@@ -7,7 +7,7 @@ public class TestProjectileCollisionDamage : MonoBehaviour
     FogOfDarknessManager darknessManager;
     private int hitCounter = 0;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         darknessManager = GameObject.FindObjectOfType<FogOfDarknessManager>();
     }
@@ -26,13 +26,14 @@ public class TestProjectileCollisionDamage : MonoBehaviour
         GameObject hit = other.gameObject;
         if (hit.tag == "Darkness")
         {
+            print(darknessManager);
             darknessManager.DamageDarkness(other.transform.position, 200);
             hitCounter++;
         }
         else if (hit.tag == "Enemy")
         {
             hitCounter++;
-            hit.GetComponent<Enemy>().TakeDamage(100);
+            hit.GetComponent<Enemy>().HitBy(this.gameObject, 10);
         }
         if (hitCounter == 10)
         {

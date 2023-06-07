@@ -6,4 +6,6 @@ public abstract class EnemyController : MonoBehaviour
 {
     protected Enemy main;
     protected PlayerController player;
+
+    public abstract void HitBy(GameObject projectile);
 }

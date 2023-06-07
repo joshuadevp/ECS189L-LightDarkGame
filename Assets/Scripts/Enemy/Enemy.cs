@@ -5,8 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("In Editor: Base Stats\nIn Game: Final Stats")]
-    //TODO Remove this field, this is just for the header attribute to work
-    public string comment;
+    public EnemyController controller;
     [field: SerializeField] public float hp { get; private set; }
     [field: SerializeField] public float speed { get; private set; }
     [field: SerializeField] public float damage { get; private set; }
@@ -20,6 +19,13 @@ public class Enemy : MonoBehaviour
         // damage *= modifier;
         hp = 100;
         damage = 1;
+        controller = GetComponent<EnemyController>();
+    }
+
+    public void HitBy(GameObject projectile, float damage) 
+    {
+        controller.HitBy(projectile);
+        TakeDamage(damage);
     }
 
     public void TakeDamage(float damage)
