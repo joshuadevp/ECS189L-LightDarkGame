@@ -7,5 +7,6 @@ public struct SpawnSpec
 {
     public GameObject Enemy;
     public DarknessSettings GlobalSettings;
+    // Float to multiply by spawn chance.
     public float SpawnChanceModifier;
 }
