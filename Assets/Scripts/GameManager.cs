@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public bool Pausing { get; private set; }
+    public Canvas InGameCanvas;
+    public Canvas UICanvas;
 
     [Header("Game Difficulty Settings")]
     [Tooltip("How much stronger each enemy gets per second")]
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float enemyStrengthOverLevelMultiplier = 1f;
 
     [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject damageInfoPrefab;
 
     private float startTime;
     private float level = 0;
@@ -35,7 +38,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 0f, 1f);
         StartCoroutine(TogglePause());
     }
 
@@ -51,6 +53,14 @@ public class GameManager : MonoBehaviour
     private void SpawnEnemy()
     {
         Instantiate(enemyPrefab, transform.position, transform.rotation);
+    }
+
+    public void SpawnDamageInfo(Vector3 position, float damage)
+    {
+        GameObject dmgInfo = Instantiate(damageInfoPrefab, InGameCanvas.transform);
+        dmgInfo.transform.position = position;
+        dmgInfo.GetComponent<TMPro.TMP_Text>().text = damage.ToString();
+        Destroy(dmgInfo, 1.5f);
     }
 
     /// <summary>

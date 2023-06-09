@@ -30,7 +30,7 @@ public class MeleeEnemy : EnemyController
         }
 
         Vector3 direction = (player.transform.position - transform.position).normalized;
-        transform.position += (direction * main.speed * Time.deltaTime);
+        transform.position += (direction * main.Speed * Time.deltaTime);
     }
 
     public override void HitBy(GameObject projectile) 
@@ -47,21 +47,21 @@ public class MeleeEnemy : EnemyController
         stunned = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            player.main.TakeDamage(main.damage);
-            print($"Player took {main.damage} damage");
+            player.main.TakeDamage(main.Damage * Time.deltaTime);
+            print($"Player took {main.Damage} damage");
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            player.main.TakeDamage(main.damage);
-            print($"Player took {main.damage} damage");
+            player.main.TakeDamage(main.Damage * Time.deltaTime);
+            print($"Player took {main.Damage} damage");
         }
     }
 }

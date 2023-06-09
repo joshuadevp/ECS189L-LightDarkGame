@@ -14,13 +14,14 @@ public class Player : MonoBehaviour
     public ModStat ResourceGainModifier { get; private set; }
 
     [field: SerializeField] public float Hp { get; private set; }
+    [SerializeField] PlayerHPBar hpBar;
 
     // Start is called before the first frame update
     void Start()
     {
         MaxHP = new ModStat(baseStats.hp);
         Speed = new ModStat(baseStats.speed);
-        CritChance = new ModStat(0f);
+        CritChance = new ModStat(0f);   
         CritDamage = new ModStat(2f);
         DamageModifier = new ModStat(1f);
         ResourceGainModifier = new ModStat(1f);
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         Hp -= dmg;
+        hpBar.SetHP(Hp / MaxHP.Value);
         if (Hp <= 0)
         {
             OnDeath();
