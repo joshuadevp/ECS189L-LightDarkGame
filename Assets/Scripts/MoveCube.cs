@@ -39,20 +39,33 @@ public class MoveCube : MonoBehaviour
         {
             this.transform.position += new Vector3(0, speed, 0) * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             fogManager.RemoveDarknessPointsCircle(this.transform.position, radius);
             //fogManager.RemoveDarknessPointsCircle(this.transform.position, radius);
-            var activePoints = fogManager.GetActivePoints();
-            // foreach (DarknessPoint p in activePoints)
-            // {
-            //     ParticleSystem.EmitParams param = new ParticleSystem.EmitParams() { position = p.worldPosition };
-            //     particles.Emit(param, 1);
-            // }
+
             Mesh mesh = fogManager.GetMesh();
             var shape = particles.shape;
             shape.mesh = mesh;
             planeFilter.mesh = mesh;
+        }
+
+    }
+
+    void FixedUpdate()
+    {
+        var activePoints = fogManager.GetActivePoints();
+        for (int i = 0; i < 300; i++)
+        {
+            DarknessPoint p = activePoints.Item1[Random.Range(0, activePoints.Item2)];
+            ParticleSystem.EmitParams param = new ParticleSystem.EmitParams()
+            {
+                position = p.WorldPosition + new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)),
+                startColor = new Color32(50, 50, 50, (byte)(255 * p.Density)),
+                startLifetime = 1,
+                startSize = p.Density * 4,
+            };
+            particles.Emit(param, 1);
         }
     }
 }
