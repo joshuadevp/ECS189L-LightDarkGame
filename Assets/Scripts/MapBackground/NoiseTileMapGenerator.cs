@@ -18,7 +18,8 @@ public class NoiseTileMapGenerator : ITileMapGenerator
 
     public override void Generate(Tilemap map, Vector2Int widthAndHeight)
     {
-        noiseChoice = UnityEngine.Random.Range(0, 4);
+        noiseChoice = UnityEngine.Random.Range(0, 3);
+        Debug.Log("Noise choice: " + noiseChoice);
         seed = UnityEngine.Random.Range(0, 65535);
 
         for (int x = 0; x < widthAndHeight.x; x++)
@@ -56,15 +57,15 @@ public class NoiseTileMapGenerator : ITileMapGenerator
 
     private float Snoise(int x, int y)
     {
-        return noise.snoise(new Vector2(x * simplexRefinement + seed, y * simplexRefinement + seed));
+        return Mathf.InverseLerp(-1, 1, noise.snoise(new Vector2(x * simplexRefinement + seed, y * simplexRefinement + seed)));
     }
 
     private float CellF1(int x, int y)
     {
-        return noise.cellular(new Vector2(x * cellF1Refinement + seed, y * cellF1Refinement + seed)).x;
+        return Mathf.Clamp(noise.cellular(new Vector2(x * cellF1Refinement + seed, y * cellF1Refinement + seed)).x, 0f, 1f);
     }
     private float CellF2(int x, int y)
     {
-        return noise.cellular(new Vector2(x * cellF2Refinement + seed, y * cellF2Refinement + seed)).y;
+        return Mathf.Clamp(noise.cellular(new Vector2(x * cellF2Refinement + seed, y * cellF2Refinement + seed)).y, 0f, 1f);
     }
 }
