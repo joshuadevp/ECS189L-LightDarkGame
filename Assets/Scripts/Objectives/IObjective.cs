@@ -10,4 +10,6 @@ public interface IObjective
     abstract void ManualUpdate();
     // Returns true if the objective is completed
     abstract bool Completed();
+    // Returns the location of the objective
+    abstract Vector2 GetLocation();
 }

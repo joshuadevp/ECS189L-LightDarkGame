@@ -123,13 +123,12 @@ public class FogOfDarknessManager : MonoBehaviour
     }
 
     // Creates a point of darkness at the given world coord if possible
-    // Returns true on success
-    public bool CreateDarknessPoint(Vector2 coordinates, DarknessSpec spec)
+    // Returns the point on success otherwise null
+    public DarknessPoint CreateDarknessPoint(Vector2 coordinates, DarknessSpec spec)
     {
         (int x, int y) = worldToIndex(coordinates);
-        if (x == -1) return false; // fail on invalid coord
-        CreateDarknessPointIndex(x, y, spec);
-        return true;
+        if (x == -1) return null; // fail on invalid coord
+        return CreateDarknessPointIndex(x, y, spec);
     }
 
     // Remove darkness point at given location
@@ -142,12 +141,13 @@ public class FogOfDarknessManager : MonoBehaviour
 
     // Create a circle of darkness points at the given world position and world
     // based radius
-    public void CreateDarknessPointsCircle(Vector2 center, float radius, DarknessSpec spec)
+    // Returns a list of the points created
+    public List<DarknessPoint> CreateDarknessPointsCircle(Vector2 center, float radius, DarknessSpec spec)
     {
         (int x, int y) = worldToIndex(center);
         int indexRadius = Mathf.RoundToInt(radius / distanceBetweenPoints);
 
-        CreateDarknessPointsCircleIndex(x, y, indexRadius, spec);
+        return CreateDarknessPointsCircleIndex(x, y, indexRadius, spec);
     }
 
     public void RemoveDarknessPointsCircle(Vector2 center, float radiusf)
@@ -196,18 +196,21 @@ public class FogOfDarknessManager : MonoBehaviour
         return false;
     }
 
-    private void CreateDarknessPointsCircleIndex(int x, int y, int radius, DarknessSpec spec)
+    private List<DarknessPoint> CreateDarknessPointsCircleIndex(int x, int y, int radius, DarknessSpec spec)
     {
+        var pointList = new List<DarknessPoint>();
         for (int ix = -radius; ix <= radius; ix++)
         {
             for (int iy = -radius; iy <= radius; iy++)
             {
                 if (iy * iy + ix * ix <= radius * radius + radius && ValidIndex(x + ix, y + iy))
                 {
-                    CreateDarknessPointIndex(x + ix, y + iy, spec);
+                    pointList.Add(CreateDarknessPointIndex(x + ix, y + iy, spec));
                 }
             }
         }
+
+        return pointList;
     }
 
     private bool ValidIndex(int x, int y)

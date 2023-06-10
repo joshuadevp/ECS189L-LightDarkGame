@@ -60,7 +60,7 @@ public class ObjectiveManager : MonoBehaviour
 
     private IObjective GenerateNewObjective()
     {
-        return (IObjective)Instantiate(possibleObjectives[0]);
+        return (IObjective)Instantiate(possibleObjectives[Random.Range(0, possibleObjectives.Length)]);
     }
 
     private Vector2 GenerateLocation()

@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &447315439
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1003,7 +1003,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleObjectives:
+  - {fileID: 11400000, guid: 10eeb3256a2a64bc5998227d5b18dd4f, type: 2}
   - {fileID: 11400000, guid: 416215855b5f245e19a84cfa70fa58c5, type: 2}
+  - {fileID: 11400000, guid: 7183d482b64fc455095530816fb42906, type: 2}
   distFromPlayer: 10
   player: {fileID: 1098526703}
   darknessManager: {fileID: 764675903}
@@ -1248,7 +1250,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: -5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1683,7 +1685,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 10000
+    maxNumParticles: 20000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -1949,7 +1951,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1000
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
