@@ -43,7 +43,7 @@ public class PrimaryShotCommand : PlayerCommand
         if (Time.time - lastCast > shotInterval)
         {
             Debug.Log("SHOT!!");
-            var projectile = (GameObject)Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity);
+            var projectile = (GameObject)Instantiate(projectilePrefab, gameObject.transform.position, gameObject.transform.rotation);
             var rb = projectile.GetComponent<Rigidbody>();
 
             // Just setting the velocity allows us to customize the projectile's mass

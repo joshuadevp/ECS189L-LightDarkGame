@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class FlickerCommandUpgrade : ScriptableObject, IUpgradeTest
+public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
 {
     [SerializeField]
     float increaseDamageMultiplier;
