@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
     public bool Pausing { get; private set; }
     public Canvas InGameCanvas;
     public Canvas UICanvas;
@@ -17,15 +17,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] GameObject damageInfoPrefab;
+    [field: SerializeField] public AudioSource GlobalSoundEffectPlayer { get; private set; }
 
     private float startTime;
     private float level = 0;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -50,11 +51,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy()
-    {
-        Instantiate(enemyPrefab, transform.position, transform.rotation);
-    }
-
     public void SpawnDamageInfo(Vector3 position, float damage)
     {
         GameObject dmgInfo = Instantiate(damageInfoPrefab, InGameCanvas.transform);
@@ -72,7 +68,7 @@ public class GameManager : MonoBehaviour
         return 1 + (Time.time - startTime) * enemyStrengthOverTimeMultiplier + level * enemyStrengthOverLevelMultiplier;
     }
 
-    public IEnumerator TogglePause()
+    private IEnumerator TogglePause()
     {
         float savedTimeScale;
         while (true) {
@@ -82,5 +78,14 @@ public class GameManager : MonoBehaviour
             yield return new WaitUntil(() => Pausing == false);
             Time.timeScale = savedTimeScale;
         }
+    }
+
+    /// <summary>
+    /// Play an audio clip of your choice. For more flexibility, use GameManager.Instance.GlobalSoundEffectPlayer
+    /// </summary>
+    /// <param name="clip">The audioclip to be played.</param>
+    public void PlayAudioClip(AudioClip clip) 
+    {
+        GlobalSoundEffectPlayer.PlayOneShot(clip);
     }
 }
