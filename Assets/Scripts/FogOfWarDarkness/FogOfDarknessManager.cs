@@ -8,7 +8,7 @@ public class FogOfDarknessManager : MonoBehaviour
     [SerializeField]
     Vector2Int mapWidthAndHeight; // Height and width of points of darkness.
     [SerializeField]
-    float distanceBetweenPoints; // Distance between points of darkness, assumes all space between two points contains darkness.
+    public float distanceBetweenPoints; // Distance between points of darkness, assumes all space between two points contains darkness.
     [SerializeField]
     Vector2Int activeWidthAndHeight; // Height and width of set of active points of darkness in world space.
     [SerializeField]
@@ -61,6 +61,11 @@ public class FogOfDarknessManager : MonoBehaviour
             SpreadPoints();
             oldPosition = activeCenter.position;
         }
+    }
+
+    public int MaxActiveSize()
+    {
+        return activeHeight * activeWidth;
     }
 
     // Returns true if the given world point is within darkness
@@ -237,21 +242,23 @@ public class FogOfDarknessManager : MonoBehaviour
     // Returns created DarknessPoint or null if index invalid
     private DarknessPoint CreateDarknessPointIndex(int x, int y, DarknessSpec spec)
     {
+        DarknessPoint point = darknessArray[x][y] ;
         if (!ValidIndex(x, y))
         {
             Debug.LogError("Invalid index for creating darkness point! x: " + x + " y: " + y);
             return null;
-        }
-        DarknessPoint point = new DarknessPoint();
-        point.WorldPosition = indexToWorld(x, y);
-        point.IndexPosition = new Vector2Int(x, y);
-        point.Init(spec);
-        point.SetActive(false);
-        if (darknessArray[x][y] != null)
+        } else if(point != null) // Don't create new points if it already exists.
         {
-            spreadablePoints.Remove(darknessArray[x][y]);
+            spreadablePoints.Remove(point);
+            darknessArray[x][y].Init(spec);
+        } else {
+            point = new DarknessPoint();
+            point.WorldPosition = indexToWorld(x, y);
+            point.IndexPosition = new Vector2Int(x, y);
+            point.Init(spec);
+            darknessArray[x][y] = point;
         }
-        darknessArray[x][y] = point;
+
         spreadablePoints.Add(point);
         return point;
     }
@@ -501,7 +508,7 @@ public class FogOfDarknessManager : MonoBehaviour
                     if (point.IsActive()) Gizmos.color = Gizmos.color + Color.yellow; // Tint active cells yellow
                     Gizmos.color *= point.Density; // shade with point density
                 }
-                Gizmos.DrawWireCube(indexToWorld(x, y), new Vector2(distanceBetweenPoints, distanceBetweenPoints));
+                Gizmos.DrawWireCube((Vector3)indexToWorld(x, y)+new Vector3(0,0,0.1f), new Vector2(distanceBetweenPoints, distanceBetweenPoints));
             }
         }
     }

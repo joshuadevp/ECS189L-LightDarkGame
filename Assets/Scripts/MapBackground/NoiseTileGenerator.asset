@@ -17,5 +17,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 30e25d03aa8d44ccb8dfd13b4c7a9459, type: 2}
   - {fileID: 11400000, guid: 24b8857835468484abbdfe01f054b7c6, type: 2}
   simplexRefinement: 0.4
+  truncatedSimplexRefinement: 0.08
   cellF1Refinement: 0.03
   cellF2Refinement: 0.08

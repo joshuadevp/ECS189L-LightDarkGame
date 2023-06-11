@@ -15,4 +15,4 @@ MonoBehaviour:
   radius: 2
   enemy: {fileID: 8048363940515965056, guid: 7ad211747fbe543c8bbdc8cd0fb8a4cb, type: 3}
   darknessGenerator: {fileID: 11400000, guid: 216838fbdffc49840a3dfed502d9315d, type: 2}
-  spawnChanceModifier: 100
+  spawnChanceModifier: 10

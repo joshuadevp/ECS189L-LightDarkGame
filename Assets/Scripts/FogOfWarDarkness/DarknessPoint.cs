@@ -17,11 +17,11 @@ public class DarknessPoint
 
     public void Init(DarknessSpec spec)
     {
-        // TODO SET SETTINGS WITH SPEC
         CurrentHealth = spec.CurrentHealth;
         MaxHealth = spec.MaxHealth;
         Density = spec.Density;
         this.DarknessSpec = spec;
+        active = false;
     }
 
     public bool IsAlive()

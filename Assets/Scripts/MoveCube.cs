@@ -51,21 +51,4 @@ public class MoveCube : MonoBehaviour
         }
 
     }
-
-    void FixedUpdate()
-    {
-        var activePoints = fogManager.GetActivePoints();
-        for (int i = 0; i < 300; i++)
-        {
-            DarknessPoint p = activePoints.Item1[Random.Range(0, activePoints.Item2)];
-            ParticleSystem.EmitParams param = new ParticleSystem.EmitParams()
-            {
-                position = p.WorldPosition + new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)),
-                startColor = new Color32(50, 50, 50, (byte)(255 * p.Density)),
-                startLifetime = 1,
-                startSize = p.Density * 4,
-            };
-            particles.Emit(param, 1);
-        }
-    }
 }
