@@ -7,8 +7,8 @@ public class UpgradeGenerator : MonoBehaviour
     [SerializeField]
     ScriptableObject[] upgrades;
 
-    public IUpgradeTest GenerateUpgrade()
+    public IUpgrade GenerateUpgrade()
     {
-        return (IUpgradeTest)upgrades[Random.Range(0,upgrades.Length)];
+        return (IUpgrade)upgrades[Random.Range(0,upgrades.Length)];
     }
 }

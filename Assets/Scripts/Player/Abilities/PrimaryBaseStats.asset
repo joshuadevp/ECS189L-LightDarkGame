@@ -15,7 +15,7 @@ MonoBehaviour:
   baseDamage: 10
   baseCriticalChance: 0.1
   baseCriticalMultiplier: 2
-  baseSize: 5
+  baseSize: 0.4
   lightRadius: 2
   projectileLifetime: 2
   projectileSpeed: 10

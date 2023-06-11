@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class HealthUpgradeTest : ScriptableObject, IUpgradeTest
+public class HealthUpgradeTest : ScriptableObject, IUpgrade
 {
     [SerializeField]
     float healthMultiplier;

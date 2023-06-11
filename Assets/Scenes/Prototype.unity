@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 229420692}
   - component: {fileID: 229420693}
   - component: {fileID: 229420694}
+  - component: {fileID: 229420695}
   m_Layer: 0
   m_Name: capsule
   m_TagString: Untagged
@@ -371,8 +372,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0aad564b091ba47a06ac2f2ffc67c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pc: {fileID: 11400000, guid: 91515d3a891d7564fbc3ba556c28b26a, type: 2}
   projectilePrefab: {fileID: 3729204725494354870, guid: 311b1878e34b8ca489a9e5c7c7734f8c, type: 3}
+  playerScript: {fileID: 1503117196}
+--- !u!114 &229420695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229420684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c36cffc19ba73438e55aabd09dcf85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flickerGenericUpgrade: {fileID: 11400000, guid: b19bd98c98ec5554ab1665b2af27f949, type: 2}
 --- !u!1 &518904269
 GameObject:
   m_ObjectHideFlags: 0
@@ -5898,6 +5912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats: {fileID: 11400000, guid: 1951afc1e57bb794893ea5e77c1f2a05, type: 2}
+  ps: {fileID: 11400000, guid: 91515d3a891d7564fbc3ba556c28b26a, type: 2}
   <Hp>k__BackingField: 100
   hpBar: {fileID: 660866673}
 --- !u!4 &1503117197

@@ -4,51 +4,25 @@ using UnityEngine;
 
 public class PrimaryShotCommand : PlayerCommand
 {
-    [SerializeField] private PrimarySpec pc;
     [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Player playerScript;
 
-    // Projectile Stats, applied with modifiers.
-    public float damage{set;get;}
-    private float criticalChance;
-    private float criticalMultiplier;
-
-    private float size;
-    private float lightRadius;
-
-    private float projectileLifetime;
-    private float projectileSpeed;
-    private float shotInterval;
-    private float knockback;
-    private int pierce;
-
-    float lastCast = 0f;
-
-    private void Awake()
-    {
-        damage = pc.BaseDamage;
-        criticalChance = pc.BaseCriticalChance;
-        criticalMultiplier = pc.BaseCriticalMultipler;
-        size = pc.BaseSize;
-        projectileLifetime = pc.ProjectileLifetime;
-        projectileSpeed = pc.ProjectileSpeed;
-        shotInterval = pc.ShotInterval;
-        knockback = pc.Knockback;
-        pierce = pc.Pierce;
-    }
+    float lastCast = 0;
 
     public override void Execute(GameObject player)
     {
-        Debug.Log("Firing");
+        //var playerScript = player.GetComponent<Player>();
+        //Debug.Log("here");
         // Shoot projectile when enough time has passed
-        if (Time.time - lastCast > shotInterval)
+        if (Time.time - lastCast > playerScript.ShotInterval.Value)
         {
-            Debug.Log("SHOT!!");
+            //Debug.Log("SHOT!!");
             var projectile = (GameObject)Instantiate(projectilePrefab, gameObject.transform.position, gameObject.transform.rotation);
             var rb = projectile.GetComponent<Rigidbody>();
 
             // Just setting the velocity allows us to customize the projectile's mass
-            rb.velocity = gameObject.transform.up * projectileSpeed;
-            Destroy(projectile, projectileLifetime);
+            rb.velocity = gameObject.transform.up * playerScript.ProjectileSpeed.Value;
+            Destroy(projectile, playerScript.ProjectileLifetime.Value);
             lastCast = Time.time;
         }
     }

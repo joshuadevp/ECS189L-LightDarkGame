@@ -16,17 +16,17 @@ public class AimController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         fire1 = gameObject.GetComponent<PrimaryShotCommand>();
-        //fire2 = gameObject.AddComponent<PrimaryCandleCommand>();
+        fire2 = gameObject.GetComponent<UpgradeTestCommand>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetButton("Fire1"))
         {
             this.fire1?.Execute(this.gameObject);
         }
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButtonDown("Fire2"))
         {
             this.fire2?.Execute(this.gameObject);
         }

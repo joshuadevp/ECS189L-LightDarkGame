@@ -6,11 +6,20 @@ using Unity.Collections;
 public class Player : MonoBehaviour
 {
     [SerializeField] CharacterBase baseStats;
+    [SerializeField] PrimarySpec ps;
     public ModStat MaxHP { get; private set; }
     public ModStat Speed { get; private set; }
+
+    // Primary Projectile Based Stats
+    public ModStat Damage { get; private set; }
     public ModStat CritChance { get; private set; }
     public ModStat CritDamage { get; private set; }
-    public ModStat DamageModifier { get; private set; }
+    public ModStat ProjectileSize { get; private set; }
+    public ModStat ProjectileLifetime { get; private set; }
+    public ModStat ProjectileSpeed { get; private set; }
+    public ModStat ShotInterval { get; private set; }
+    public ModStat ProjectileKnockback { get; private set; }
+    public ModStat ProjectilePierce { get; private set; }
     public ModStat ResourceGainModifier { get; private set; }
 
     [field: SerializeField] public float Hp { get; private set; }
@@ -21,11 +30,22 @@ public class Player : MonoBehaviour
     {
         MaxHP = new ModStat(baseStats.hp);
         Speed = new ModStat(baseStats.speed);
-        CritChance = new ModStat(0f);   
-        CritDamage = new ModStat(2f);
-        DamageModifier = new ModStat(1f);
+
+        // Initialize with PrimarySpec base values.
+        Damage = new ModStat(ps.BaseDamage);
+        CritChance = new ModStat(ps.BaseCriticalChance);   
+        CritDamage = new ModStat(ps.BaseCriticalMultipler);
+        ProjectileSize = new ModStat(ps.BaseSize);
+        ProjectileLifetime = new ModStat(ps.ProjectileLifetime);
+        ProjectileSpeed = new ModStat(ps.ProjectileSpeed);
+        ShotInterval = new ModStat(ps.ShotInterval);
+        ProjectileKnockback = new ModStat(ps.Knockback);
+        ProjectilePierce = new ModStat(ps.Pierce);
+
         ResourceGainModifier = new ModStat(1f);
         Hp = MaxHP.Value;
+
+        Debug.Log(ShotInterval.Value);
     }
 
     public void TakeDamage(float dmg)
