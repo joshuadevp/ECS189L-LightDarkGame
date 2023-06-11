@@ -12,6 +12,7 @@ public class ObjectiveManager : MonoBehaviour
     GameObject player;
     [SerializeField]
     FogOfDarknessManager darknessManager;
+    UpgradeGenerator upgrades;
     private IObjective activeObjective;
 
     // Start is called before the first frame update
@@ -51,7 +52,7 @@ public class ObjectiveManager : MonoBehaviour
             if (activeObjective.Completed())
             {
                 Debug.Log("Completed objective");
-                // Give reward
+                upgrades.GenerateUpgrade().ApplyUpgrade();
                 Destroy((ScriptableObject)activeObjective);
                 activeObjective = null;
             }

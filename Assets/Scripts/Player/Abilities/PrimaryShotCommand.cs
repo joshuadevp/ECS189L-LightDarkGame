@@ -8,7 +8,7 @@ public class PrimaryShotCommand : PlayerCommand
     [SerializeField] private GameObject projectilePrefab;
 
     // Projectile Stats, applied with modifiers.
-    private float damage;
+    public float damage{set;get;}
     private float criticalChance;
     private float criticalMultiplier;
 
