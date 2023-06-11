@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IUpgrade
 {
-    void applyPercentage();
+    void applyUpgrade();
 }

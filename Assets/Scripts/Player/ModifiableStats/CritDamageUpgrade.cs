@@ -6,7 +6,7 @@ public class CritDamageUpgrade : ScriptableObject, IUpgrade
 {
     [SerializeField] float critDamageUpgradeModifier;
 
-    public void applyPercentage()
+    public void applyUpgrade()
     {
         var playerStats = FindObjectOfType<Player>();
         playerStats.CritDamage.AddModifier(new StatModifier(ModifierType.multiplicative, critDamageUpgradeModifier, "Crit Damage Up!"));
