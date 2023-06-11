@@ -25,7 +25,6 @@ public class PrimaryFlickerCommand : MonoBehaviour, IAbilityCommand
         //Shoot projectile when shotInterval time has passed
         if (timeSinceLastShot >= shotInterval)
         {
-            Debug.Log("Shoot Flicker");
             var projectile = (GameObject)Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity);
             var rb = projectile.GetComponent<Rigidbody>();
 
@@ -37,7 +36,6 @@ public class PrimaryFlickerCommand : MonoBehaviour, IAbilityCommand
         //Don't shoot projectile if not enough time has passed
         else
         {
-            Debug.Log("Flicker On Cooldown");
             return timeSinceLastShot;
         }
     }

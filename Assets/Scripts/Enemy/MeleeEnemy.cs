@@ -6,13 +6,13 @@ using UnityEngine;
 public class MeleeEnemy : EnemyController
 {
     // Modify this constant or modify the value in HitBy() to change stun/knockback duration
-    private const float StunDurationOnHit = 0.2f;
-    Rigidbody rb;
-    Vector3 knockbackMovement;
-    bool stunned = false;
+    protected const float StunDurationOnHit = 0.2f;
+    protected Rigidbody rb;
+    protected Vector3 knockbackMovement;
+    protected bool stunned = false;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         main = GetComponent<Enemy>();
         rb = GetComponent<Rigidbody>();
@@ -61,7 +61,6 @@ public class MeleeEnemy : EnemyController
         if (other.gameObject.tag == "Player")
         {
             player.main.TakeDamage(main.Damage * Time.deltaTime);
-            print($"Player took {main.Damage} damage");
         }
     }
 }

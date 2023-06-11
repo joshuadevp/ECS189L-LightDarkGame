@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public Player main { get; private set; }
 
-    [SerializeField] private IPlayerCommand fire1;
-    [SerializeField] private IPlayerCommand fire2;
+    [SerializeField] private PlayerCommand fire1;
+    [SerializeField] private PlayerCommand fire2;
     // Start is called before the first frame update
     void Start()
     {

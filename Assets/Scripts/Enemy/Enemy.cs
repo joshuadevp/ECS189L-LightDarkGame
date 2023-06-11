@@ -18,9 +18,9 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         // Possibly modify the hp/speed/damage here by some global modifier such as time/stage
-        // float modifier = GameManager.instance.CalculateEnemyModifier();
-        // MaxHp *= modifier;
-        // Damage *= modifier;
+        float modifier = GameManager.instance.CalculateEnemyModifier();
+        MaxHp *= modifier;
+        Damage *= modifier;
         controller = GetComponent<EnemyController>();
         hPBar = GetComponentInChildren<EnemyHPBar>();
         hp = MaxHp;
