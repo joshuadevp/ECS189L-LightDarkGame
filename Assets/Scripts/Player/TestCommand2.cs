@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Modified from Dretis's flicker command
-public class TestCommand2 : MonoBehaviour, IPlayerCommand
+public class TestCommand2 : PlayerCommand
 {
     private float baseSize;
     private float damageMultiplier;
@@ -12,7 +12,7 @@ public class TestCommand2 : MonoBehaviour, IPlayerCommand
     [SerializeField] GameObject projectile;
 
     private float timeSinceLastShot = 0;
-    public void Execute(GameObject player)
+    public override void Execute(GameObject player)
     {
         timeSinceLastShot += Time.deltaTime;
         if (timeSinceLastShot >= shotInterval)

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b796b9e7cf99fa9498065b336ac8a6b6, type: 3}
+  m_Name: PrimaryBaseStats
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  baseCriticalChance: 0.1
+  baseCriticalMultiplier: 2
+  baseSize: 0.4
+  lightRadius: 2
+  projectileLifetime: 2
+  projectileSpeed: 10
+  shotInterval: 0.5
+  knockback: 2
+  pierce: 5
