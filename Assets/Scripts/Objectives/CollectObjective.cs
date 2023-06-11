@@ -8,8 +8,9 @@ public class CollectObjective : ScriptableObject, IObjective
     [SerializeField]
     private GameObject collectable;
     private GameObject player;
-    bool completed = false;
-    bool started = false;
+    private bool completed = false;
+    private bool started = false;
+    private Vector2 loc;
 
     public void ManualUpdate()
     {
@@ -22,8 +23,10 @@ public class CollectObjective : ScriptableObject, IObjective
 
     public void Setup(Vector2 loc)
     {
+        this.loc = loc;
         // Generate new collectable instance and place where we want it
         collectable = Instantiate(collectable, loc, Quaternion.identity);
+        // TODO: CHANGE TO TYPE OF ACTUAL PLAYER SCRIPT
         player = GameObject.FindFirstObjectByType<MoveCube>().gameObject;
         started = true;
     }
@@ -31,5 +34,10 @@ public class CollectObjective : ScriptableObject, IObjective
     public bool Completed()
     {
         return completed;
+    }
+
+    public Vector2 GetLocation()
+    {
+        return loc;
     }
 }
