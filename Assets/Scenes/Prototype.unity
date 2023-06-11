@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 229420688}
   - component: {fileID: 229420692}
   - component: {fileID: 229420693}
+  - component: {fileID: 229420694}
   m_Layer: 0
   m_Name: capsule
   m_TagString: Untagged
@@ -327,8 +328,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a49a55d467be043b012f86634454e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fire1: {fileID: 229420694}
+  fire2: {fileID: 0}
   mousePosition: {x: 0, y: 0, z: 0}
-  rb: {fileID: 0}
+  rb: {fileID: 229420693}
 --- !u!50 &229420693
 Rigidbody2D:
   serializedVersion: 4
@@ -356,6 +359,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &229420694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229420684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0aad564b091ba47a06ac2f2ffc67c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pc: {fileID: 11400000, guid: 91515d3a891d7564fbc3ba556c28b26a, type: 2}
+  projectilePrefab: {fileID: 3729204725494354870, guid: 311b1878e34b8ca489a9e5c7c7734f8c, type: 3}
 --- !u!1 &518904269
 GameObject:
   m_ObjectHideFlags: 0
@@ -5846,6 +5863,7 @@ GameObject:
   - component: {fileID: 1503117196}
   - component: {fileID: 1503117195}
   - component: {fileID: 1503117198}
+  - component: {fileID: 1503117199}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5865,7 +5883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1d20c5272e1044eba01c27d54bd961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire1: {fileID: 0}
+  fire1: {fileID: 1503117199}
   fire2: {fileID: 0}
 --- !u!114 &1503117196
 MonoBehaviour:
@@ -5921,6 +5939,20 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1503117199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503117194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba5eb873deb149f8a757738c5c4a504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.5
+  projectile: {fileID: 1574751914}
 --- !u!1 &1574751914 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3729204725494354870, guid: 311b1878e34b8ca489a9e5c7c7734f8c, type: 3}

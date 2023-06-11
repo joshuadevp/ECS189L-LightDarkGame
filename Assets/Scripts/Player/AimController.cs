@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class AimController : MonoBehaviour
 {
-    [SerializeField] private IAbilityCommand fire1;
-    [SerializeField] private IAbilityCommand fire2;
-
-    private float timeSinceFire1;
-    private float timeSinceFire2;
+    [SerializeField] private PlayerCommand fire1;
+    [SerializeField] private PlayerCommand fire2;
 
     [SerializeField] private Vector3 mousePosition;
     [SerializeField] private Rigidbody2D rb;
@@ -18,24 +15,20 @@ public class AimController : MonoBehaviour
         mousePosition = FindObjectOfType<MouseScreenController>().transform.position;
         rb = GetComponent<Rigidbody2D>();
 
-        fire1 = gameObject.AddComponent<PrimaryFlickerCommand>();
-        fire2 = gameObject.AddComponent<PrimaryCandleCommand>();
+        fire1 = gameObject.GetComponent<PrimaryShotCommand>();
+        //fire2 = gameObject.AddComponent<PrimaryCandleCommand>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        timeSinceFire1 += Time.deltaTime;
-        timeSinceFire2 += Time.deltaTime;
-
         if (Input.GetButton("Fire1"))
         {
-            timeSinceFire1 = this.fire1.Execute(this.gameObject, timeSinceFire1);
+            this.fire1?.Execute(this.gameObject);
         }
         if (Input.GetButton("Fire2"))
         {
-            timeSinceFire2 = this.fire2.Execute(this.gameObject, timeSinceFire2);
-            //this.fire2?.Execute(this.gameObject, timeSinceFire2);
+            this.fire2?.Execute(this.gameObject);
         }
 
         mousePosition = FindObjectOfType<MouseScreenController>().transform.position;
