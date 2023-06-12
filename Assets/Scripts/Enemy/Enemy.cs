@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         // Possibly modify the hp/speed/damage here by some global modifier such as time/stage
-        float modifier = GameManager.instance.CalculateEnemyModifier();
+        float modifier = GameManager.Instance.CalculateEnemyModifier();
         MaxHp *= modifier;
         Damage *= modifier;
         controller = GetComponent<EnemyController>();
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     {
         hp -= damage;
         hPBar.SetHP(hp / MaxHp);
-        GameManager.instance.SpawnDamageInfo(transform.position, damage);
+        GameManager.Instance.SpawnDamageInfo(transform.position, damage);
         if (hp <= 0)
         {
             OnDeath();

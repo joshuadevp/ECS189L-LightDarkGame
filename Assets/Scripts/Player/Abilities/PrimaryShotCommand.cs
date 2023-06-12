@@ -24,6 +24,9 @@ public class PrimaryShotCommand : PlayerCommand
             rb.velocity = gameObject.transform.up * playerScript.ProjectileSpeed.Value;
             Destroy(projectile, playerScript.ProjectileLifetime.Value);
             lastCast = Time.time;
+
+            // Audio
+            GameManager.Instance.AudioManager.PlayOneShot("P1 Short");
         }
     }
 }

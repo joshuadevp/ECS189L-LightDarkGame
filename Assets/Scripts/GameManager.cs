@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance { get; private set; }
+    [field: SerializeField] public AudioManager AudioManager { get; private set; }
     public bool Pausing { get; private set; }
     public Canvas InGameCanvas;
     public Canvas UICanvas;
@@ -23,9 +24,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -50,11 +51,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy()
-    {
-        Instantiate(enemyPrefab, transform.position, transform.rotation);
-    }
-
     public void SpawnDamageInfo(Vector3 position, float damage)
     {
         GameObject dmgInfo = Instantiate(damageInfoPrefab, InGameCanvas.transform);
@@ -72,7 +68,7 @@ public class GameManager : MonoBehaviour
         return 1 + (Time.time - startTime) * enemyStrengthOverTimeMultiplier + level * enemyStrengthOverLevelMultiplier;
     }
 
-    public IEnumerator TogglePause()
+    private IEnumerator TogglePause()
     {
         float savedTimeScale;
         while (true) {
