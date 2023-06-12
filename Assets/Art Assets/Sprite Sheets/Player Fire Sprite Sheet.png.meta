@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Art Assets/Sprite Sheets/Player Walk Sprite Sheet.png.meta
+guid: ff34535e6d5b8c449933ad71bd55509d
+========
 guid: 652f576128eb15744997315ef0dc63c9
+>>>>>>>> FeaturesMergePrototype:Assets/Art Assets/Sprite Sheets/Player Fire Sprite Sheet.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

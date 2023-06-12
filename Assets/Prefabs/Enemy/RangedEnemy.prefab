@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6441660125590676624}
   - component: {fileID: 5820571710248907166}
   - component: {fileID: 4116325929675803742}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 1299204336684566756}
   - component: {fileID: 2885972184567893171}
   - component: {fileID: 7196825080623958775}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 4756009483248895316}
   - component: {fileID: 1531952050117398407}
   - component: {fileID: 5486009485635669418}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RangedEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ GameObject:
   - component: {fileID: 8660628373337593740}
   - component: {fileID: 7136407516791153277}
   - component: {fileID: 9210448309622170929}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}

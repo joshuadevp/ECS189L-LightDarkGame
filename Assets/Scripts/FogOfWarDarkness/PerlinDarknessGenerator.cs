@@ -6,10 +6,6 @@ using UnityEngine;
 public class PerlinDarknessGenerator : IDarknessGenerator
 {
     [SerializeField]
-    DarknessSettings defaultSettings;
-    [SerializeField]
-    GameObject enemy;
-    [SerializeField]
     float refinement;
     private float seed;
 
@@ -28,11 +24,31 @@ public class PerlinDarknessGenerator : IDarknessGenerator
             Density = modifier,
             CurrentHealth = health,
             MaxHealth = health,
-            SpreadChance = defaultSettings.DarknessSpreadChance / modifier,
+            SpreadChanceModifier = 1f / modifier,
+            GlobalSettings = globalSettings,
             SpawnSpec = new SpawnSpec()
             {
-                SpawnChance = defaultSettings.EnemySpawnChance / modifier,
-                Enemy = enemy
+                SpawnChanceModifier = 1f / modifier,
+                Enemy = enemy,
+                GlobalSettings = globalSettings
+            }
+        };
+    }
+
+    override public DarknessSpec GenerateDefault()
+    {
+        return new DarknessSpec()
+        {
+            Density = 1,
+            CurrentHealth = defaultSettings.DarknessMaxHealth,
+            MaxHealth = defaultSettings.DarknessMaxHealth,
+            SpreadChanceModifier = 1f,
+            GlobalSettings = globalSettings,
+            SpawnSpec = new SpawnSpec()
+            {
+                SpawnChanceModifier = 1f,
+                Enemy = enemy,
+                GlobalSettings = globalSettings
             }
         };
     }

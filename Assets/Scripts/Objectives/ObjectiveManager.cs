@@ -7,12 +7,17 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField]
     ScriptableObject[] possibleObjectives;
     [SerializeField]
-    float distFromPlayer;
+    float distToSpawnFromPlayer;
+    [SerializeField]
+    float distToShowPointer;
+    [SerializeField]
+    float distPointerFromPlayer;
     [SerializeField]
     GameObject player;
     [SerializeField]
     FogOfDarknessManager darknessManager;
-    UpgradeGenerator upgrades;
+    [SerializeField]
+    GameObject objectivePointer;
     private IObjective activeObjective;
 
     // Start is called before the first frame update
@@ -48,20 +53,32 @@ public class ObjectiveManager : MonoBehaviour
         }
         else
         {
+            // Point player in direction of objective
+            if(Vector3.Magnitude(player.transform.position - (Vector3)activeObjective.GetLocation()) > distToShowPointer)
+            {
+                objectivePointer.SetActive(true);
+                objectivePointer.transform.position = Vector3.MoveTowards(player.transform.position, (Vector3)activeObjective.GetLocation(),distPointerFromPlayer)+new Vector3(0,0,-1f);
+                objectivePointer.transform.rotation = Quaternion.LookRotation((player.transform.position - (Vector3)activeObjective.GetLocation()).normalized);
+            } else {
+                objectivePointer.SetActive(false);
+            }
+
             activeObjective.ManualUpdate();
             if (activeObjective.Completed())
             {
                 Debug.Log("Completed objective");
-                upgrades.GenerateUpgrade().ApplyUpgrade();
+                // Give reward
                 Destroy((ScriptableObject)activeObjective);
                 activeObjective = null;
             }
+
+            
         }
     }
 
     private IObjective GenerateNewObjective()
     {
-        return (IObjective)Instantiate(possibleObjectives[0]);
+        return (IObjective)Instantiate(possibleObjectives[Random.Range(0, possibleObjectives.Length)]);
     }
 
     private Vector2 GenerateLocation()
@@ -71,14 +88,14 @@ public class ObjectiveManager : MonoBehaviour
         // Only try X number of times
         for (int i = 0; i < 100; i++)
         {
-            float radian = Mathf.Deg2Rad * Random.Range(0, 361);
-            Vector2 tempLoc = playerLoc + new Vector2(Mathf.Cos(radian) * distFromPlayer, Mathf.Sin(radian) * distFromPlayer);
+            float radian = Mathf.Deg2Rad * Random.Range(0, 360);
+            Vector2 tempLoc = playerLoc + new Vector2(Mathf.Cos(radian) * distToSpawnFromPlayer, Mathf.Sin(radian) * distToSpawnFromPlayer);
             if (darknessManager.IsDarkness(tempLoc))
             {
                 return tempLoc;
             }
         }
 
-        return new Vector2(0, 0);
+        return new Vector2(50, 50);
     }
 }
