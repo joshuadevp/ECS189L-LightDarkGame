@@ -19,7 +19,6 @@ public class TestCommand2 : PlayerCommand
         {
             Debug.Log("Shoot Flicker");
             Vector3 velocity = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - player.transform.position).normalized * 10f;
-            Instantiate(projectile, player.transform.position, Quaternion.identity).GetComponent<Projectile>().Initialize(1, velocity);
             
             timeSinceLastShot = 0;
         }

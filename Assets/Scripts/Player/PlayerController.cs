@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private PlayerCommand fire1;
     [SerializeField] private PlayerCommand fire2;
+
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,5 +38,15 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector2(x, y).normalized * Time.deltaTime * main.Speed.Value;
         transform.position += movement;
+
+        animator.SetBool("moving", x != 0 || y != 0);
+        if (x < 0)
+        {
+            sprite.flipX = true;
+        }
+        else if (x > 0) 
+        {
+            sprite.flipX = false;
+        }
     }
 }

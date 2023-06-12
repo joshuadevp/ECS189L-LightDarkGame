@@ -16,7 +16,6 @@ public class TestCommand : PlayerCommand
             velocity.z = 0;
             velocity = velocity.normalized * 10f;
             GameObject proj = Instantiate(projectile, player.transform.position, Quaternion.identity);
-            proj.GetComponent<Projectile>().Initialize(1, velocity);
             lastCast = Time.time;
         }
     }
