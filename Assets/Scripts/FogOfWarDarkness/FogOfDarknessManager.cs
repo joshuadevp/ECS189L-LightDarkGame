@@ -9,6 +9,7 @@ public class FogOfDarknessManager : MonoBehaviour
     Vector2Int mapWidthAndHeight; // Height and width of points of darkness.
     [SerializeField]
     public float distanceBetweenPoints; // Distance between points of darkness, assumes all space between two points contains darkness.
+    [Tooltip("MUST BE ODD VALUES")]
     [SerializeField]
     Vector2Int activeWidthAndHeight; // Height and width of set of active points of darkness in world space.
     [SerializeField]
@@ -46,7 +47,7 @@ public class FogOfDarknessManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitAllDarkness();
+        //InitAllDarkness();
     }
 
     // Update is called once per frame
@@ -432,7 +433,7 @@ public class FogOfDarknessManager : MonoBehaviour
                 }
                 else
                 {
-                    obj.transform.position = new Vector2(-1, -1);
+                    obj.transform.position = new Vector2(-10, -10);
                 }
             }
         }

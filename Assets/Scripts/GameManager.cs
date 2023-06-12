@@ -35,6 +35,13 @@ public class GameManager : MonoBehaviour
         }
         startTime = Time.time;
         Pausing = false;
+        // Init darkness
+        var fogManager = GameObject.FindFirstObjectByType<FogOfDarknessManager>();
+        fogManager.InitAllDarkness();
+        // Clear out darkness center
+        fogManager.RemoveDarknessPointsCircle(new Vector2(150,150),20);
+        // Set player to center of darkness
+        GameObject.FindFirstObjectByType<Player>().gameObject.transform.position = new Vector2(150,150);
     }
     // Start is called before the first frame update
     void Start()
