@@ -18,6 +18,7 @@ public class MainMenuUI : MonoBehaviour
         globalDarknessSettings.EnemySpawnChance = 0f;
         globalDarknessSettings.DarknessSpreadChance = 0.3f;
         this.transform.position = camera.transform.position;
+        fogManager.InitAllDarkness();
     }
 
     void FixedUpdate()
