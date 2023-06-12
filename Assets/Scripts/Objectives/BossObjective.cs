@@ -29,7 +29,7 @@ public class BossObjective : ScriptableObject, IObjective
             if (Vector3.Magnitude(player.transform.position - (Vector3)objPos) < distToSpawnFromPlayer)
             {
                 bossInstance = Instantiate(bossPrefab, objPos, Quaternion.identity);
-                // TODO: MODIFY BOSSES STATS
+                bossInstance.transform.localScale = new Vector3(2,2,2);
                 spawned = true;
             }
             return;
@@ -47,8 +47,7 @@ public class BossObjective : ScriptableObject, IObjective
         objPos = loc;
         // Find player and Spawn boss enemy
         FogOfDarknessManager manager = FindObjectOfType<FogOfDarknessManager>();
-        // TODO: CHANGE TO TYPE OF ACTUAL PLAYER SCRIPT
-        player = FindObjectOfType<MoveCube>().gameObject;
+        player = FindObjectOfType<Player>().gameObject;
         spawned = false;
     }
 
@@ -59,7 +58,7 @@ public class BossObjective : ScriptableObject, IObjective
 
     public Vector2 GetLocation()
     {
-        if (!spawned)
+        if (!spawned || bossInstance == null)
         {
             return objPos;
         }

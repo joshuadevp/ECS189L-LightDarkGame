@@ -43,6 +43,7 @@ public class DarknessObjective : ScriptableObject, IObjective
         DarknessSpec spec = darknessGenerator.GenerateDefault();
         spec.SpreadChanceModifier = 0; // We don't want our special darkness spreading
         spec.SpawnSpec.SpawnChanceModifier = spawnChanceModifier; // It should spawn more enemies
+        spec.Density = 3;
         points = manager.CreateDarknessPointsCircle(loc, radius, spec);
     }
 

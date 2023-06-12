@@ -26,8 +26,7 @@ public class CollectObjective : ScriptableObject, IObjective
         this.loc = loc;
         // Generate new collectable instance and place where we want it
         collectable = Instantiate(collectable, loc, Quaternion.identity);
-        // TODO: CHANGE TO TYPE OF ACTUAL PLAYER SCRIPT
-        player = GameObject.FindFirstObjectByType<MoveCube>().gameObject;
+        player = GameObject.FindFirstObjectByType<Player>().gameObject;
         started = true;
     }
 

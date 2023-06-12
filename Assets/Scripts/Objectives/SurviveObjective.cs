@@ -45,8 +45,7 @@ public class SurviveObjective : ScriptableObject, IObjective
         this.loc = loc;
         FogOfDarknessManager manager = FindObjectOfType<FogOfDarknessManager>();
         manager.RemoveDarknessPointsCircle(loc, removeDarknessRadius);
-        // TODO: CHANGE TO TYPE OF ACTUAL PLAYER SCRIPT
-        player = GameObject.FindFirstObjectByType<MoveCube>().gameObject;
+        player = GameObject.FindFirstObjectByType<Player>().gameObject;
         oldSpawnChance = globalSettings.EnemySpawnChance;
         oldSpreadChance = globalSettings.DarknessSpreadChance;
     }

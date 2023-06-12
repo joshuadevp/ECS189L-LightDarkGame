@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4174908947856236753}
   - component: {fileID: 426172349514172757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DarknessCollider
-  m_TagString: Untagged
+  m_TagString: Darkness
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

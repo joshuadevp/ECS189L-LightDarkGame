@@ -191,6 +191,10 @@ public class FogOfDarknessManager : MonoBehaviour
     public bool DamageDarkness(Vector2 location, int damage)
     {
         (var x, var y) = worldToIndex(location);
+        if(x == -1)
+        {
+            return false;
+        }
         DarknessPoint p = darknessArray[x][y];
         p.CurrentHealth -= damage;
         if (p.CurrentHealth <= 0)
