@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set; }
+    [field: SerializeField] public AudioManager AudioManager { get; private set; }
     public bool Pausing { get; private set; }
     public Canvas InGameCanvas;
     public Canvas UICanvas;
@@ -17,7 +18,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] GameObject damageInfoPrefab;
-    [field: SerializeField] public AudioSource GlobalSoundEffectPlayer { get; private set; }
 
     private float startTime;
     private float level = 0;
@@ -78,14 +78,5 @@ public class GameManager : MonoBehaviour
             yield return new WaitUntil(() => Pausing == false);
             Time.timeScale = savedTimeScale;
         }
-    }
-
-    /// <summary>
-    /// Play an audio clip of your choice. For more flexibility, use GameManager.Instance.GlobalSoundEffectPlayer
-    /// </summary>
-    /// <param name="clip">The audioclip to be played.</param>
-    public void PlayAudioClip(AudioClip clip) 
-    {
-        GlobalSoundEffectPlayer.PlayOneShot(clip);
     }
 }
