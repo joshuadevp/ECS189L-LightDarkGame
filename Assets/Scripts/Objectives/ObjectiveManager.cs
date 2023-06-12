@@ -64,7 +64,7 @@ public class ObjectiveManager : MonoBehaviour
             }
 
             activeObjective.ManualUpdate();
-            if (activeObjective.Completed())
+            if (activeObjective.Completed() || Input.GetButtonDown("Objective Cheat"))
             {
                 Debug.Log("Completed objective");
                 // Give reward
