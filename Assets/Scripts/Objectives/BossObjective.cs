@@ -30,6 +30,7 @@ public class BossObjective : ScriptableObject, IObjective
             {
                 bossInstance = Instantiate(bossPrefab, objPos, Quaternion.identity);
                 bossInstance.transform.localScale = new Vector3(2,2,2);
+                bossInstance.GetComponent<Enemy>().ModifyStats(healthBossMultiplier,damageBossMultiplier,speedBossMultiplier);
                 spawned = true;
             }
             return;
