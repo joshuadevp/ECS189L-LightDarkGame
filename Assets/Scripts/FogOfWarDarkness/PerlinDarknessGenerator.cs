@@ -18,7 +18,7 @@ public class PerlinDarknessGenerator : IDarknessGenerator
     {
         float noise = Mathf.PerlinNoise(loc.x * refinement + seed, loc.y * refinement + seed);
         float modifier = Mathf.Clamp(noise, 0.5f, 1f);
-        int health = (int)(defaultSettings.DarknessMaxHealth * modifier);
+        int health = (int)(globalSettings.DarknessMaxHealth * modifier);
         return new DarknessSpec()
         {
             Density = modifier,
@@ -28,7 +28,7 @@ public class PerlinDarknessGenerator : IDarknessGenerator
             GlobalSettings = globalSettings,
             SpawnSpec = new SpawnSpec()
             {
-                SpawnChanceModifier = 1f * modifier,
+                SpawnChanceModifier = 2f * modifier,
                 Enemy = GetRandomEnemy(),
                 GlobalSettings = globalSettings
             }

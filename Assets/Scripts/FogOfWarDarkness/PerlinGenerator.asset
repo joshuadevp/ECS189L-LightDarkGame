@@ -17,7 +17,9 @@ MonoBehaviour:
   enemies:
   - {fileID: 5534494368513245240, guid: b433b0ca39475464a981a67fcb565cfd, type: 3}
   - {fileID: 5534494368513245240, guid: 088071a887a03c4448e29dc1713f5aa6, type: 3}
+  - {fileID: 5534494368513245240, guid: 1e18cb7470471c84693f72ed5d5e1571, type: 3}
   spawnChances:
-  - 0.9
+  - 0.8
+  - 0.1
   - 0.1
   refinement: 0.15

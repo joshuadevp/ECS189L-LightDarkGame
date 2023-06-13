@@ -351,8 +351,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   <MaxHp>k__BackingField: 100
-  <Speed>k__BackingField: 10
+  <Speed>k__BackingField: 3
   <Damage>k__BackingField: 10
+  <HealthDropChance>k__BackingField: 0.3
   hPBar: {fileID: 4116325929675803742}
 --- !u!114 &1327508509326832566
 MonoBehaviour:
@@ -374,7 +375,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5534494368513245240}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -408,7 +409,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

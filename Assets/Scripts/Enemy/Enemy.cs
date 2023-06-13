@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [field: SerializeField] public float Speed { get; private set; }
     [Tooltip("Enemy's DPS while colliding with player")]
     [field: SerializeField] public float Damage { get; private set; }
+    [field: SerializeField] public float HealthDropChance { get; private set; }
 
     [SerializeField] EnemyHPBar hPBar;
     private float hp;
@@ -46,6 +47,10 @@ public class Enemy : MonoBehaviour
     // Do something when dying
     void OnDeath()
     {
+        if(Random.Range(0f,1f)<HealthDropChance)
+        {
+            Instantiate(Resources.Load("HealthPickup"), this.gameObject.transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }

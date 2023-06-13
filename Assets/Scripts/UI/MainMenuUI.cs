@@ -16,7 +16,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     GameObject loadingScreen;
     
-    void OnEnable()
+    void Awake()
     {
         loadingScreen.SetActive(false);
         globalDarknessSettings.EnemySpawnChance = 0f;

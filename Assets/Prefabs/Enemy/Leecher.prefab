@@ -353,6 +353,7 @@ MonoBehaviour:
   <MaxHp>k__BackingField: 100
   <Speed>k__BackingField: 5
   <Damage>k__BackingField: 5
+  <HealthDropChance>k__BackingField: 0.1
   hPBar: {fileID: 4116325929675803742}
 --- !u!114 &1327508509326832566
 MonoBehaviour:

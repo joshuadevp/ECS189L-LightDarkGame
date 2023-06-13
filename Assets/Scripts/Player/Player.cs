@@ -61,12 +61,13 @@ public class Player : MonoBehaviour
     public void Heal(float health)
     {
         Hp = Mathf.Clamp(Hp+health,0f,MaxHP.Value);
+        hpBar.SetHP(Hp / MaxHP.Value);
     }
 
     private void OnDeath()
     {
         print("Player died");
-        Time.timeScale = 0;
+        GameManager.Instance.GameOver();
     }
 
     public void AddTemporaryModifier(ModStat moddedStat, StatModifier modifier, float duration)
