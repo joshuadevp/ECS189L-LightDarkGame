@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -105,7 +105,343 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 6342
+        width: 996
+        height: 1456
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31f3c4c1a68b30844a3ac4bfbc680240
+      internalID: -100893198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 2598
+        y: 6342
+        width: 996
+        height: 1456
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f54f04495f03b641b3f9a7dce4b1981
+      internalID: -1223290908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 4646
+        y: 6342
+        width: 996
+        height: 1456
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ea041f3046bc7b4b9f5dc8e7e78386e
+      internalID: 617138279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 6706
+        y: 6370
+        width: 972
+        height: 1336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36f60e7185c69954e936dfb48b7dff2d
+      internalID: 689221329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 4322
+        width: 972
+        height: 1336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83bcf144358c2914bb774376db81e178
+      internalID: 716563225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 2610
+        y: 4322
+        width: 972
+        height: 1336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38d134194ea5e5a4e9e504de46f736c2
+      internalID: -1939956927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 4586
+        y: 4342
+        width: 1003
+        height: 1304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf09e6fbaa99eab4d8235c1ec25be7cc
+      internalID: -606397504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 6634
+        y: 4342
+        width: 1003
+        height: 1304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 427e828b1f4218c4a9b0c09d06452214
+      internalID: 1189422431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 2294
+        width: 1003
+        height: 1304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 325507ae35bc8864da76d4efca9d9d0f
+      internalID: 1790225337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 2614
+        y: 2282
+        width: 788
+        height: 1144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9037482053b82c444bf0820514f5fd98
+      internalID: -1743960667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 4662
+        y: 2282
+        width: 788
+        height: 1144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebebeaa0d359e0e46b1d91e9b05dad5b
+      internalID: 1384900702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 6710
+        y: 2282
+        width: 788
+        height: 1144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 141f93e1b251fac43a4256b4b77aa826
+      internalID: -2106460334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 214
+        width: 808
+        height: 1468
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea9893b0cdc29034e93674dbc9954fe8
+      internalID: 2057478384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 2598
+        y: 214
+        width: 808
+        height: 1468
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eebeb73f2aeadd54e8f30ef148d2f477
+      internalID: 2012658726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 4646
+        y: 214
+        width: 808
+        height: 1468
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba87e6534a594246998f36376151df7
+      internalID: 373041739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Fire Sprite Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 6699
+        y: 186
+        width: 858
+        height: 1092
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404fa1c6a860b0b45be78cd7b2e728e9
+      internalID: 140916572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -116,7 +452,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Player Fire Sprite Sheet_0: -100893198
+      Player Fire Sprite Sheet_1: -1223290908
+      Player Fire Sprite Sheet_10: 1384900702
+      Player Fire Sprite Sheet_11: -2106460334
+      Player Fire Sprite Sheet_12: 2057478384
+      Player Fire Sprite Sheet_13: 2012658726
+      Player Fire Sprite Sheet_14: 373041739
+      Player Fire Sprite Sheet_15: 140916572
+      Player Fire Sprite Sheet_2: 617138279
+      Player Fire Sprite Sheet_3: 689221329
+      Player Fire Sprite Sheet_4: 716563225
+      Player Fire Sprite Sheet_5: -1939956927
+      Player Fire Sprite Sheet_6: -606397504
+      Player Fire Sprite Sheet_7: 1189422431
+      Player Fire Sprite Sheet_8: 1790225337
+      Player Fire Sprite Sheet_9: -1743960667
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

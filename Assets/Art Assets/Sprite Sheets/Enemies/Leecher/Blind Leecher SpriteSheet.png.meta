@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -105,7 +105,364 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 6565
+        width: 1009
+        height: 1369
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 295d748b907441447be07339517cf98f
+      internalID: 947414629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 2608
+        y: 6565
+        width: 1014
+        height: 1369
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40514fa998f31ec47a0e829c5107b97c
+      internalID: -415891533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 6549
+        width: 1019
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaab1f5d91e285b469816a7e05bbbc9c
+      internalID: 1250172293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 6653
+        y: 6549
+        width: 1019
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc3a2743b725bd84dbe8a8ce45809fed
+      internalID: -1424550310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 8733
+        y: 6549
+        width: 1024
+        height: 1455
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca7ceb0ce0e680438a67f3b824249ca
+      internalID: -1996045082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 4504
+        width: 1019
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 356ab90e10a219149b5901df412acccf
+      internalID: 1964741199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 2608
+        y: 4504
+        width: 1014
+        height: 1385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf1f63b8ed1f1a34d962661fe7bd6aa3
+      internalID: 1655711182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 4658
+        y: 4504
+        width: 1014
+        height: 1385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31ee68eea363dc245973315a717ee5e7
+      internalID: -1011142949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 6653
+        y: 4469
+        width: 1019
+        height: 1485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 696541991617f584dab5f53832ecc1e0
+      internalID: 1281937253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 8703
+        y: 4469
+        width: 1019
+        height: 1485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9ebcb82858f9244eaae672fc0898869
+      internalID: 108916605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 2423
+        width: 1019
+        height: 1485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b68677520230474facc61b8299a1850
+      internalID: 1652714069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 2593
+        y: 2423
+        width: 1019
+        height: 1485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e42666c6822f9e849adaf0898c74175a
+      internalID: -890854293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 4658
+        y: 2423
+        width: 1014
+        height: 1415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 557d03052f2aad6409bfa3c7d718e37a
+      internalID: -1807277290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 6708
+        y: 2423
+        width: 1009
+        height: 1415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab3735bf57c127c4f8acad97b9468fc3
+      internalID: -539820577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 8703
+        y: 2453
+        width: 1019
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 208156abd5a1df9439abac2120993ff9
+      internalID: 1371039466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 408
+        width: 1024
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6785174bfb080f43b7d20760710d8d4
+      internalID: -1746498987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blind Leecher SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 2593
+        y: 423
+        width: 1019
+        height: 1435
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 386f7ca9366207147b8bf3e6d50600df
+      internalID: -1711820230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -116,7 +473,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Blind Leecher SpriteSheet_0: 947414629
+      Blind Leecher SpriteSheet_1: -415891533
+      Blind Leecher SpriteSheet_10: 1652714069
+      Blind Leecher SpriteSheet_11: -890854293
+      Blind Leecher SpriteSheet_12: -1807277290
+      Blind Leecher SpriteSheet_13: -539820577
+      Blind Leecher SpriteSheet_14: 1371039466
+      Blind Leecher SpriteSheet_15: -1746498987
+      Blind Leecher SpriteSheet_16: -1711820230
+      Blind Leecher SpriteSheet_2: 1250172293
+      Blind Leecher SpriteSheet_3: -1424550310
+      Blind Leecher SpriteSheet_4: -1996045082
+      Blind Leecher SpriteSheet_5: 1964741199
+      Blind Leecher SpriteSheet_6: 1655711182
+      Blind Leecher SpriteSheet_7: -1011142949
+      Blind Leecher SpriteSheet_8: 1281937253
+      Blind Leecher SpriteSheet_9: 108916605
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
