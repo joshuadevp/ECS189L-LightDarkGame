@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalSettings: {fileID: 11400000, guid: 032bb76f2ae0a42e48e1e432d30a1aa0, type: 2}
   removeDarknessRadius: 10
-  playerTetherDistance: 5
+  playerTetherDistance: 10
   timeToSurvive: 5
   newGlobalSpawnChance: 0.0005
   newGlobalSpreadChance: 0.05

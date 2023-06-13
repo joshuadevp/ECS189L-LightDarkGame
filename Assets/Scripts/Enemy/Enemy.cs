@@ -44,6 +44,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void ModifyStats(float maxHpModifier,float damageModifier, float speedModifier)
+    {
+        MaxHp *= maxHpModifier;
+        hp = MaxHp;
+        Damage *= damageModifier;
+        Speed *= speedModifier;
+    }
+
     // Do something when dying
     void OnDeath()
     {

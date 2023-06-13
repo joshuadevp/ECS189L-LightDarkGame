@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicBossObjective
   m_EditorClassIdentifier: 
   bossPrefab: {fileID: 5534494368513245240, guid: 1e18cb7470471c84693f72ed5d5e1571, type: 3}
-  distToSpawnFromPlayer: 5
+  distToSpawnFromPlayer: 10
   speedBossMultiplier: 2
   damageBossMultiplier: 2
   healthBossMultiplier: 10
