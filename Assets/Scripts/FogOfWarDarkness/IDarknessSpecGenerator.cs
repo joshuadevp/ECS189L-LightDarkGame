@@ -9,7 +9,10 @@ public class IDarknessGenerator : ScriptableObject
     [SerializeField]
     protected DarknessSettings globalSettings;
     [SerializeField]
-    protected GameObject enemy;
+    protected List<GameObject> enemies;
+    [SerializeField]
+    [Tooltip("Must sum to 1")]
+    protected List<float> spawnChances;
     // Generate a DarknessSpec given a position
     virtual public DarknessSpec Generate(Vector2 pos) { return new DarknessSpec(); }
     // Generates a default DarknessSpec

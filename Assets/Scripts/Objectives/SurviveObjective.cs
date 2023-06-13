@@ -23,6 +23,7 @@ public class SurviveObjective : ScriptableObject, IObjective
     private float timer;
     private float oldSpreadChance;
     private float oldSpawnChance;
+    private string desc;
 
     public void ManualUpdate()
     {
@@ -31,6 +32,10 @@ public class SurviveObjective : ScriptableObject, IObjective
             globalSettings.DarknessSpreadChance = newGlobalSpreadChance;
             globalSettings.EnemySpawnChance = newGlobalSpawnChance;
             timer += Time.deltaTime;
+            desc = $"Current Objective: Survive<br>Time Left: {timeToSurvive - timer}";
+        } else 
+        {
+            desc = $"Get to the objective.";
         }
         if(timer > timeToSurvive)
         {
@@ -62,6 +67,6 @@ public class SurviveObjective : ScriptableObject, IObjective
 
     public string GetDescription()
     {
-        return $"Current Objective: Survive<br>Time Left: {timeToSurvive - timer}";
+        return desc;
     }
 }

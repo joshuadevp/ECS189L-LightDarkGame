@@ -69,7 +69,7 @@ public class ObjectiveManager : MonoBehaviour
             if(Vector3.Magnitude(player.transform.position - (Vector3)activeObjective.GetLocation()) > distToShowPointer)
             {
                 objectivePointer.SetActive(true);
-                objectivePointer.transform.position = Vector3.MoveTowards(player.transform.position, (Vector3)activeObjective.GetLocation(),distPointerFromPlayer)+new Vector3(0,0,-1f);
+                objectivePointer.transform.position = Vector3.MoveTowards(player.transform.position, (Vector3)activeObjective.GetLocation(),distPointerFromPlayer);
                 objectivePointer.transform.rotation = Quaternion.LookRotation((player.transform.position - (Vector3)activeObjective.GetLocation()).normalized);
             } else {
                 objectivePointer.SetActive(false);

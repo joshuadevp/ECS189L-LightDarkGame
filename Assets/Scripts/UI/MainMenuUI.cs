@@ -13,9 +13,12 @@ public class MainMenuUI : MonoBehaviour
     FogOfDarknessManager fogManager;
     [SerializeField]
     GameObject camera;
+    [SerializeField]
+    GameObject loadingScreen;
     
     void OnEnable()
     {
+        loadingScreen.SetActive(false);
         globalDarknessSettings.EnemySpawnChance = 0f;
         globalDarknessSettings.DarknessSpreadChance = 0.3f;
         this.transform.position = camera.transform.position;
@@ -32,9 +35,10 @@ public class MainMenuUI : MonoBehaviour
 
     public void PlayButton()
     {
+        loadingScreen.SetActive(true);
         globalDarknessSettings.EnemySpawnChance = defaultDarknessSettings.EnemySpawnChance;
         globalDarknessSettings.DarknessSpreadChance = defaultDarknessSettings.DarknessSpreadChance;
-        SceneManager.LoadScene("Alpha");
+        SceneManager.LoadScene("Prototype");
     }
 
     public void HowToPlayButto()

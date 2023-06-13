@@ -18,7 +18,7 @@ public class PerlinDarknessGenerator : IDarknessGenerator
     {
         float noise = Mathf.PerlinNoise(loc.x * refinement + seed, loc.y * refinement + seed);
         float modifier = Mathf.Clamp(noise, 0.5f, 1f);
-        int health = (int)(defaultSettings.DarknessMaxHealth / modifier);
+        int health = (int)(defaultSettings.DarknessMaxHealth * modifier);
         return new DarknessSpec()
         {
             Density = modifier,
@@ -28,8 +28,8 @@ public class PerlinDarknessGenerator : IDarknessGenerator
             GlobalSettings = globalSettings,
             SpawnSpec = new SpawnSpec()
             {
-                SpawnChanceModifier = 1f / modifier,
-                Enemy = enemy,
+                SpawnChanceModifier = 1f * modifier,
+                Enemy = GetRandomEnemy(),
                 GlobalSettings = globalSettings
             }
         };
@@ -47,9 +47,26 @@ public class PerlinDarknessGenerator : IDarknessGenerator
             SpawnSpec = new SpawnSpec()
             {
                 SpawnChanceModifier = 1f,
-                Enemy = enemy,
+                Enemy = enemies[0],
                 GlobalSettings = globalSettings
             }
         };
+    }
+
+    private GameObject GetRandomEnemy()
+    {
+        float probability = Random.Range(0f,1f);
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            if(probability < spawnChances[i])
+            {
+                return enemies[i];
+            } else {
+                probability -= spawnChances[i];
+            }
+        }
+
+        Debug.LogError("Couldn't generate random enemy!");
+        return enemies[0];
     }
 }

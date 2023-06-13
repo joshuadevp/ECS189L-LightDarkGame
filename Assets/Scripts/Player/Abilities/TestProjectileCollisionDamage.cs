@@ -16,15 +16,6 @@ public class TestProjectileCollisionDamage : MonoBehaviour
         transform.localScale = player.ProjectileSize.Value * new Vector3(1,1,1);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!darknessManager)
-        {
-            darknessManager = GameObject.FindObjectOfType<FogOfDarknessManager>();
-        }
-    }
-
     void OnTriggerEnter(Collider other)
     {
         GameObject hit = other.gameObject;

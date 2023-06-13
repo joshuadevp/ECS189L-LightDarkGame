@@ -58,6 +58,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Heal(float health)
+    {
+        Hp = Mathf.Clamp(Hp+health,0f,MaxHP.Value);
+    }
+
     private void OnDeath()
     {
         print("Player died");
