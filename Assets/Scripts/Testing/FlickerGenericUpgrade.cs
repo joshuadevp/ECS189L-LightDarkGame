@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu]
 public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
 {
+    public string upgradeName;
+    public Sprite upgradeIcon;
+
     [Header("Damage Stat Modifiers")]
     [SerializeField] private float damageModifier;
     [SerializeField] [Range(0, 1)] private float critChanceModifier;
@@ -118,4 +121,31 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
             );
         }
     }
+
+    public Sprite GetIcon()
+    {
+        return upgradeIcon;
+    }
+
+    public string GetDetails()
+    {
+        return "[" + upgradeName + "]"
+             + "\n+" + damageModifier + " dmg"
+             + "\n+" + sizeModifier + " size"
+             + "\n+" + projectileLifetimeModifier + " dur"
+             + "\n+" + projectileSpeedModifier + " vel"
+             + "\n+" + shotIntervalModifier + " rate"
+             + "\n+" + knockbackModifier + " knock"
+             + "\n+" + pierceModifier + " pierce";
+    }
+
+    public float DamageModifier => damageModifier;
+    public float CritMultiplierModifier => critMultiplierModifier;
+    public float CritChanceModifier => critChanceModifier;
+    public float SizeModifier => sizeModifier;
+    public float ProjectileLifeTimeModifier => projectileLifetimeModifier;
+    public float ProjectileSpeedModifier => projectileSpeedModifier;
+    public float ShotIntervalModifier => shotIntervalModifier;
+    public float KnockbackModifier => knockbackModifier;
+    public float PierceModifier => pierceModifier;
 }

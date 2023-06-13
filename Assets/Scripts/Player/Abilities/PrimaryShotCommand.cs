@@ -26,7 +26,7 @@ public class PrimaryShotCommand : PlayerCommand
             lastCast = Time.time;
 
             // Audio
-            GameManager.Instance.AudioManager.PlayOneShot("P1 Short");
+            //GameManager.Instance.AudioManager.PlayOneShot("P1 Short");
         }
     }
 }

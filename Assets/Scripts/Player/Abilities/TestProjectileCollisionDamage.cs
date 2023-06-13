@@ -6,13 +6,13 @@ public class TestProjectileCollisionDamage : MonoBehaviour
 {
     Player player;
     FogOfDarknessManager darknessManager;
-    private int hitCounter = 0;
+    private float hitCounter = 0;
     // Start is called before the first frame update
     void Awake()
     {
         darknessManager = GameObject.FindObjectOfType<FogOfDarknessManager>();
         player = GameObject.FindAnyObjectByType<Player>();
-        hitCounter = (int) player.ProjectilePierce.Value;
+        hitCounter = player.ProjectilePierce.Value;
         transform.localScale = player.ProjectileSize.Value * new Vector3(1,1,1);
     }
 
@@ -31,7 +31,7 @@ public class TestProjectileCollisionDamage : MonoBehaviour
         if (hit.tag == "Darkness")
         {
             darknessManager.DamageDarkness(other.transform.position, 200);
-            hitCounter--;
+            hitCounter -= 0.25f;
         }
         else if (hit.tag == "Enemy")
         {

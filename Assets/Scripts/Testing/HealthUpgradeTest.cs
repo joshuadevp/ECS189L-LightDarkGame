@@ -7,6 +7,8 @@ public class HealthUpgradeTest : ScriptableObject, IUpgrade
 {
     [SerializeField]
     float healthMultiplier;
+    [SerializeField]
+    Sprite upgradeIcon;
     public void ApplyUpgrade()
     {
         var player = FindObjectOfType<Player>();
@@ -17,5 +19,15 @@ public class HealthUpgradeTest : ScriptableObject, IUpgrade
             "Test health multiply"
         )
         );
+    }
+
+    public Sprite GetIcon()
+    {
+        return upgradeIcon;
+    }
+
+    public string GetDetails()
+    {
+        return "Health lol";
     }
 }

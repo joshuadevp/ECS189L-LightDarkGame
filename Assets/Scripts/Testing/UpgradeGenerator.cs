@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class UpgradeGenerator : MonoBehaviour
 {
+    // List of upgrades available to be selected, usually after clearing an objective.
     [SerializeField]
-    ScriptableObject[] upgrades;
+    ScriptableObject[] possibleUpgrades;
 
-    public IUpgrade GenerateUpgrade()
+    public IUpgrade GetRandomUpgrade()
     {
-        return (IUpgrade)upgrades[Random.Range(0,upgrades.Length)];
+        var selectedUpgrade = possibleUpgrades[Random.Range(0, possibleUpgrades.Length)];
+        return (IUpgrade) selectedUpgrade;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class ObjectiveManager : MonoBehaviour
 {
     [SerializeField]
@@ -22,13 +23,18 @@ public class ObjectiveManager : MonoBehaviour
     TextMeshProUGUI objectiveText;
     [SerializeField]
     List<GameObject> upgradeSelectButtons;
-    private List<IUpgrade> upgrades;
+    [SerializeField]
+    List<GameObject> upgradeIcons;
+    [SerializeField]
+    List<TMP_Text> upgradeTexts;
+
+    private IUpgrade[] upgrades;
     private IObjective activeObjective;
 
     // Start is called before the first frame update
     void Start()
     {
-        upgrades = new List<IUpgrade>();
+        upgrades = new IUpgrade[3];
         UnPauseUpgradeSelect();
         foreach (ScriptableObject o in possibleObjectives)
         {
@@ -76,6 +82,13 @@ public class ObjectiveManager : MonoBehaviour
             if (activeObjective.Completed() || Input.GetButtonDown("Objective Cheat"))
             {
                 Debug.Log("Completed objective");
+
+                // Grab possible upgrades to select
+                var upgradeGen = FindObjectOfType<UpgradeGenerator>();
+                upgrades[0] = upgradeGen.GetRandomUpgrade();
+                upgrades[1] = upgradeGen.GetRandomUpgrade();
+                upgrades[2] = upgradeGen.GetRandomUpgrade();
+
                 PauseForUpgradeSelect();
                 Destroy((ScriptableObject)activeObjective);
                 activeObjective = null;
@@ -110,12 +123,24 @@ public class ObjectiveManager : MonoBehaviour
     private void PauseForUpgradeSelect()
     {
         upgradeSelectButtons.ForEach(o => o.SetActive(true));
+        UpdateUpgradeInformation();
         Time.timeScale = 0;
     }
     private void UnPauseUpgradeSelect()
     {
         upgradeSelectButtons.ForEach(o => o.SetActive(false));
         Time.timeScale = 1;
+    }
+
+    private void UpdateUpgradeInformation()
+    {
+        Debug.Log("Updating upgrade info...");
+        // Change all the icons of the three possible upgrades to match properly.
+        for(int i = 0; i < upgradeIcons.Count; i++)
+        {
+            upgradeIcons[i].GetComponent<Image>().sprite = upgrades[i].GetIcon();
+            upgradeTexts[i].text = "" + upgrades[i].GetDetails();
+        }
     }
 
     // Callbacks for selecting upgrade button
