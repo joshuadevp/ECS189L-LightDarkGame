@@ -32,6 +32,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void PlayButton()
     {
+        globalDarknessSettings.EnemySpawnChance = defaultDarknessSettings.EnemySpawnChance;
+        globalDarknessSettings.DarknessSpreadChance = defaultDarknessSettings.DarknessSpreadChance;
         SceneManager.LoadScene("Alpha");
     }
 
