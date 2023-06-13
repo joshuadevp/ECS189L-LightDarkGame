@@ -28,8 +28,9 @@ public class RangedEnemy : MeleeEnemy
         transform.position += (direction * main.Speed * Time.deltaTime);
     }
 
-    void SpawnProjectile() 
+    void SpawnProjectile()
     {
+        GetComponentInChildren<Animator>().SetTrigger("Lobbing");
         var projectile = (GameObject)Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity);
         projectile.GetComponent<EnemyProjectile>().SetDamage(projectileDamage);
         var rb = projectile.GetComponent<Rigidbody>();

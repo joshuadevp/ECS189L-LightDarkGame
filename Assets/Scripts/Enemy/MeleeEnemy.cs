@@ -21,7 +21,7 @@ public class MeleeEnemy : EnemyController
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (stunned)
         {
@@ -40,7 +40,7 @@ public class MeleeEnemy : EnemyController
         knockbackMovement = projectileRb.mass/rb.mass * projectileRb.velocity;
     }
 
-    public IEnumerator Stun(float duration) 
+    private IEnumerator Stun(float duration) 
     {
         stunned = true;
         yield return new WaitForSeconds(duration);
