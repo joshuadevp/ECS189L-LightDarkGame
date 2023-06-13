@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -105,7 +105,364 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 6565
+        width: 1009
+        height: 1369
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c06e328bc761a9d47bcc8ed62d085969
+      internalID: 673365689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 2608
+        y: 6565
+        width: 1014
+        height: 1369
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 423a3871738acc24cb8446514da2fcbd
+      internalID: 774419755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 6549
+        width: 1019
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae0c7c52c44d1fd4291c1422d3f1f97d
+      internalID: -2024870839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 6653
+        y: 6549
+        width: 1019
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bfe52a0dfe98da49a22fbd19835d530
+      internalID: -48301791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 8733
+        y: 6549
+        width: 1024
+        height: 1455
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a895d98bd26527f48b5398d7d6da16be
+      internalID: -212390798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 4504
+        width: 1019
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efa6061a0659ad94bbf5a0bebb4d107a
+      internalID: 1923072970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 2608
+        y: 4504
+        width: 1014
+        height: 1385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcdb56cb8890e4744af8f24f945ff160
+      internalID: -584376710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 4658
+        y: 4504
+        width: 1014
+        height: 1385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a429a591dc59d4448de4a8b3a496ba5
+      internalID: -1321057331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 6653
+        y: 4469
+        width: 1019
+        height: 1485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 006e9fe4f52f36c4d993d5d6b0547e1c
+      internalID: -1063139203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 8703
+        y: 4469
+        width: 1019
+        height: 1485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24c7daa44749ba444bd45797e65d4776
+      internalID: -1328569580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 2423
+        width: 1019
+        height: 1485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 030eeb19932f31a4fab6d0127542c10a
+      internalID: -878596987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 2593
+        y: 2423
+        width: 1019
+        height: 1485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27c4048622c693842838fc0ed43bfa82
+      internalID: -1202301553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 4658
+        y: 2423
+        width: 1014
+        height: 1415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60c633a28c46f4243957a85bf6a0c58b
+      internalID: -405516458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 6708
+        y: 2423
+        width: 1009
+        height: 1415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca853924b0e57a549a7a54b93970c922
+      internalID: -2092699543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 8703
+        y: 2453
+        width: 1019
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33df7f58fd29bb345a587d060532f64e
+      internalID: -1805778695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 408
+        width: 1024
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2da7392b817add84eb8e01509dd56400
+      internalID: -2121027843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leecher SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 2593
+        y: 423
+        width: 1019
+        height: 1435
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa11ac9d271e58a4d8ceca6970b89681
+      internalID: 1020898967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -116,7 +473,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Leecher SpriteSheet_0: 673365689
+      Leecher SpriteSheet_1: 774419755
+      Leecher SpriteSheet_10: -878596987
+      Leecher SpriteSheet_11: -1202301553
+      Leecher SpriteSheet_12: -405516458
+      Leecher SpriteSheet_13: -2092699543
+      Leecher SpriteSheet_14: -1805778695
+      Leecher SpriteSheet_15: -2121027843
+      Leecher SpriteSheet_16: 1020898967
+      Leecher SpriteSheet_2: -2024870839
+      Leecher SpriteSheet_3: -48301791
+      Leecher SpriteSheet_4: -212390798
+      Leecher SpriteSheet_5: 1923072970
+      Leecher SpriteSheet_6: -584376710
+      Leecher SpriteSheet_7: -1321057331
+      Leecher SpriteSheet_8: -1063139203
+      Leecher SpriteSheet_9: -1328569580
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -105,7 +105,343 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 6342
+        width: 996
+        height: 1456
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f69098f43699236438670b8cdb903528
+      internalID: 350199514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 2598
+        y: 6342
+        width: 996
+        height: 1456
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fd9ee7ab38b5c940949fd8f44656d3d
+      internalID: 1570142755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 4646
+        y: 6342
+        width: 996
+        height: 1456
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491e8124ef5579441b8916dddbf62546
+      internalID: -1725815654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 6706
+        y: 6370
+        width: 972
+        height: 1336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea8ddcc23ce934a46a323e694b46cd7d
+      internalID: 587228671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 4322
+        width: 972
+        height: 1336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e4b6a66b95a85b469782b9a2cdb8fe7
+      internalID: 2077260796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 2610
+        y: 4322
+        width: 972
+        height: 1336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 378c4b2ef7523f242b35f3732f18a9d3
+      internalID: 711465856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 4586
+        y: 4342
+        width: 1003
+        height: 1304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37ec6f2a772139544a1a449a9d9712b6
+      internalID: 900061677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 6634
+        y: 4342
+        width: 1003
+        height: 1304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62147b6f8bd1bb840a6089d477107bde
+      internalID: 1268754321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 2294
+        width: 1003
+        height: 1304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fca3e1bea68cfe747b4cd46f93edc529
+      internalID: 409675459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 2614
+        y: 2282
+        width: 788
+        height: 1144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b5311680bbeb664c90efba9f05a9ebf
+      internalID: -621695157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 4662
+        y: 2282
+        width: 788
+        height: 1144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64ba93c1e36495a4889ba5afedd9145c
+      internalID: 1292367814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 6710
+        y: 2282
+        width: 788
+        height: 1144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9722c8d4808dc6c42b033384093529aa
+      internalID: -1975683665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 214
+        width: 808
+        height: 1468
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 692f638b009a2dd4d81438ea53b87a88
+      internalID: 231269306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 2598
+        y: 214
+        width: 808
+        height: 1468
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b4665c23d693b54d9bef6f59f32fba7
+      internalID: -2072298942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 4646
+        y: 214
+        width: 808
+        height: 1468
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aade49e4b17d11b459f8de28696ef9a2
+      internalID: 1953238310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Darker Fire Sprite Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 6699
+        y: 186
+        width: 858
+        height: 1092
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4765bfaad18ac37468b5acaab1b32766
+      internalID: -179096612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -116,7 +452,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Player Darker Fire Sprite Sheet_0: 350199514
+      Player Darker Fire Sprite Sheet_1: 1570142755
+      Player Darker Fire Sprite Sheet_10: 1292367814
+      Player Darker Fire Sprite Sheet_11: -1975683665
+      Player Darker Fire Sprite Sheet_12: 231269306
+      Player Darker Fire Sprite Sheet_13: -2072298942
+      Player Darker Fire Sprite Sheet_14: 1953238310
+      Player Darker Fire Sprite Sheet_15: -179096612
+      Player Darker Fire Sprite Sheet_2: -1725815654
+      Player Darker Fire Sprite Sheet_3: 587228671
+      Player Darker Fire Sprite Sheet_4: 2077260796
+      Player Darker Fire Sprite Sheet_5: 711465856
+      Player Darker Fire Sprite Sheet_6: 900061677
+      Player Darker Fire Sprite Sheet_7: 1268754321
+      Player Darker Fire Sprite Sheet_8: 409675459
+      Player Darker Fire Sprite Sheet_9: -621695157
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
