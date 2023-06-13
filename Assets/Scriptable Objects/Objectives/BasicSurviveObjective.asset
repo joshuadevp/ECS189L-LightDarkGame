@@ -16,5 +16,5 @@ MonoBehaviour:
   removeDarknessRadius: 10
   playerTetherDistance: 10
   timeToSurvive: 5
-  newGlobalSpawnChance: 0.0005
-  newGlobalSpreadChance: 0.05
+  newGlobalSpawnChance: 0.0002
+  newGlobalSpreadChance: 0.025

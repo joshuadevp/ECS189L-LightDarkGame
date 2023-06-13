@@ -30,6 +30,7 @@ public class ObjectiveManager : MonoBehaviour
 
     private IUpgrade[] upgrades;
     private IObjective activeObjective;
+    private int completed;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,7 @@ public class ObjectiveManager : MonoBehaviour
                 Debug.LogError("Possible objective is not of type IObjective!");
             }
         }
+        completed = 0;
     }
 
     // Update is called once per frame
@@ -82,6 +84,8 @@ public class ObjectiveManager : MonoBehaviour
             if (activeObjective.Completed() || Input.GetButtonDown("Objective Cheat"))
             {
                 Debug.Log("Completed objective");
+                completed++;
+                GameManager.Instance.IncreaseLevel(1);
 
                 // Grab possible upgrades to select
                 var upgradeGen = FindObjectOfType<UpgradeGenerator>();
@@ -158,5 +162,10 @@ public class ObjectiveManager : MonoBehaviour
     {
         upgrades[2].ApplyUpgrade();
         UnPauseUpgradeSelect();
+    }
+
+    public int CompletedCount()
+    {
+        return completed;
     }
 }

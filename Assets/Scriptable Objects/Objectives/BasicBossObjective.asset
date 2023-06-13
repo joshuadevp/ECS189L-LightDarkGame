@@ -16,4 +16,4 @@ MonoBehaviour:
   distToSpawnFromPlayer: 10
   speedBossMultiplier: 2
   damageBossMultiplier: 2
-  healthBossMultiplier: 10
+  healthBossMultiplier: 5

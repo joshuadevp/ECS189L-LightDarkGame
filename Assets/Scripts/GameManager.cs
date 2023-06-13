@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject WinCanvas;
     public GameObject LoseCanvas;
     public GameObject PauseCanvas;
+    [SerializeField] private ObjectiveManager objectiveManager;
 
     [Header("Game Difficulty Settings")]
     [Tooltip("How much stronger each enemy gets per second")]
@@ -64,6 +65,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Cancel"))
         {
             Pausing = !Pausing;
+        }
+        if(objectiveManager.CompletedCount() >= 10)
+        {
+            Win();
         }
     }
 
