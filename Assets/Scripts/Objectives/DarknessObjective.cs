@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System;
 
 [CreateAssetMenu]
 public class DarknessObjective : ScriptableObject, IObjective
@@ -55,5 +57,10 @@ public class DarknessObjective : ScriptableObject, IObjective
     public Vector2 GetLocation()
     {
         return loc;
+    }
+
+    public string GetDescription()
+    {
+        return $"There is a mass of extra powerful Darkness. Destroy it!<br>Points Left: {points.Sum(p => Convert.ToInt32(p.CurrentHealth>0))}";
     }
 }

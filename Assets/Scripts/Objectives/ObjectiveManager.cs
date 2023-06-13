@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class ObjectiveManager : MonoBehaviour
 {
     [SerializeField]
@@ -18,18 +18,24 @@ public class ObjectiveManager : MonoBehaviour
     FogOfDarknessManager darknessManager;
     [SerializeField]
     GameObject objectivePointer;
+    [SerializeField]
+    TextMeshProUGUI objectiveText;
+    [SerializeField]
+    List<GameObject> upgradeSelectButtons;
+    private List<IUpgrade> upgrades;
     private IObjective activeObjective;
 
     // Start is called before the first frame update
     void Start()
     {
+        upgrades = new List<IUpgrade>();
+        UnPauseUpgradeSelect();
         foreach (ScriptableObject o in possibleObjectives)
         {
             if (!(o is IObjective))
             {
                 Debug.LogError("Possible objective is not of type IObjective!");
             }
-
         }
     }
 
@@ -49,7 +55,7 @@ public class ObjectiveManager : MonoBehaviour
         {
             activeObjective = GenerateNewObjective();
             activeObjective.Setup(GenerateLocation());
-            // Create reward
+            // TODO: Create reward
         }
         else
         {
@@ -63,16 +69,17 @@ public class ObjectiveManager : MonoBehaviour
                 objectivePointer.SetActive(false);
             }
 
+            // Apply description
+            objectiveText.text = activeObjective.GetDescription();
+
             activeObjective.ManualUpdate();
             if (activeObjective.Completed() || Input.GetButtonDown("Objective Cheat"))
             {
                 Debug.Log("Completed objective");
-                // Give reward
+                PauseForUpgradeSelect();
                 Destroy((ScriptableObject)activeObjective);
                 activeObjective = null;
             }
-
-            
         }
     }
 
@@ -97,5 +104,34 @@ public class ObjectiveManager : MonoBehaviour
         }
 
         return new Vector2(50, 50);
+    }
+
+    // Pause/Unpause game and show/unshow buttons
+    private void PauseForUpgradeSelect()
+    {
+        upgradeSelectButtons.ForEach(o => o.SetActive(true));
+        Time.timeScale = 0;
+    }
+    private void UnPauseUpgradeSelect()
+    {
+        upgradeSelectButtons.ForEach(o => o.SetActive(false));
+        Time.timeScale = 1;
+    }
+
+    // Callbacks for selecting upgrade button
+    public void SelectUpgrade1()
+    {
+        upgrades[0].ApplyUpgrade();
+        UnPauseUpgradeSelect();
+    }
+    public void SelectUpgrade2()
+    {
+        upgrades[1].ApplyUpgrade();
+        UnPauseUpgradeSelect();
+    }
+    public void SelectUpgrade3()
+    {
+        upgrades[2].ApplyUpgrade();
+        UnPauseUpgradeSelect();
     }
 }

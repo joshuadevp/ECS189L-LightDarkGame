@@ -39,4 +39,9 @@ public class CollectObjective : ScriptableObject, IObjective
     {
         return loc;
     }
+
+    public string GetDescription()
+    {
+        return $"Retrieve the shining artifact.";
+    }
 }

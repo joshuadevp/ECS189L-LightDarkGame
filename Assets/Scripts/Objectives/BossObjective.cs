@@ -67,4 +67,9 @@ public class BossObjective : ScriptableObject, IObjective
             return bossInstance.transform.position;
         }
     }
+
+    public string GetDescription()
+    {
+        return $"Defeat the powerful enemy!";
+    }
 }

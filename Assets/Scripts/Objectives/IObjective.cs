@@ -12,4 +12,6 @@ public interface IObjective
     abstract bool Completed();
     // Returns the location of the objective
     abstract Vector2 GetLocation();
+    // Returns a string describing the objective
+    abstract string GetDescription();
 }

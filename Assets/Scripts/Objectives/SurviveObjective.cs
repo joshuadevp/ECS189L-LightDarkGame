@@ -59,4 +59,9 @@ public class SurviveObjective : ScriptableObject, IObjective
     {
         return loc;
     }
+
+    public string GetDescription()
+    {
+        return $"Current Objective: Survive<br>Time Left: {timeToSurvive - timer}";
+    }
 }

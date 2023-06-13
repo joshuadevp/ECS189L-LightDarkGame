@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -27,5 +28,20 @@ public class MainMenuUI : MonoBehaviour
         {
             fogManager.RemoveDarknessPointsCircle(camera.transform.position+new Vector3(Random.Range(-50f,50f),Random.Range(-50f,50f),0),25);
         }
+    }
+
+    public void PlayButton()
+    {
+        SceneManager.LoadScene("Alpha");
+    }
+
+    public void HowToPlayButto()
+    {
+
+    }
+
+    public void QuitButton()
+    {
+        Application.Quit();
     }
 }
