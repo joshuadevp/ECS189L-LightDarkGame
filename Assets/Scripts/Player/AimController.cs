@@ -8,12 +8,11 @@ public class AimController : MonoBehaviour
     [SerializeField] private PlayerCommand fire2;
 
     [SerializeField] private Vector3 mousePosition;
-    [SerializeField] private Rigidbody2D rb;
+    private MouseScreenController mouseScreenController;
     // Start is called before the first frame update
     void Start()
     {
-        mousePosition = FindObjectOfType<MouseScreenController>().transform.position;
-        rb = GetComponent<Rigidbody2D>();
+        mouseScreenController = FindObjectOfType<MouseScreenController>();
 
         fire1 = gameObject.GetComponent<PrimaryShotCommand>();
         fire2 = gameObject.GetComponent<UpgradeTestCommand>();
@@ -31,11 +30,10 @@ public class AimController : MonoBehaviour
             this.fire2?.Execute(this.gameObject);
         }
 
-        mousePosition = FindObjectOfType<MouseScreenController>().transform.position;
-        Vector2 aimDirection = mousePosition - transform.position;
+        mousePosition = mouseScreenController.transform.position;
+        Vector3 aimDirection = mousePosition - transform.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
-        //Quaternion q = Quaternion.euler(aimAngle);
-        rb.rotation = aimAngle;
-        
+        // Removed rigidbody 2D since it was getting stuck when colliding with smiler
+        transform.rotation = Quaternion.Euler(0, 0, aimAngle);
     }
 }
