@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Generic DMG Buff
   upgradeIcon: {fileID: 21300000, guid: ba345f2f643d842459447c374943401d, type: 3}
-  damageModifier: 10
+  damageModifier: 30
   critChanceModifier: 0
   critMultiplierModifier: 0
   sizeModifier: 0.5

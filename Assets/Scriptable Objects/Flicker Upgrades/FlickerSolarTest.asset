@@ -17,7 +17,7 @@ MonoBehaviour:
   damageModifier: 33
   critChanceModifier: 0
   critMultiplierModifier: 0
-  sizeModifier: 0.3
+  sizeModifier: 0.99
   projectileLifetimeModifier: 3
   projectileSpeedModifier: 3
   shotIntervalModifier: -0.3

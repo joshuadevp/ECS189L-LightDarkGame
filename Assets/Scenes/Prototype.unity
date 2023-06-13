@@ -24867,6 +24867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flicker
       objectReference: {fileID: 0}
+    - target: {fileID: 3729204725494354870, guid: 311b1878e34b8ca489a9e5c7c7734f8c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5906390088424921757, guid: 311b1878e34b8ca489a9e5c7c7734f8c, type: 3}
       propertyPath: m_Enabled
       value: 1

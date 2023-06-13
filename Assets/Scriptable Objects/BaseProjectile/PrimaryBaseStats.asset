@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b796b9e7cf99fa9498065b336ac8a6b6, type: 3}
   m_Name: PrimaryBaseStats
   m_EditorClassIdentifier: 
-  baseDamage: 10
+  baseDamage: 30
   baseCriticalChance: 0.1
   baseCriticalMultiplier: 2
-  baseSize: 0.4
+  baseSize: 0.6
   lightRadius: 2
   projectileLifetime: 2
   projectileSpeed: 10
-  shotInterval: 0.5
+  shotInterval: 0.75
   knockback: 2
-  pierce: 5
+  pierce: 10

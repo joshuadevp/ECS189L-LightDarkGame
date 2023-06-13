@@ -21,8 +21,8 @@ public class TestProjectileCollisionDamage : MonoBehaviour
         GameObject hit = other.gameObject;
         if (hit.tag == "Darkness")
         {
-            darknessManager.DamageDarkness(other.transform.position, 200);
-            hitCounter -= 0.25f;
+            darknessManager.DamageDarkness(other.transform.position, (int) player.Damage.Value * 10);
+            hitCounter -= 0.2f;
         }
         else if (hit.tag == "Enemy")
         {

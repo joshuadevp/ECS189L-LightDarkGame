@@ -22,4 +22,4 @@ MonoBehaviour:
   projectileSpeedModifier: 0
   shotIntervalModifier: 0
   knockbackModifier: 0
-  pierceModifier: 2
+  pierceModifier: 3
