@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939b515ec41d3465da05ea5bae8cd973, type: 3}
   m_Name: BasicBossObjective
   m_EditorClassIdentifier: 
-  bossPrefab: {fileID: 8048363940515965056, guid: 7ad211747fbe543c8bbdc8cd0fb8a4cb, type: 3}
+  bossPrefab: {fileID: 5534494368513245240, guid: 1e18cb7470471c84693f72ed5d5e1571, type: 3}
   distToSpawnFromPlayer: 5
   speedBossMultiplier: 2
   damageBossMultiplier: 2

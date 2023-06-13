@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 229420693}
   - component: {fileID: 229420694}
   - component: {fileID: 229420695}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 239487141}
   - component: {fileID: 239487143}
   - component: {fileID: 239487142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5212,7 +5212,7 @@ GameObject:
   - component: {fileID: 309695716}
   - component: {fileID: 309695715}
   - component: {fileID: 309695714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12129,7 +12129,7 @@ GameObject:
   - component: {fileID: 1203836074}
   - component: {fileID: 1203836076}
   - component: {fileID: 1203836075}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22214,7 +22214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1461737049}
   - component: {fileID: 1461737050}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22542,7 +22542,7 @@ GameObject:
   - component: {fileID: 1503117198}
   - component: {fileID: 1503117199}
   - component: {fileID: 1503117200}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -22712,7 +22712,7 @@ GameObject:
   - component: {fileID: 1611759352}
   - component: {fileID: 1611759349}
   - component: {fileID: 1611759348}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23285,7 +23285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1844003086}
   - component: {fileID: 1844003087}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23517,7 +23517,7 @@ GameObject:
   - component: {fileID: 1905312388}
   - component: {fileID: 1905312390}
   - component: {fileID: 1905312389}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
