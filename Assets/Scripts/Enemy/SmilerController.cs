@@ -20,6 +20,7 @@ public class SmilerController : MeleeEnemy
         {
             if ((player.transform.position - transform.position).magnitude < AwakeRange)
             {
+                GameManager.Instance.AudioManager.PlayOneShot("Howling3");
                 awake = true;
                 GetComponentInChildren<Animator>().SetBool("Awaken", true);
             }

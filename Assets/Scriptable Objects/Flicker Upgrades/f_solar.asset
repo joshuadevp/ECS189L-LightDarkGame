@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Solarpower
   upgradeIcon: {fileID: 21300000, guid: 86421be0bc5ffb346882b2b039200653, type: 3}
-  damageModifier: 2
+  damageModifier: 3
   critChanceModifier: 0
   critMultiplierModifier: 0
-  sizeModifier: 2.5
+  sizeModifier: 6
   projectileLifetimeModifier: 2
-  projectileSpeedModifier: 0.5
+  projectileSpeedModifier: 2.5
   shotIntervalModifier: 2.5
   knockbackModifier: 0.8
-  pierceModifier: 2.5
+  pierceModifier: 3

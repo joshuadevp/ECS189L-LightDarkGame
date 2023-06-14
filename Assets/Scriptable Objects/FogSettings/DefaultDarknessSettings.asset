@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DefaultDarknessSettings
   m_EditorClassIdentifier: 
   DarknessMaxHealth: 100
-  DarknessSpreadChance: 0.008
-  EnemySpawnChance: 0.0001
+  DarknessSpreadChance: 0.007
+  EnemySpawnChance: 0.00005

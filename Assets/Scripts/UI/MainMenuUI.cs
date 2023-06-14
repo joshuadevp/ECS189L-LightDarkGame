@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
+    [field: SerializeField] public AudioManager AudioManager { get; private set; }
     [SerializeField]
     DarknessSettings defaultDarknessSettings;
     [SerializeField]
@@ -56,5 +57,15 @@ public class MainMenuUI : MonoBehaviour
     public void QuitButton()
     {
         Application.Quit();
+    }
+
+    public void HoverOverButton()
+    {
+        AudioManager.PlayOneShot("Click 2");
+    }
+
+    public void HoverClickButton()
+    {
+        AudioManager.PlayOneShot("Click 1");
     }
 }

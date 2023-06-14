@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
+            GameManager.Instance.AudioManager.PlayOneShot("Cancel");
             Pausing = !Pausing;
         }
         if(objectiveManager.CompletedCount() >= 10)
@@ -148,5 +149,9 @@ public class GameManager : MonoBehaviour
             Time.timeScale = savedTimeScale;
             PauseCanvas.SetActive(false);
         }
+    }
+    public void HoverOverButton()
+    {
+        GameManager.Instance.AudioManager.PlayOneShot("Click 2");
     }
 }

@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        //GameManager.Instance.AudioManager.PlayOneShot("Howling4");
         hp -= damage;
         hPBar.SetHP(hp / MaxHp);
         GameManager.Instance.SpawnDamageInfo(transform.position, damage);

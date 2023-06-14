@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerBase
   m_EditorClassIdentifier: 
   hp: 100
-  speed: 10
+  speed: 8

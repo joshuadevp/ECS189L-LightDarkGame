@@ -85,7 +85,7 @@ public class ObjectiveManager : MonoBehaviour
                 Debug.Log("Completed objective");
                 completed++;
                 GameManager.Instance.IncreaseLevel(1);
-
+                GameManager.Instance.AudioManager.PlayOneShot("p9");
                 // Grab possible upgrades to select
                 var upgradeGen = FindObjectOfType<UpgradeGenerator>();
                 upgrades = upgradeGen.GetRandomUpgrades(3);
@@ -147,16 +147,19 @@ public class ObjectiveManager : MonoBehaviour
     // Callbacks for selecting upgrade button
     public void SelectUpgrade1()
     {
+        GameManager.Instance.AudioManager.PlayOneShot("Click 1");
         upgrades[0].ApplyUpgrade();
         UnPauseUpgradeSelect();
     }
     public void SelectUpgrade2()
     {
+        GameManager.Instance.AudioManager.PlayOneShot("Click 1");
         upgrades[1].ApplyUpgrade();
         UnPauseUpgradeSelect();
     }
     public void SelectUpgrade3()
     {
+        GameManager.Instance.AudioManager.PlayOneShot("Click 1");
         upgrades[2].ApplyUpgrade();
         UnPauseUpgradeSelect();
     }
