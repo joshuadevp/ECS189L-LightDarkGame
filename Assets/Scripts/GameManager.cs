@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        GameManager.Instance.AudioManager.PlayOneShot("Explosion");
         objectiveCanvas.SetActive(false);
         Time.timeScale = 0;
         LoseCanvas.SetActive(true);
@@ -121,6 +122,7 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        GameManager.Instance.AudioManager.PlayOneShot("Wave p");
         objectiveCanvas.SetActive(false);
         Time.timeScale = 0;
         WinCanvas.SetActive(true);
