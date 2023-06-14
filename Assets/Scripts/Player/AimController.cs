@@ -25,10 +25,12 @@ public class AimController : MonoBehaviour
         {
             this.fire1?.Execute(this.gameObject);
         }
+        /*
         if (Input.GetButtonDown("Fire2"))
         {
             this.fire2?.Execute(this.gameObject);
         }
+        */
 
         mousePosition = mouseScreenController.transform.position;
         Vector3 aimDirection = mousePosition - transform.position;
