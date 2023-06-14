@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [CreateAssetMenu]
 public class HealthUpgradeTest : ScriptableObject, IUpgrade
@@ -28,6 +29,6 @@ public class HealthUpgradeTest : ScriptableObject, IUpgrade
 
     public string GetDetails()
     {
-        return "Health lol";
+        return "Health";
     }
 }

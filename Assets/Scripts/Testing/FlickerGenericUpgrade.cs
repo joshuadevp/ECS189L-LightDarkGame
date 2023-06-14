@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [CreateAssetMenu]
 public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
@@ -24,6 +25,8 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
     [SerializeField] private float knockbackModifier;
     [SerializeField] private float pierceModifier;
 
+    private ModifierType mt = ModifierType.multiplicative;
+
     public void ApplyUpgrade()
     {
         var player = FindObjectOfType<Player>();
@@ -34,7 +37,7 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
         if(damageModifier != 0)
         {
             player.Damage.AddModifier(new StatModifier(
-                ModifierType.flat,
+                mt,
                 damageModifier,
                 "Damage Up"
             )
@@ -44,7 +47,7 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
         if (critChanceModifier != 0)
         {
             player.CritChance.AddModifier(new StatModifier(
-                ModifierType.flat,
+                mt,
                 critChanceModifier,
                 "Crit Chance Up"
             )
@@ -54,7 +57,7 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
         if (critMultiplierModifier != 0)
         {
             player.CritDamage.AddModifier(new StatModifier(
-                ModifierType.flat,
+                mt,
                 critMultiplierModifier,
                 "Crit Damage Up"
             )
@@ -64,7 +67,7 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
         if (sizeModifier != 0)
         {
             player.ProjectileSize.AddModifier(new StatModifier(
-                ModifierType.flat,
+                mt,
                 sizeModifier,
                 "Projectile Size Up"
             )
@@ -74,7 +77,7 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
         if (projectileLifetimeModifier != 0)
         {
             player.ProjectileLifetime.AddModifier(new StatModifier(
-                ModifierType.flat,
+                mt,
                 projectileLifetimeModifier,
                 "Projectile Liftime Up"
             )
@@ -84,7 +87,7 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
         if (projectileSpeedModifier != 0)
         {
             player.ProjectileSpeed.AddModifier(new StatModifier(
-                ModifierType.flat,
+                mt,
                 projectileSpeedModifier,
                 "Projectile Speed Up"
             )
@@ -94,7 +97,7 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
         if (shotIntervalModifier != 0)
         {
             player.ShotInterval.AddModifier(new StatModifier(
-                ModifierType.flat,
+                mt,
                 shotIntervalModifier,
                 "Firerate Up"
             )
@@ -104,7 +107,7 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
         if (knockbackModifier != 0)
         {
             player.ProjectileKnockback.AddModifier(new StatModifier(
-                ModifierType.flat,
+                mt,
                 knockbackModifier,
                 "Knockback Up"
             )
@@ -114,7 +117,7 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
         if (pierceModifier != 0)
         {
             player.ProjectilePierce.AddModifier(new StatModifier(
-                ModifierType.flat,
+                mt,
                 pierceModifier,
                 "Pierce Up"
             )
@@ -129,14 +132,65 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
 
     public string GetDetails()
     {
-        return "[" + upgradeName + "]"
-             + "\n+" + damageModifier + " dmg"
-             + "\n+" + sizeModifier + " size"
-             + "\n+" + projectileLifetimeModifier + " dur"
-             + "\n+" + projectileSpeedModifier + " vel"
-             + "\n+" + shotIntervalModifier + " rate"
-             + "\n+" + knockbackModifier + " knock"
-             + "\n+" + pierceModifier + " pierce";
+        var details = "[" + upgradeName + "]";
+        if (damageModifier != 0)
+        {
+            if (damageModifier > 1)
+                details += "\n+" + (damageModifier - 1) * 100 + "% dmd";
+            else
+                details += "\n<color=red>" + (damageModifier - 1) * 100 + "% dmg</color>";
+        }
+
+        if (sizeModifier != 0)
+        {
+            if (sizeModifier > 1)
+                details += "\n+" + (sizeModifier - 1) * 100 + "% size";
+            else
+                details += "\n<color=red>" + (sizeModifier - 1) * 100 + "% size</color>";
+        }
+
+        if (projectileLifetimeModifier != 0)
+        {
+            if (projectileLifetimeModifier > 1)
+                details += "\n+" + (projectileLifetimeModifier - 1) * 100 + "% dur";
+            else
+                details += "\n<color=red>" + (projectileLifetimeModifier - 1) * 100 + "% dur</color>";
+        }
+
+        if (projectileSpeedModifier != 0)
+        {
+            if (projectileSpeedModifier > 1)
+                details += "\n+" + (projectileSpeedModifier - 1) * 100 + "% vel";
+            else
+                details += "\n<color=red>" + (projectileSpeedModifier - 1) * 100 + "% vel</color>";
+        }
+
+        if (shotIntervalModifier != 0)
+        {
+            // Different here because lower is faster shots = better
+            if (shotIntervalModifier < 1)
+                details += "\n+" + (shotIntervalModifier - 1) * 100 + "% rate";
+            else
+                details += "\n<color=red>" + (shotIntervalModifier - 1) * 100 + "% rate</color>";
+        }
+
+        if (knockbackModifier != 0)
+        {
+            if (knockbackModifier > 1)
+                details += "\n+" + (knockbackModifier - 1) * 100 + "% knock";
+            else
+                details += "\n<color=red>" + (knockbackModifier - 1) * 100 + "% knock</color>";
+        }
+
+        if (pierceModifier != 0)
+        {
+            if (pierceModifier > 1)
+                details += "\n+" + (pierceModifier - 1) * 100 + "% pierce";
+            else
+                details += "\n<color=red>" + (pierceModifier - 1) * 100 + "% pierce</color>";
+        }
+
+        return details;
     }
 
     public float DamageModifier => damageModifier;
