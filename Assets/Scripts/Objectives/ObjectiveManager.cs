@@ -28,14 +28,13 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField]
     List<TMP_Text> upgradeTexts;
 
-    private IUpgrade[] upgrades;
+    private List<IUpgrade> upgrades;
     private IObjective activeObjective;
     private int completed;
 
     // Start is called before the first frame update
     void Start()
     {
-        upgrades = new IUpgrade[3];
         UnPauseUpgradeSelect();
         foreach (ScriptableObject o in possibleObjectives)
         {
@@ -89,9 +88,7 @@ public class ObjectiveManager : MonoBehaviour
 
                 // Grab possible upgrades to select
                 var upgradeGen = FindObjectOfType<UpgradeGenerator>();
-                upgrades[0] = upgradeGen.GetRandomUpgrade();
-                upgrades[1] = upgradeGen.GetRandomUpgrade();
-                upgrades[2] = upgradeGen.GetRandomUpgrade();
+                upgrades = upgradeGen.GetRandomUpgrades(3);
 
                 PauseForUpgradeSelect();
                 Destroy((ScriptableObject)activeObjective);

@@ -23618,6 +23618,7 @@ MonoBehaviour:
   WinCanvas: {fileID: 752646653}
   LoseCanvas: {fileID: 456274465}
   PauseCanvas: {fileID: 417088438}
+  objectiveCanvas: {fileID: 2106567695}
   objectiveManager: {fileID: 2092533219}
   enemyStrengthOverTimeMultiplier: 0.01
   enemyStrengthOverLevelMultiplier: 1
@@ -23686,8 +23687,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286511103
+  m_fontColor: {r: 1, g: 0.96959186, b: 0.495283, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -23704,8 +23705,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -23864,11 +23865,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4488010566560619081, guid: b1e31436698ec534b8ca8a108192989c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 240
+      value: 313
       objectReference: {fileID: 0}
     - target: {fileID: 4488010566560619081, guid: b1e31436698ec534b8ca8a108192989c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 55
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4488010566560619081, guid: b1e31436698ec534b8ca8a108192989c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -24159,7 +24160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4488010566560619081, guid: b1e31436698ec534b8ca8a108192989c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 55
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4488010566560619081, guid: b1e31436698ec534b8ca8a108192989c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -24515,11 +24516,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4488010566560619081, guid: b1e31436698ec534b8ca8a108192989c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -240
+      value: -313
       objectReference: {fileID: 0}
     - target: {fileID: 4488010566560619081, guid: b1e31436698ec534b8ca8a108192989c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 55
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4488010566560619081, guid: b1e31436698ec534b8ca8a108192989c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

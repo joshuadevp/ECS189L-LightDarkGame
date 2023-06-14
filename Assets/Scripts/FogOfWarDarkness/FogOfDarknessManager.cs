@@ -57,9 +57,9 @@ public class FogOfDarknessManager : MonoBehaviour
         if (intervalWatch > updateInterval)
         {
             intervalWatch = 0;
+            SpreadPoints();
             DeactivatePoints();
             ActivatePoints();
-            SpreadPoints();
             oldPosition = activeCenter.position;
         }
     }

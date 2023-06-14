@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject WinCanvas;
     public GameObject LoseCanvas;
     public GameObject PauseCanvas;
+    public GameObject objectiveCanvas;
     [SerializeField] private ObjectiveManager objectiveManager;
 
     [Header("Game Difficulty Settings")]
@@ -97,12 +98,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        objectiveCanvas.SetActive(false);
         Time.timeScale = 0;
         LoseCanvas.SetActive(true);
     }
 
     public void Win()
     {
+        objectiveCanvas.SetActive(false);
         Time.timeScale = 0;
         WinCanvas.SetActive(true);
     }
@@ -114,12 +117,18 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator TogglePause()
     {
-        float savedTimeScale;
+        float savedTimeScale = 1;
         while (true) {
             yield return new WaitUntil(() => Pausing == true);
+            // Do not pause if game is already paused for a different reason
+            if(Time.timeScale!=0){
             savedTimeScale = Time.timeScale;
             Time.timeScale = 0;
             PauseCanvas.SetActive(true);
+            } else {
+                Pausing = false;
+                continue;
+            }
             yield return new WaitUntil(() => Pausing == false);
             Time.timeScale = savedTimeScale;
             PauseCanvas.SetActive(false);
