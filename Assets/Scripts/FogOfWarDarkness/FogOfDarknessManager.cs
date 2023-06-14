@@ -384,7 +384,7 @@ public class FogOfDarknessManager : MonoBehaviour
         int topRightY = topRightIndex.y;
 
         int meshIndex = 0;
-        customMesh.Clear();
+        // customMesh.Clear();
 
         for (int ix = bottomLeftX; ix <= topRightX; ix++)
         {
@@ -406,30 +406,31 @@ public class FogOfDarknessManager : MonoBehaviour
                     // Try spawning enemy
                     p.Spawn();
 
-                    /*
-                    *   Add square to custom mesh
-                    */
-                    float worldX = p.WorldPosition.x;
-                    float worldY = p.WorldPosition.y;
+                    // Mesh no longer used
+                    // /*
+                    // *   Add square to custom mesh
+                    // */
+                    // float worldX = p.WorldPosition.x;
+                    // float worldY = p.WorldPosition.y;
 
-                    int verticesIndex = meshIndex * 4;
-                    vertices[verticesIndex] = new Vector3(worldX - distanceBetweenPoints / 2, worldY - distanceBetweenPoints / 2, meshHeight); // bottom left
-                    vertices[verticesIndex + 1] = new Vector3(worldX - distanceBetweenPoints / 2, worldY + distanceBetweenPoints / 2, meshHeight); // top left
-                    vertices[verticesIndex + 2] = new Vector3(worldX + distanceBetweenPoints / 2, worldY - distanceBetweenPoints / 2, meshHeight); // bottom right
-                    vertices[verticesIndex + 3] = new Vector3(worldX + distanceBetweenPoints / 2, worldY + distanceBetweenPoints / 2, meshHeight); // top right
+                    // int verticesIndex = meshIndex * 4;
+                    // vertices[verticesIndex] = new Vector3(worldX - distanceBetweenPoints / 2, worldY - distanceBetweenPoints / 2, meshHeight); // bottom left
+                    // vertices[verticesIndex + 1] = new Vector3(worldX - distanceBetweenPoints / 2, worldY + distanceBetweenPoints / 2, meshHeight); // top left
+                    // vertices[verticesIndex + 2] = new Vector3(worldX + distanceBetweenPoints / 2, worldY - distanceBetweenPoints / 2, meshHeight); // bottom right
+                    // vertices[verticesIndex + 3] = new Vector3(worldX + distanceBetweenPoints / 2, worldY + distanceBetweenPoints / 2, meshHeight); // top right
 
-                    int trianglesIndex = meshIndex * 6;
-                    triangles[trianglesIndex] = 0 + verticesIndex;
-                    triangles[trianglesIndex + 1] = 1 + verticesIndex;
-                    triangles[trianglesIndex + 2] = 2 + verticesIndex;
-                    triangles[trianglesIndex + 3] = 2 + verticesIndex;
-                    triangles[trianglesIndex + 4] = 1 + verticesIndex;
-                    triangles[trianglesIndex + 5] = 3 + verticesIndex;
+                    // int trianglesIndex = meshIndex * 6;
+                    // triangles[trianglesIndex] = 0 + verticesIndex;
+                    // triangles[trianglesIndex + 1] = 1 + verticesIndex;
+                    // triangles[trianglesIndex + 2] = 2 + verticesIndex;
+                    // triangles[trianglesIndex + 3] = 2 + verticesIndex;
+                    // triangles[trianglesIndex + 4] = 1 + verticesIndex;
+                    // triangles[trianglesIndex + 5] = 3 + verticesIndex;
 
-                    normals[verticesIndex] = Vector3.back;
-                    normals[verticesIndex + 1] = Vector3.back;
-                    normals[verticesIndex + 2] = Vector3.back;
-                    normals[verticesIndex + 3] = Vector3.back;
+                    // normals[verticesIndex] = Vector3.back;
+                    // normals[verticesIndex + 1] = Vector3.back;
+                    // normals[verticesIndex + 2] = Vector3.back;
+                    // normals[verticesIndex + 3] = Vector3.back;
 
                     meshIndex++;
                 }
@@ -448,10 +449,10 @@ public class FogOfDarknessManager : MonoBehaviour
             activePoints[i] = null;
         }
 
-        // Set mesh data
-        customMesh.SetVertices(vertices, 0, meshIndex * 4);
-        customMesh.SetTriangles(triangles, 0, meshIndex * 6, 0);
-        customMesh.SetNormals(normals, 0, meshIndex * 4);
+        // // Set mesh data
+        // customMesh.SetVertices(vertices, 0, meshIndex * 4);
+        // customMesh.SetTriangles(triangles, 0, meshIndex * 6, 0);
+        // customMesh.SetNormals(normals, 0, meshIndex * 4);
     }
 
     // Call spread function of all darkness points

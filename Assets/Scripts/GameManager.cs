@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
     // Callback for main menu button
     public void MainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
