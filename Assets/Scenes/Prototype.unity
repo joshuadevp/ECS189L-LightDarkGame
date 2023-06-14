@@ -1759,16 +1759,12 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: -100893198, guid: 255ab928e635a1d4098d9a74e522e4c9, type: 3}
-    - sprite: {fileID: -1223290908, guid: 255ab928e635a1d4098d9a74e522e4c9, type: 3}
-    - sprite: {fileID: 617138279, guid: 255ab928e635a1d4098d9a74e522e4c9, type: 3}
-    - sprite: {fileID: 689221329, guid: 255ab928e635a1d4098d9a74e522e4c9, type: 3}
-    - sprite: {fileID: 716563225, guid: 255ab928e635a1d4098d9a74e522e4c9, type: 3}
-    - sprite: {fileID: -1939956927, guid: 255ab928e635a1d4098d9a74e522e4c9, type: 3}
-    - sprite: {fileID: -606397504, guid: 255ab928e635a1d4098d9a74e522e4c9, type: 3}
-    - sprite: {fileID: 1189422431, guid: 255ab928e635a1d4098d9a74e522e4c9, type: 3}
-    - sprite: {fileID: 1790225337, guid: 255ab928e635a1d4098d9a74e522e4c9, type: 3}
-    - sprite: {fileID: -1743960667, guid: 255ab928e635a1d4098d9a74e522e4c9, type: 3}
+    - sprite: {fileID: 350199514, guid: de3b300bf5b211d448be432e821213d9, type: 3}
+    - sprite: {fileID: 587228671, guid: de3b300bf5b211d448be432e821213d9, type: 3}
+    - sprite: {fileID: 900061677, guid: de3b300bf5b211d448be432e821213d9, type: 3}
+    - sprite: {fileID: -621695157, guid: de3b300bf5b211d448be432e821213d9, type: 3}
+    - sprite: {fileID: 231269306, guid: de3b300bf5b211d448be432e821213d9, type: 3}
+    - sprite: {fileID: -179096612, guid: de3b300bf5b211d448be432e821213d9, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -11595,7 +11591,6 @@ GameObject:
   m_Component:
   - component: {fileID: 970237485}
   - component: {fileID: 970237484}
-  - component: {fileID: 970237486}
   m_Layer: 0
   m_Name: FogOfDarkness
   m_TagString: Untagged
@@ -11616,8 +11611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapWidthAndHeight: {x: 300, y: 300}
-  distanceBetweenPoints: 1
-  activeWidthAndHeight: {x: 65, y: 35}
+  distanceBetweenPoints: 2
+  activeWidthAndHeight: {x: 35, y: 21}
   activeCenter: {fileID: 1503117197}
   darknessPrefab: {fileID: 3367759043008731199, guid: 4253142fd347c4f86a1f51a96bab1236, type: 3}
   updateInterval: 0.1
@@ -11637,18 +11632,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &970237486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970237483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5d77c9c4b40543f4a09514f74a074d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1050302207
 GameObject:
   m_ObjectHideFlags: 0
@@ -11730,7 +11713,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1080009352
@@ -22634,7 +22617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188969663bac3cb48b27676614389587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerSecond: 3
+  damagePerSecond: 5
 --- !u!1 &1522497815
 GameObject:
   m_ObjectHideFlags: 0
@@ -23621,6 +23604,11 @@ MonoBehaviour:
   PauseCanvas: {fileID: 417088438}
   objectiveCanvas: {fileID: 2106567695}
   objectiveManager: {fileID: 2092533219}
+  defaultDarknessSettings: {fileID: 11400000, guid: c8bd21e204bc44e468376cc641815287, type: 2}
+  globalDarknessSettings: {fileID: 11400000, guid: 032bb76f2ae0a42e48e1e432d30a1aa0, type: 2}
+  updateInterval: 0.25
+  spawnScale: 0.0002
+  spreadScale: 0.00002
   enemyStrengthOverTimeMultiplier: 0.01
   enemyStrengthOverLevelMultiplier: 1
   enemyPrefab: {fileID: 5534494368513245240, guid: 088071a887a03c4448e29dc1713f5aa6, type: 3}

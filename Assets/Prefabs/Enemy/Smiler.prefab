@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  <MaxHp>k__BackingField: 200
+  <MaxHp>k__BackingField: 130
   <Speed>k__BackingField: 3
   <Damage>k__BackingField: 10
   <HealthDropChance>k__BackingField: 0.3

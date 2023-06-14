@@ -489,8 +489,8 @@ public class FogOfDarknessManager : MonoBehaviour
         int centerX = x;
         int centerY = y;
 
-        int indexX = Mathf.FloorToInt(activeWidth / 2 * distanceBetweenPoints);
-        int indexY = Mathf.FloorToInt(activeHeight / 2 * distanceBetweenPoints);
+        int indexX = Mathf.FloorToInt(activeWidth / 2);
+        int indexY = Mathf.FloorToInt(activeHeight / 2);
 
         Vector2Int topRightIndex = new Vector2Int(clampIndexX(centerX + indexX), clampIndexY(centerY + indexY));
         Vector2Int bottomLeftIndex = new Vector2Int(clampIndexX(centerX - indexX), clampIndexY(centerY - indexY));

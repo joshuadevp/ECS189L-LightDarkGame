@@ -28,6 +28,8 @@ public class MainMenuUI : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+
+        Time.timeScale = 1;
     }
 
     void FixedUpdate()

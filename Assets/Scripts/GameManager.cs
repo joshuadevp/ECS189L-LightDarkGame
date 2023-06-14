@@ -15,6 +15,12 @@ public class GameManager : MonoBehaviour
     public GameObject PauseCanvas;
     public GameObject objectiveCanvas;
     [SerializeField] private ObjectiveManager objectiveManager;
+    [SerializeField] private DarknessSettings defaultDarknessSettings;
+    [SerializeField] private DarknessSettings globalDarknessSettings;
+    [SerializeField] private float updateInterval;
+    [SerializeField] private float spawnScale;
+    [SerializeField] private float spreadScale;
+    private float time;
 
     [Header("Game Difficulty Settings")]
     [Tooltip("How much stronger each enemy gets per second")]
@@ -71,6 +77,14 @@ public class GameManager : MonoBehaviour
         {
             Win();
         }
+        // Interval update
+        if(time > updateInterval)
+        {
+            time = 0;
+            globalDarknessSettings.EnemySpawnChance = defaultDarknessSettings.EnemySpawnChance +  spawnScale * CalculateEnemyModifier();
+            globalDarknessSettings.DarknessSpreadChance = defaultDarknessSettings.DarknessSpreadChance +  spreadScale * CalculateEnemyModifier();
+        }
+        time+=Time.deltaTime;
     }
 
     public void SpawnDamageInfo(Vector3 position, float damage)
