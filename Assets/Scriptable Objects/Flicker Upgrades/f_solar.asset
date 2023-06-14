@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bafdc73ec142e004496be9064aec49c6, type: 3}
+  m_Name: f_solar
+  m_EditorClassIdentifier: 
+  upgradeName: Solarpower
+  upgradeIcon: {fileID: 21300000, guid: 86421be0bc5ffb346882b2b039200653, type: 3}
+  damageModifier: 3
+  critChanceModifier: 0
+  critMultiplierModifier: 0
+  sizeModifier: 6
+  projectileLifetimeModifier: 2
+  projectileSpeedModifier: 2.5
+  shotIntervalModifier: 2.5
+  knockbackModifier: 0.8
+  pierceModifier: 3

@@ -14,15 +14,14 @@ public class DarknessPoint
     public int MaxHealth;
     public float Density;
     public DarknessSpec DarknessSpec;
-    public SpawnSpec SpawnSpec;
 
     public void Init(DarknessSpec spec)
     {
-        // TODO SET SETTINGS WITH SPEC
         CurrentHealth = spec.CurrentHealth;
         MaxHealth = spec.MaxHealth;
         Density = spec.Density;
         this.DarknessSpec = spec;
+        active = false;
     }
 
     public bool IsAlive()
@@ -43,7 +42,8 @@ public class DarknessPoint
     // Attempts to spread, returning true if it did
     public bool Spread(Vector2[] openSpots, int size, FogOfDarknessManager manager)
     {
-        if (Random.Range(0f, 1f) < DarknessSpec.SpreadChance)
+        if (DarknessSpec.GlobalSettings == null) return false; // Points without settings cannot spread
+        if (Random.Range(0f, 1f) < DarknessSpec.GlobalSettings.DarknessSpreadChance * DarknessSpec.SpreadChanceModifier)
         {
             manager.CreateDarknessPoint(openSpots[Random.Range(0, size)], DarknessSpec);
             return true;
@@ -54,11 +54,16 @@ public class DarknessPoint
     // Attempts to spawn an enemy, returning true if it did
     public bool Spawn()
     {
-        if (Random.Range(0f, 1f) < DarknessSpec.SpawnSpec.SpawnChance)
+        if (Random.Range(0f, 1f) < DarknessSpec.SpawnSpec.GlobalSettings.EnemySpawnChance * DarknessSpec.SpawnSpec.SpawnChanceModifier)
         {
             GameObject.Instantiate(DarknessSpec.SpawnSpec.Enemy, WorldPosition, Quaternion.identity);
             return true;
         }
         return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return IndexPosition.GetHashCode();
     }
 }

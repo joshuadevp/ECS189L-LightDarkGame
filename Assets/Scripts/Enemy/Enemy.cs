@@ -5,33 +5,61 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("In Editor: Base Stats\nIn Game: Final Stats")]
-    //TODO Remove this field, this is just for the header attribute to work
-    public string comment;
-    [field: SerializeField] public float hp { get; private set; }
-    [field: SerializeField] public float speed { get; private set; }
-    [field: SerializeField] public float damage { get; private set; }
+    public EnemyController controller;
+    [field: SerializeField] public float MaxHp { get; private set; }
+    [field: SerializeField] public float Speed { get; private set; }
+    [Tooltip("Enemy's DPS while colliding with player")]
+    [field: SerializeField] public float Damage { get; private set; }
+    [field: SerializeField] public float HealthDropChance { get; private set; }
+
+    [SerializeField] EnemyHPBar hPBar;
+    private float hp;
 
     // Start is called before the first frame update
     void Start()
     {
         // Possibly modify the hp/speed/damage here by some global modifier such as time/stage
-        float modifier = GameManager.instance.CalculateEnemyModifier();
-        hp *= modifier;
-        damage *= modifier;
+        float modifier = GameManager.Instance.CalculateEnemyModifier();
+        MaxHp *= modifier;
+        Damage *= modifier;
+        controller = GetComponent<EnemyController>();
+        hPBar = GetComponentInChildren<EnemyHPBar>();
+        hp = MaxHp;
     }
 
-    public void TakeDamage(float damage) 
+    public void HitBy(GameObject projectile, float damage) 
     {
+        controller.HitBy(projectile);
+        TakeDamage(damage);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        //GameManager.Instance.AudioManager.PlayOneShot("Howling4");
         hp -= damage;
-        if (hp <= 0) 
+        hPBar.SetHP(hp / MaxHp);
+        GameManager.Instance.SpawnDamageInfo(transform.position, damage);
+        if (hp <= 0)
         {
             OnDeath();
         }
     }
 
-    // Do something when dying
-    void OnDeath() 
+    public void ModifyStats(float maxHpModifier,float damageModifier, float speedModifier)
     {
+        MaxHp *= maxHpModifier;
+        hp = MaxHp;
+        Damage *= damageModifier;
+        Speed *= speedModifier;
+    }
+
+    // Do something when dying
+    void OnDeath()
+    {
+        if(Random.Range(0f,1f)<HealthDropChance)
+        {
+            Instantiate(Resources.Load("HealthPickup"), this.gameObject.transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bafdc73ec142e004496be9064aec49c6, type: 3}
+  m_Name: f_lightspeed shot 3
+  m_EditorClassIdentifier: 
+  upgradeName: In the Starlight
+  upgradeIcon: {fileID: 21300000, guid: a5e4485787d25fe4390dbcd3dae79756, type: 3}
+  damageModifier: 0.9
+  critChanceModifier: 0
+  critMultiplierModifier: 0
+  sizeModifier: 0
+  projectileLifetimeModifier: 0.5
+  projectileSpeedModifier: 2
+  shotIntervalModifier: 0.25
+  knockbackModifier: 1.5
+  pierceModifier: 2

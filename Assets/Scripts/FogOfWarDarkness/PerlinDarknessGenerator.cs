@@ -6,10 +6,6 @@ using UnityEngine;
 public class PerlinDarknessGenerator : IDarknessGenerator
 {
     [SerializeField]
-    DarknessSettings defaultSettings;
-    [SerializeField]
-    GameObject enemy;
-    [SerializeField]
     float refinement;
     private float seed;
 
@@ -22,18 +18,55 @@ public class PerlinDarknessGenerator : IDarknessGenerator
     {
         float noise = Mathf.PerlinNoise(loc.x * refinement + seed, loc.y * refinement + seed);
         float modifier = Mathf.Clamp(noise, 0.5f, 1f);
-        int health = (int)(defaultSettings.DarknessMaxHealth / modifier);
+        int health = (int)(globalSettings.DarknessMaxHealth * modifier);
         return new DarknessSpec()
         {
             Density = modifier,
             CurrentHealth = health,
             MaxHealth = health,
-            SpreadChance = defaultSettings.DarknessSpreadChance / modifier,
+            SpreadChanceModifier = 1f / modifier,
+            GlobalSettings = globalSettings,
             SpawnSpec = new SpawnSpec()
             {
-                SpawnChance = defaultSettings.EnemySpawnChance / modifier,
-                Enemy = enemy
+                SpawnChanceModifier = 2f * modifier,
+                Enemy = GetRandomEnemy(),
+                GlobalSettings = globalSettings
             }
         };
+    }
+
+    override public DarknessSpec GenerateDefault()
+    {
+        return new DarknessSpec()
+        {
+            Density = 1,
+            CurrentHealth = defaultSettings.DarknessMaxHealth,
+            MaxHealth = defaultSettings.DarknessMaxHealth,
+            SpreadChanceModifier = 1f,
+            GlobalSettings = globalSettings,
+            SpawnSpec = new SpawnSpec()
+            {
+                SpawnChanceModifier = 1f,
+                Enemy = enemies[0],
+                GlobalSettings = globalSettings
+            }
+        };
+    }
+
+    private GameObject GetRandomEnemy()
+    {
+        float probability = Random.Range(0f,1f);
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            if(probability < spawnChances[i])
+            {
+                return enemies[i];
+            } else {
+                probability -= spawnChances[i];
+            }
+        }
+
+        Debug.LogError("Couldn't generate random enemy!");
+        return enemies[0];
     }
 }

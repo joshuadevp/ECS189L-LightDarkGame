@@ -1,0 +1,542 @@
+fileFormatVersion: 2
+guid: d26e6d048c66b2745981459faa9177c5
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 6799
+        width: 784
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87ebe408bb0107141a5fb4fa8f2deb1a
+      internalID: -1008176682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 2543
+        y: 6799
+        width: 784
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1380dc5a104b5f4ba09b5eda93a99d2
+      internalID: 1904811325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 4578
+        y: 6799
+        width: 799
+        height: 840
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa2594026d5739a4ea5a5cd8ff867f41
+      internalID: 1270113341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 6623
+        y: 6799
+        width: 799
+        height: 840
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d5b4aab5c6e1f84e9a2e9b4fd1d845e
+      internalID: -1212182287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 8633
+        y: 6799
+        width: 839
+        height: 825
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ded6d3f9b1693e24088cda26612767b4
+      internalID: -1490966284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 4754
+        width: 799
+        height: 815
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b35165b9f4a2e44e8738f88ea74cc81
+      internalID: -1960634982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 2528
+        y: 4754
+        width: 799
+        height: 815
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a8d2b70c78c5224187132a383a5853c
+      internalID: -946344098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 4538
+        y: 4754
+        width: 819
+        height: 815
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f22a63e7c00a44d48b983e9a6171bdcb
+      internalID: 648486345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 6583
+        y: 4754
+        width: 819
+        height: 815
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31310dbf82a84914d93aa1fec946296e
+      internalID: 247846378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 8633
+        y: 4754
+        width: 819
+        height: 815
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 990c0f54a85eb854bb90ff14f5a924e8
+      internalID: -1973098745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 2703
+        width: 799
+        height: 825
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53379f114d703ab4492e84067b2a176f
+      internalID: 1830950150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 2543
+        y: 2703
+        width: 784
+        height: 825
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2963177d7f2ce1b41bbd6aaa870cd0b2
+      internalID: -1902103472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 4588
+        y: 2703
+        width: 789
+        height: 825
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e3a2b0c4787ad54e97e491cb886dedc
+      internalID: 971823422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 6623
+        y: 2703
+        width: 799
+        height: 825
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bee0a041d519a74ca9c98aac26dec2b
+      internalID: -473404214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 8633
+        y: 2703
+        width: 839
+        height: 840
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51912482fc0f49241b9c60300ff267c1
+      internalID: -1279129477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 658
+        width: 837
+        height: 840
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 657f2e9af2ae6fb42b8221084ceee3f9
+      internalID: -216237049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 2488
+        y: 658
+        width: 839
+        height: 840
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed978e73135d4aa45841521d9efba42e
+      internalID: 63792735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 4538
+        y: 658
+        width: 839
+        height: 840
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7168455fcd06ec445a21fbb3cef8eeef
+      internalID: -119788102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smiler Passive SpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 6583
+        y: 658
+        width: 839
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d44e6b8c7e28bc64db93a494ed48a5f8
+      internalID: -1115514031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Smiler Passive SpriteSheet_0: -1008176682
+      Smiler Passive SpriteSheet_1: 1904811325
+      Smiler Passive SpriteSheet_10: 1830950150
+      Smiler Passive SpriteSheet_11: -1902103472
+      Smiler Passive SpriteSheet_12: 971823422
+      Smiler Passive SpriteSheet_13: -473404214
+      Smiler Passive SpriteSheet_14: -1279129477
+      Smiler Passive SpriteSheet_15: -216237049
+      Smiler Passive SpriteSheet_16: 63792735
+      Smiler Passive SpriteSheet_17: -119788102
+      Smiler Passive SpriteSheet_18: -1115514031
+      Smiler Passive SpriteSheet_2: 1270113341
+      Smiler Passive SpriteSheet_3: -1212182287
+      Smiler Passive SpriteSheet_4: -1490966284
+      Smiler Passive SpriteSheet_5: -1960634982
+      Smiler Passive SpriteSheet_6: -946344098
+      Smiler Passive SpriteSheet_7: 648486345
+      Smiler Passive SpriteSheet_8: 247846378
+      Smiler Passive SpriteSheet_9: -1973098745
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
