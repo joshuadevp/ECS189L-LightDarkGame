@@ -15,6 +15,8 @@ public class MainMenuUI : MonoBehaviour
     GameObject camera;
     [SerializeField]
     GameObject loadingScreen;
+    [SerializeField]
+    Texture2D cursorTexture;
     
     void Awake()
     {
@@ -23,6 +25,9 @@ public class MainMenuUI : MonoBehaviour
         globalDarknessSettings.DarknessSpreadChance = 0.3f;
         this.transform.position = camera.transform.position;
         fogManager.InitAllDarkness();
+
+        Cursor.visible = true;
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
     }
 
     void FixedUpdate()

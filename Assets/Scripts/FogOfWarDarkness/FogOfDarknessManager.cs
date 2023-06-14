@@ -124,6 +124,7 @@ public class FogOfDarknessManager : MonoBehaviour
             {
                 objectPool[x][y] = Instantiate(darknessPrefab, Vector2.zero, Quaternion.identity);
                 objectPool[x][y].transform.parent = this.gameObject.transform;
+                objectPool[x][y].transform.localScale *= distanceBetweenPoints;
             }
         }
     }
@@ -252,11 +253,12 @@ public class FogOfDarknessManager : MonoBehaviour
         {
             Debug.LogError("Invalid index for creating darkness point! x: " + x + " y: " + y);
             return null;
-        } else if(point != null) // Don't create new points if it already exists.
+        } else if( false)//point != null) // Don't create new points if it already exists.
         {
             spreadablePoints.Remove(point);
             darknessArray[x][y].Init(spec);
         } else {
+            if(point != null) spreadablePoints.Remove(point);
             point = new DarknessPoint();
             point.WorldPosition = indexToWorld(x, y);
             point.IndexPosition = new Vector2Int(x, y);

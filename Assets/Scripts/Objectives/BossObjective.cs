@@ -15,6 +15,8 @@ public class BossObjective : ScriptableObject, IObjective
     float damageBossMultiplier;
     [SerializeField]
     float healthBossMultiplier;
+    [SerializeField]
+    float scale;
     private bool completed = false;
     private bool spawned;
     private Vector2 objPos;
@@ -29,7 +31,7 @@ public class BossObjective : ScriptableObject, IObjective
             if (Vector3.Magnitude(player.transform.position - (Vector3)objPos) < distToSpawnFromPlayer)
             {
                 bossInstance = Instantiate(bossPrefab, objPos, Quaternion.identity);
-                bossInstance.transform.localScale = new Vector3(2,2,2);
+                bossInstance.transform.localScale *= scale;
                 bossInstance.GetComponent<Enemy>().ModifyStats(healthBossMultiplier,damageBossMultiplier,speedBossMultiplier);
                 spawned = true;
             }

@@ -6956,6 +6956,7 @@ MonoBehaviour:
   fogManager: {fileID: 170830198}
   camera: {fileID: 1695199230}
   loadingScreen: {fileID: 26075737}
+  cursorTexture: {fileID: 2800000, guid: 9cdb170d0da4c5c4bbebd306f73428bf, type: 3}
 --- !u!1 &1542326265
 GameObject:
   m_ObjectHideFlags: 0
