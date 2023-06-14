@@ -28,6 +28,7 @@ public class PlayerStatUpgrade : ScriptableObject, IUpgrade
             "Health Up"
             )
             );
+            player.Heal(0);
         }
 
         if (speedModifier != 0)
@@ -62,17 +63,17 @@ public class PlayerStatUpgrade : ScriptableObject, IUpgrade
         if (healthModifier != 0)
         {
             if (healthModifier > 1)
-                details += "\n+" + (healthModifier - 1) * 100 + "% HEALTH";
+                details += "\n+" + (healthModifier - 1) * 100 + "% health";
             else
-                details += "\n<color=red>" + (healthModifier - 1) * 100 + "% P HEALTH</color>";
+                details += "\n<color=red>" + (healthModifier - 1) * 100 + "% health</color>";
         }
         
         if (speedModifier != 0)
         {
             if (speedModifier > 1)
-                details += "\n+" + (speedModifier - 1) * 100 + "% MOVESPD";
+                details += "\n+" + (speedModifier - 1) * 100 + "% movespd";
             else
-                details += "\n<color=red>" + (speedModifier - 1) * 100 + "% MOVESPD</color>";
+                details += "\n<color=red>" + (speedModifier - 1) * 100 + "% movespd</color>";
         }
 
         if (resourceModifier != 0)

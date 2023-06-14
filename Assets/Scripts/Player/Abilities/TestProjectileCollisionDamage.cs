@@ -6,6 +6,7 @@ public class TestProjectileCollisionDamage : MonoBehaviour
 {
     Player player;
     FogOfDarknessManager darknessManager;
+    Rigidbody rb;
     private float hitCounter = 0;
     // Start is called before the first frame update
     void Awake()
@@ -14,6 +15,8 @@ public class TestProjectileCollisionDamage : MonoBehaviour
         player = GameObject.FindAnyObjectByType<Player>();
         hitCounter = player.ProjectilePierce.Value;
         transform.localScale = player.ProjectileSize.Value * new Vector3(1,1,1);
+        rb = GetComponent<Rigidbody>();
+        rb.mass = player.ProjectileKnockback.Value;
     }
 
     void OnTriggerEnter(Collider other)

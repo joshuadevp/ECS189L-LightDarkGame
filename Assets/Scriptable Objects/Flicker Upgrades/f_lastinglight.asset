@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Lasting Light
   upgradeIcon: {fileID: 21300000, guid: 86421be0bc5ffb346882b2b039200653, type: 3}
-  damageModifier: 0
+  damageModifier: 1.1
   critChanceModifier: 0
   critMultiplierModifier: 0
-  sizeModifier: 1.3
-  projectileLifetimeModifier: 1.5
+  sizeModifier: 1.25
+  projectileLifetimeModifier: 2
   projectileSpeedModifier: 1.1
   shotIntervalModifier: 0
   knockbackModifier: 0

@@ -15,5 +15,5 @@ MonoBehaviour:
   upgradeName: Hearty Soul
   upgradeIcon: {fileID: 21300000, guid: 76fb2fc65b788164a9efc06b7205f8b1, type: 3}
   healthModifier: 2.5
-  speedModifier: 0.5
+  speedModifier: 0.75
   resourceModifier: 0

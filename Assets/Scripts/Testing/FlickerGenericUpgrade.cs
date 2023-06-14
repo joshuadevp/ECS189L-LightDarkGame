@@ -169,9 +169,9 @@ public class FlickerGenericUpgrade : ScriptableObject, IUpgrade
         {
             // Different here because lower is faster shots = better
             if (shotIntervalModifier < 1)
-                details += "\n+" + (shotIntervalModifier - 1) * 100 + "% rate";
+                details += "\n" + (shotIntervalModifier - 1) * 100 + "% rate";
             else
-                details += "\n<color=red>" + (shotIntervalModifier - 1) * 100 + "% rate</color>";
+                details += "\n<color=red>+" + (shotIntervalModifier - 1) * 100 + "% rate</color>";
         }
 
         if (knockbackModifier != 0)

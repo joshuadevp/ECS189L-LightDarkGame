@@ -17,9 +17,9 @@ MonoBehaviour:
   damageModifier: 2
   critChanceModifier: 0
   critMultiplierModifier: 0
-  sizeModifier: 2
-  projectileLifetimeModifier: 1.5
-  projectileSpeedModifier: 0
-  shotIntervalModifier: 2
-  knockbackModifier: 0
-  pierceModifier: 2
+  sizeModifier: 2.5
+  projectileLifetimeModifier: 2
+  projectileSpeedModifier: 0.5
+  shotIntervalModifier: 2.5
+  knockbackModifier: 0.8
+  pierceModifier: 2.5

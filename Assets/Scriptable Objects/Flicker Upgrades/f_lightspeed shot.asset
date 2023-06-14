@@ -20,6 +20,6 @@ MonoBehaviour:
   sizeModifier: 0
   projectileLifetimeModifier: 0
   projectileSpeedModifier: 1.5
-  shotIntervalModifier: 0.9
+  shotIntervalModifier: 0.8
   knockbackModifier: 0
   pierceModifier: 1.25

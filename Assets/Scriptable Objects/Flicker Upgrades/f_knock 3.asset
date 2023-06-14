@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bafdc73ec142e004496be9064aec49c6, type: 3}
-  m_Name: f_clershine
+  m_Name: f_knock 3
   m_EditorClassIdentifier: 
-  upgradeName: Clear Shine
-  upgradeIcon: {fileID: 21300000, guid: a92055fc1e4a67e419bc4e2b9c753440, type: 3}
-  damageModifier: 1.25
+  upgradeName: Batter Up!!!
+  upgradeIcon: {fileID: 21300000, guid: 86421be0bc5ffb346882b2b039200653, type: 3}
+  damageModifier: 0.75
   critChanceModifier: 0
   critMultiplierModifier: 0
-  sizeModifier: 0
-  projectileLifetimeModifier: 0
-  projectileSpeedModifier: 1.25
-  shotIntervalModifier: 0
-  knockbackModifier: 0
+  sizeModifier: 2
+  projectileLifetimeModifier: 2
+  projectileSpeedModifier: 3
+  shotIntervalModifier: 2
+  knockbackModifier: 15
   pierceModifier: 2
