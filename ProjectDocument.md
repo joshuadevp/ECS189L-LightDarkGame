@@ -168,7 +168,7 @@ The upgrade UI was created by Josh initially, and then I cleaned it up as things
 # Sub-Roles
 
 
-## Game Feel: Map and Objective Design
+## Joshua Peterson: Game Feel: Map and Objective Design
 
 
 Map Design:
