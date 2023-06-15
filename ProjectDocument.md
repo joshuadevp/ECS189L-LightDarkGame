@@ -129,7 +129,7 @@ UI inspirations and gameplay interactions can be found here: Art, UI, Audio - Go
 
 
 All game assets except our font were hand drawn and created from scratch.
-Inspirations, thought processes, and designs can be found here: Art, UI, Audio - Google Docs
+Inspirations, thought processes, and designs can be found here: Art, UI, Audio - Google Docs https://docs.google.com/document/d/1MjWvWElpVRm9vPDnc468GnXU5vczbKBiMj6w7BMYmTA/edit?pli=1
 
 
 
