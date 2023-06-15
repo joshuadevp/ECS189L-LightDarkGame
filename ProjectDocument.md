@@ -159,7 +159,11 @@ The upgrade UI was created by Josh initially, and then I cleaned it up as things
 
 
 
+## Narrative Design - Amit Bhongiri
 
+Helped plan out the worldbuilding and core story and design of the game. We decided on a game based off of Swarm Grinder with Joshua but then switched the story to reflect our idea of light vs darkness. we brainstormed multiple ideas for the main playable character, either being an orb of light, an amorphous creature, but settled on a robed figure with a lamp for a head.
+
+for worldbuilding, it was also based off of Swarm Grinder, but to stick with theme, we chose darkness as the main enemies. The game takes place in a world where darkness has taken over, and the player is the last emissary of light. The darkness has ravaged the world, leaving it in ruins, with rubble present throughout the world. This environment is also originally inspired by the game Nordic Ashes. This tone is carried through the game as the map is obscured by the darkness, with only the light from the main character and their actions able to dissolve it. As the darkness wishes to prevail eternally, it tries to stop any other force. However, with the actions of the light and completing objectives, the darkness is being pushed away. 
 
 
 ###
