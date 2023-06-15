@@ -163,7 +163,7 @@ The upgrade UI was created by Josh initially, and then I cleaned it up as things
 
 Helped plan out the worldbuilding and core story and design of the game. We decided on a game based off of Swarm Grinder with Joshua but then switched the story to reflect our idea of light vs darkness. we brainstormed multiple ideas for the main playable character, either being an orb of light, an amorphous creature, but settled on a robed figure with a lamp for a head.
 
-For worldbuilding, it was also based off of Swarm Grinder, but to stick with theme, we chose darkness as the main enemies. The game takes place in a world where darkness has taken over, and the player is the last emissary of light. The darkness has ravaged the world, leaving it in ruins, with rubble present throughout the world. This environment is also originally inspired by the game Nordic Ashes. This tone is carried through the game as the map is obscured by the darkness, with only the light from the main character and their actions able to dissolve it. As the darkness wishes to prevail eternally, it tries to stop any other force. However, with the actions of the light and completing objectives, the darkness is being pushed away. 
+For worldbuilding, it was also based off of Swarm Grinder, but to stick with theme, we chose darkness as the main enemies. The game takes place in a world where darkness has taken over, and the player is the last emissary of light. The darkness has ravaged the world, leaving it in ruins, with rubble present throughout the world. This environment is also originally inspired by the game Nordic Ashes. This tone is carried through the game as the map is obscured by the darkness, with only the light from the main character and their actions able to dissolve it. As the darkness wishes to prevail eternally, it tries to stop any other force. However, with the actions of the light and completing objectives, the darkness is being pushed away. This creates a sense of progression, as once the player captures objectives, they can see the darkness visibly retreating. 
 
 
 ###
@@ -362,7 +362,7 @@ In tandem with the balancing, I also went through the game multiple times editin
 
 ## Assisting Game Logic (Primary Fire/Support/Upgrades) - Amit Bhongiri
 
-I decided to help Nam with the upgrades and abilities the player would have, as they would be the most intensive part of a vampire survivors like game such as this. While most of the upgrades are listed above in Nam's role, we also discussed support/static upgrades that are prevalent in games like this. Examples of this would be health/stamina/movespeed/etc. 
+I decided to help Nam with the upgrades and abilities the player would have, as they would be the most intensive part of a vampire survivors like game such as this. While most of the upgrades are listed above in Nam's role, we also discussed support/static upgrades that are prevalent in games like this. Examples of this would be health/stamina/movespeed/etc. In addition to this, we discussed abilities that would enhance the player's other abilities, such as introducing a secondary beacon that would act as a decoy for the darkness, a splintershot upon an enemy being struck, and multishots, but they were not implemented fully due to time constraints. 
 
 
 ## Press Kit and Trailer
