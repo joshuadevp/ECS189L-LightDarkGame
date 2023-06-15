@@ -360,6 +360,10 @@ In tandem with the balancing, I also went through the game multiple times editin
 
 *Drag-and-drop enemy prefabs* - Pre-implemented [prefabs of enemies](https://github.com/joshuadevp/ECS189L-LightDarkGame/blob/70bb3f8b42f150cce73ef1b6c0d348f3a92b8110/Assets/Prefabs/Enemy/Smiler.prefab#L1). They can easily be expanded to introduce new kinds of enemies by just tweaking their base stats like speed and attack (e.g. the smiler was originally just a faster version of melee enemy).
 
+## Assisting Game Logic (Primary Fire/Support/Upgrades) - Amit Bhongiri
+
+I decided to help Nam with the upgrades and abilities the player would have, as they would be the most intensive part of a vampire survivors like game such as this. While most of the upgrades are listed above in Nam's role, we also discussed support/static upgrades that are prevalent in games like this. Examples of this would be health/stamina/movespeed/etc. 
+
 
 ## Press Kit and Trailer
 
