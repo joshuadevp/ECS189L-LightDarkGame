@@ -85,7 +85,7 @@ Visually, the player sees the Darkness through a particle system I also made. A 
 ## User Interface - Dylan
 
 
-UI inspirations and gameplay interactions can be found here: Art, UI, Audio - Google Docs
+UI inspirations and gameplay interactions can be found here: Art, UI, Audio - Google Docs https://docs.google.com/document/d/1MjWvWElpVRm9vPDnc468GnXU5vczbKBiMj6w7BMYmTA/edit?pli=1
 
 
 ## Movement/Physics/Player Input/Miscellaneous - Alex Chiu
